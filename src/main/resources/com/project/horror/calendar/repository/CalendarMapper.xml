@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.project.horror.calendar.repository.CalendarMapper">
+
+    <resultMap id="calendarMap" type="com.project.horror.calendar.domain.Calendar">
+        <result property="calendarNo" column="calendar_no"/>
+        <result property="regDate" column="reg_date"/>
+    </resultMap>
+
+    <insert id="save">
+        INSERT INTO tbl_calendar
+        (calendar_no, channel, genre, title, content)
+        VALUES (4 || LPAD(seq_tbl_calendar.nextval, 4, '0'), #{channel}, #{genre}, #{title}, #{content})
+    </insert>
+
+    <select id="findAll" resultMap="calendarMap">
+         SELECT ROWNUM rn, c_board.*
+        FROM (
+                SELECT *
+                FROM tbl_calendar
+                <if test="type == 'channel'">WHERE channel LIKE '%' || #{keyword} || '%'</if>
+                <if test="type == 'genre'">WHERE genre LIKE '%' || #{keyword} || '%'</if>
+                <if test="type == 'title'">WHERE title LIKE '%' || #{keyword} || '%'</if>
+                ORDER BY calendar_no DESC
+                ) c_board
+    </select>
+
+    <select id="findOne" resultMap="calendarMap">
+        SELECT * FROM tbl_calendar
+        WHERE calendar_no=#{calendar_no}
+    </select>
+
+    <delete id="remove">
+        DELETE FROM tbl_calendar
+        WHERE calendar_no=#{calendar_no}
+    </delete>
+
+    <update id="modify">
+        UPDATE tbl_calendar
+        SET channel = #{channel}, genre = #{genre}, title=#{title}, content=#{content}
+        WHERE calendar_no = #{calendarNo}
+    </update>
+
+</mapper>
