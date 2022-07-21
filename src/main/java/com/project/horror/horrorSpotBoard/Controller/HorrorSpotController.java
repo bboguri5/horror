@@ -23,7 +23,7 @@ public class HorrorSpotController {
     private  final HorrorSpotService spotService;
 
     @GetMapping("/spot")
-    public String spot(Model model )
+    public String spot(Model model)
     {
         List<Spot> spotList =  spotService.selectAll();
         model.addAttribute("spotList",spotList);
