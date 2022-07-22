@@ -13,6 +13,8 @@ public interface CalendarMapper {
     boolean save(Calendar calendar);
 
     // 게시글 search 조회
+    List<Calendar> findAll(Search search);
+    // 게시글 전체 조회
     List<Calendar> findAll();
 
     Calendar findOne(Long calendarNo);

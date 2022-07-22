@@ -30,7 +30,7 @@ public class CalendarService {
 
         Map<String, Object> findDataMap = new HashMap<>();
 
-        List<Calendar> boardList = repository.findAll();
+        List<Calendar> boardList = repository.findAll(search);
 
         findDataMap.put("cList", boardList);
 

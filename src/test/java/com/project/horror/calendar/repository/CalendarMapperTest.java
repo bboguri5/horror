@@ -19,9 +19,13 @@ class CalendarMapperTest {
     @Test
     void saveTest() {
         Calendar calendar = new Calendar();
+        calendar.setMonth("7월");
+        calendar.setDay("22일");
+        calendar.setTime("16:00");
         calendar.setChannel("ONC");
         calendar.setTitle("남산의 부장들");
         calendar.setGenre("드라마");
+        calendar.setDirector("우민호");
         calendar.setContent("대통령암살");
 
         mapper.save(calendar);
@@ -30,8 +34,8 @@ class CalendarMapperTest {
     @Test
     @DisplayName("전체확인")
     void findAll() {
-        List<Calendar> boardList = mapper.findAll();
-        for (Calendar c : boardList) {
+        List<Calendar> calendarList = mapper.findAll();
+        for (Calendar c : calendarList) {
             System.out.println(c);
         }
     }
@@ -63,9 +67,13 @@ class CalendarMapperTest {
     void modifyTest() {
 
         Calendar cal = new Calendar();
+        cal.setMonth("8월");
+        cal.setDay("12일");
+        cal.setTime("18:00");
         cal.setChannel("스크린");
-        cal.setTitle("람보 3");
         cal.setGenre("액션");
+        cal.setTitle("람보 3");
+        cal.setDirector("피터 맥도널드");
         cal.setContent("전쟁참여");
         cal.setCalendarNo(40001L);
 

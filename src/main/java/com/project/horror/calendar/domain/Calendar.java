@@ -11,10 +11,13 @@ public class Calendar {
     // 테이블 컬럼 필드
 
     private Long calendarNo;
-    private Date regDate;
+    private String month;
+    private String day;
+    private String time;
     private String channel;
     private String genre;
     private String title;
     private String id;
+    private String director;
     private String content;
 }
