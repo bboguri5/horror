@@ -21,11 +21,15 @@
     </select>
 
     <select id="selectOne" resultMap="spotMap">
-        select * form tbl_spot_Board where spot_no = #{spotNo}
+        select * from tbl_spot_Board where spot_no = #{spotNo}
     </select>
 
     <select id="getTotalCount" resultType="int">
         SELECT COUNT(*)
         FROM tbl_spot_Board
     </select>
+    <update id="modify">
+
+    </update>
+
 </mapper>

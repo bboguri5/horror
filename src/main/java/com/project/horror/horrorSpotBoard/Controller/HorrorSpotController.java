@@ -12,8 +12,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import java.util.List;
 import java.util.Map;
 
 @Log4j2
@@ -27,7 +27,7 @@ public class HorrorSpotController {
     @GetMapping("/spot")
     public String spot(Model model)
     {
-        log.info(" HorrorSpotController : GET - ! ");
+        log.info("  Controller spot : GET - ! ");
         Page page = new Page();
         Map<String, Object> spotMap = spotService.selectAll(page);
         PageMaker pm = new PageMaker(page,(int) spotMap.get("tc"));
@@ -37,18 +37,51 @@ public class HorrorSpotController {
         return "/horrorSpot/horrorSpot-list";
     }
 
-    @GetMapping("/login")
-    public String login()
+    @PostMapping("/spot")
+    public String spot(boolean flag)
     {
+        log.info(" Controller spot : Post - ! {}",flag);
+        return "";
+    }
+
+    @PostMapping("/loginChk")
+    public String checkLogin(Model model, RedirectAttributes redirect, String id, String pwd)
+    {
+        log.info(" Controller checkLogin : Post - ! {}",id);
+        boolean flag = spotService.checkLogin(id,pwd);
+        if(flag){
+            redirect.addFlashAttribute("flag",flag);
+            return "redirect:/horror/spot";
+        }
+        else {
+            redirect.addAttribute("flag",flag);
+            return "redirect:/horror/login";
+        }
+    }
+    @GetMapping("/login")
+    public String login(Model model)
+    {
+        model.addAttribute("cnt",0);
+        model.addAttribute("flag",true);
         return "/horrorSpot/admin-login";
     }
 
-    @PostMapping("/spot")
-    public String spot(Model model,String id, String pwd)
-    {
-        boolean result = spotService.checkLogin(id,pwd);
-        model.addAttribute("is",result);
-        return "/horrorSpot/horrorSpot-list";
+    @GetMapping("/modify")
+    public String modify(Model model,int spotNo){
+
+        log.info(" controller modify Get - {}",spotNo);
+        model.addAttribute("s",spotService.selectOne(spotNo));
+        return "/horrorSpot/board-modify";
     }
+
+    @PostMapping("/modify")
+    public String save(int spotNo)
+    {
+        log.info(" controller save Post - {}",spotNo);
+        Spot spot = spotService.selectOne(spotNo);
+        return "/horrorSpot";
+    }
+
+
 }
 

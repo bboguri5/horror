@@ -20,14 +20,25 @@
 </head>
 <body>
     <div class="container">
-        <form class="form-signin" action="/horror/spot" method="post">
+        <form class="form-signin" action="/horror/loginChk" method="post">
           <h2 class="form-signin-heading">Admin Login</h2>
           <label for="inputID" class="sr-only">ID</label>
-          <input type="email" id="inputID" class="form-control" name="id" placeholder="Id" required autofocus>
+          <input type="id" id="inputID" class="form-control" name="id" placeholder="Id" required autofocus>
           <label for="inputPassword" class="sr-only">Password</label>
           <input type="password" id="inputPassword" class="form-control" name="pwd" placeholder="Password" required>
+          <input type="hidden" name="cnt" value="${cnt}" class="cnt">
           <button class="btn btn-primary btn-block" type="submit">Sign in</button>
         </form>
-      </div> <!-- /container -->
+      </div> 
 </body>
+
+<script>
+
+if(!${flag})
+{
+  alert("로그인이 실패하였습니다. 다시 입력해주세요.");
+}
+
+</script>
+
 </html>

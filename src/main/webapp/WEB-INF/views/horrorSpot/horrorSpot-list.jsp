@@ -66,7 +66,7 @@
     .bottom-section {
         display: flex;
         justify-content: center;
-        margin-top: 50px;
+        margin-top: 100px;
     }
 
     .page-link {
@@ -90,6 +90,18 @@
     {
         padding: 0.8rem 0.8rem
     }
+
+    #insertBtn
+    {
+        margin: 30px 0 30px 0;
+        float: right;
+        margin-right: 50px;
+        width: 120px;
+    }
+
+    tbody{
+        width: 80%;
+    }
 </style>
 
 <body>
@@ -101,6 +113,9 @@
                     <th>국가</th>
                     <th>주소</th>
                     <th>내용</th>
+                    <c:if test="${flag}">
+                    <th></th>
+                    </c:if>
                 </tr>
                 <c:forEach var="s" items="${spotList}">
                     <tr>
@@ -117,16 +132,18 @@
                         <td data-bs-toggle="modal" data-bs-target="#staticBackdrop" data-title="${s.title}"
                             data-country="${s.country}" data-address="${s.address}" data-content="${s.content}">
                             ${s.content}</td>
-                        <%--<c:if(${is})>--%>
+                            <c:if test="${flag}">
                             <td>
-                                <button id="modifyBtn" type="text">수정</button>
-                                <button id="deleteBtn" type="text">삭제</button>
+                                <a href="/horror/modify?spotNo=${s.spotNo}" id="modifyBtn" class="btn btn-warning" >수정</a>
+                                <a href="/horror/delete?spotNo=${s.spotNo}" id="deleteBtn" class="btn btn-danger">삭제</a>
                             </td>
-                          
-                        <%--</c:if>--%>
+                            </c:if>
                     </tr>
                 </c:forEach>
             </table>
+            <c:if test="${flag}">
+            <a href="/horror/insert" id="insertBtn" class="btn btn-dark">등록</a>
+            </c:if>
 
             <!-- Modal -->
             <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"

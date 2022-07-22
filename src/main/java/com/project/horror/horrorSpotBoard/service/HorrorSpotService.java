@@ -8,7 +8,6 @@ import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 @Service
@@ -25,18 +24,13 @@ public class HorrorSpotService {
         findDataMap.put("spotList",spotMapper.selectAll(page));
         findDataMap.put("tc", spotMapper.getTotalCount());
 
-        log.info("1 {}",page.getPageNum());
-        log.info("2 {}",page.getAmount());
-        log.info("3 {}",page.getTarget());
-        log.info("4 {}",spotMapper.getTotalCount());
-
         return findDataMap;
     }
 
     public Spot selectOne(int spotNo)
     {
         log.info("selectOne service start");
-        return spotMapper.selectOne();
+        return spotMapper.selectOne(spotNo);
     }
 
     public boolean checkLogin(String id, String pwd)
