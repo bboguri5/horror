@@ -14,7 +14,7 @@ import java.util.Map;
 @Log4j2
 public class RecController {
 
-    RecService service;
+    private final RecService service;
 
     //게시물 목록 요청
     @GetMapping("/reclist")
