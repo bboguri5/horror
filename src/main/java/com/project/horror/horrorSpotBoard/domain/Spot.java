@@ -14,5 +14,6 @@ public class Spot {
     private String address;
     private String content;
     private int likeCnt;
+    private boolean isAdmin;
 
 }

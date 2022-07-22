@@ -2,18 +2,30 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.project.horror.repository.HorrorSpotMapper">
-
-
+<mapper namespace="com.project.horror.horrorSpotBoard.repository.HorrorSpotMapper">
     <resultMap id="spotMap" type="com.project.horror.horrorSpotBoard.domain.Spot">
         <result property="spotNo" column="spot_no"/>
         <result property="likeCnt" column="like_cnt"/>
     </resultMap>
     <select id="selectAll" resultMap="spotMap">
-        select * from tbl_spot_Board
+        SELECT  *
+        FROM (
+        SELECT ROWNUM rn, v_board.*
+        FROM (
+        SELECT *
+        FROM tbl_spot_Board
+        ORDER BY spot_no DESC
+        ) v_board
+        )
+        WHERE rn BETWEEN (#{pageNum} - 1) * #{amount} + 1 AND (#{pageNum} * #{amount})
     </select>
 
     <select id="selectOne" resultMap="spotMap">
         select * form tbl_spot_Board where spot_no = #{spotNo}
+    </select>
+
+    <select id="getTotalCount" resultType="int">
+        SELECT COUNT(*)
+        FROM tbl_spot_Board
     </select>
 </mapper>
