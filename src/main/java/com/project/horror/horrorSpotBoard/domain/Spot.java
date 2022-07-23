@@ -14,6 +14,11 @@ public class Spot {
     private String address;
     private String content;
     private int likeCnt;
-    private boolean isAdmin;
 
+    public Spot(String title, String country, String address, String content) {
+        this.title = title;
+        this.country = country;
+        this.address = address;
+        this.content = content;
+    }
 }

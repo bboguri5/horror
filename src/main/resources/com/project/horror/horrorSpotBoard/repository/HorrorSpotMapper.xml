@@ -29,7 +29,24 @@
         FROM tbl_spot_Board
     </select>
     <update id="modify">
-
+        update tbl_spot_board SET title=#{title} , country = #{country} , address= #{address}, content= #{content} where spot_no = #{spotNo}
     </update>
-
+    <delete id="delete">
+        DELETE FROM tbl_spot_Board
+        WHERE spot_no=#{spotNo}
+    </delete>
+    <insert id="save">
+        INSERT INTO tbl_spot_Board (
+            spot_no,
+            title,
+            country,
+            address,
+            content) VALUES
+        (3 || LPAD(seq_spot_Board.nextval, 4, '0')
+        ,#{title}
+        ,#{country}
+        ,#{address}
+        ,#{content}
+        )
+    </insert>
 </mapper>

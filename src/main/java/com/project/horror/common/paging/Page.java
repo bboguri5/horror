@@ -9,7 +9,6 @@ import lombok.ToString;
 @AllArgsConstructor
 public class Page {
 
-
     private int pageNum; // 페이지 번호
     private int amount; // 한 페이지당 배치할 게시물 수
 
@@ -19,11 +18,6 @@ public class Page {
     {
         this.pageNum = 1;
         this.amount = 10; // 게시글
-    }
-
-    public Page(int i, int i1) {
-        this.pageNum = i;
-        this.amount= i1;
     }
 
     public void setPageNum(int pageNum) {

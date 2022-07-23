@@ -33,15 +33,10 @@ public class PageMaker {
 
         this.beginPage = endPage - PAGE_COUNT + 1;
         int realEnd = (int) Math.ceil((double) totalCount/page.getAmount());
-        log.info("realEnd {} ", realEnd);
-        log.info("endPage {} ",endPage);
         if(realEnd < endPage)
         {
             this.endPage = realEnd;
         }
-
-        log.info("endPage {} ",endPage);
-
         this.prev = beginPage>1;
 
         this.next = endPage < realEnd;

@@ -39,8 +39,8 @@
         color: #fff;
         border: 2px solid #76787a;
     }
-    .modal-body
-    {
+
+    .modal-body {
         overflow: auto;
     }
 
@@ -76,30 +76,29 @@
     }
 
     /* admin tag */
-    .ad{
-        width: 30px;
-        height: 30px;
+    .ad {
+        width: 300px;
+        height: 300px;
         display: block;
+        background: #fff;
     }
 
     #modifyBtn {
         margin-left: 30px;
     }
 
-    .table>:not(caption)>*>*
-    {
+    .table>:not(caption)>*>* {
         padding: 0.8rem 0.8rem
     }
 
-    #insertBtn
-    {
+    #insertBtn {
         margin: 30px 0 30px 0;
         float: right;
         margin-right: 50px;
         width: 120px;
     }
 
-    tbody{
+    tbody {
         width: 80%;
     }
 </style>
@@ -114,7 +113,7 @@
                     <th>주소</th>
                     <th>내용</th>
                     <c:if test="${flag}">
-                    <th></th>
+                        <th></th>
                     </c:if>
                 </tr>
                 <c:forEach var="s" items="${spotList}">
@@ -132,17 +131,18 @@
                         <td data-bs-toggle="modal" data-bs-target="#staticBackdrop" data-title="${s.title}"
                             data-country="${s.country}" data-address="${s.address}" data-content="${s.content}">
                             ${s.content}</td>
-                            <c:if test="${flag}">
+                        <c:if test="${flag}">
                             <td>
-                                <a href="/horror/modify?spotNo=${s.spotNo}" id="modifyBtn" class="btn btn-warning" >수정</a>
-                                <a href="/horror/delete?spotNo=${s.spotNo}" id="deleteBtn" class="btn btn-danger">삭제</a>
+                                <a href="/horror/modify?spotNo=${s.spotNo}" id="modifyBtn"
+                                    class="btn btn-warning">수정</a>
+                                <a id="deleteBtn" class="btn btn-danger">삭제</a>
                             </td>
-                            </c:if>
+                        </c:if>
                     </tr>
                 </c:forEach>
             </table>
             <c:if test="${flag}">
-            <a href="/horror/insert" id="insertBtn" class="btn btn-dark">등록</a>
+                <a href="/horror/write" id="writeBtn" class="btn btn-dark">등록</a>
             </c:if>
 
             <!-- Modal -->
@@ -226,35 +226,44 @@
                     </ul>
                 </nav>
             </div>
-            <a href="/horror/login" class="ad"></a>
-        </div>
+                <a class="ad" href="javascript:void(0)" onClick="javascript:goPost()"></a>
+            </div>
 
 
         <script>
+
+            const result = '${flag}';
+            if(result === 'true')
+            {
+                const $ad = document.querySelector('.ad');
+                $ad.remove();
+            }
+
+            //삭제 
+            const $delBtn = document.getElementById('deleteBtn');
+            $delBtn.onclick = e => {
+                const spotNo = e.target.parentElement.parentElement.firstElementChild.value;
+                console.log(spotNo);
+                if (!confirm('정말 삭제하시겠습니까?')) {
+                    return;
+                }
+                location.href = "/horror/delete?spotNo=" + spotNo;
+            };
+
+            function alertServerMessage() {
+                const msg = '${msg}';
+                // console.log('msg: ', msg);
+
+                if (msg === 'success') {
+                    alert('게시물이 정상 등록되었습니다.');
+                }
+            }
             $('#staticBackdrop').on('shown.bs.modal', function (e) {
                 $('#staticBackdrop').trigger('focus')
 
                 PutContentValues(e);
-                GetkakaoMap();
+                GetkakaoMap(e);
             })
-
-            function detailEvent() {
-                //상세보기 요청 이벤트
-                const $table = document.querySelector(".articles");
-
-                $table.addEventListener('click', e => {
-
-
-                    if (!e.target.matches('.articles td')) return;
-
-                    console.log('tr 클릭됨! - ', e.target);
-
-                    let bn = e.target.parentElement.firstElementChild.value;
-                    console.log(bn);
-                    location.href = '/horror/spot?spotNo=' + bn
-                });
-            }
-
 
             function PutContentValues(e) {
                 const [$title, $country, $address] = document.querySelectorAll('.form-control');
@@ -264,7 +273,8 @@
                 $('.main-content').text($(e.relatedTarget).data('content'));
             }
 
-            function GetkakaoMap() {
+            // bootStrap modal >> kakaoMap 
+            function GetkakaoMap(e) {
                 var container = document.getElementById('map');
                 var options = {
                     center: new kakao.maps.LatLng(33.450701, 126.570667),
@@ -285,7 +295,7 @@
                 var geocoder = new kakao.maps.services.Geocoder();
 
                 // 주소로 좌표를 검색합니다
-                geocoder.addressSearch('경기도 광주시 곤지암읍 신대리 114-1', function (result, status) {
+                geocoder.addressSearch($(e.relatedTarget).data('address'), function (result, status) {
 
                     // 정상적으로 검색이 완료됐으면 
                     if (status === kakao.maps.services.Status.OK) {
@@ -311,5 +321,14 @@
                     map.relayout();
 
                 });
+            }
+
+            // 값 없는 post 방식
+            function goPost() {
+                let form = document.createElement('form');
+                form.setAttribute('method', 'post');
+                form.setAttribute('action', '/horror/loginForm');
+                document.body.appendChild(form);
+                form.submit();
             }
         </script>
