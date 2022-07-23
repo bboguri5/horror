@@ -18,6 +18,8 @@
     .frame01 {
         display: flex;
         justify-content: space-between;
+        padding: 20px 20px 0 20px ;
+
     }
 
     .form-control.address {
@@ -27,6 +29,7 @@
     .main-content {
         height: 300px;
         border: 2px solid #fff;
+        padding: 15px;
     }
 
     .titleBox,
@@ -61,6 +64,16 @@
         box-shadow: inset 0px 0px 5px white;
     }
 
+    .addressBox,.contentBox
+    {
+        padding: 20px 20px 0 20px ;
+    }
+
+    .modal-title
+    {
+        margin-left: 30px;
+    }
+
     /* page bottom menu */
 
     .bottom-section {
@@ -88,10 +101,10 @@
     }
 
     .table>:not(caption)>*>* {
-        padding: 0.8rem 0.8rem
+        padding:1rem 0rem 1rem 3rem;
     }
 
-    #insertBtn {
+    #writeBtn {
         margin: 30px 0 30px 0;
         float: right;
         margin-right: 50px;
@@ -127,10 +140,10 @@
                             ${s.country}</td>
                         <td data-bs-toggle="modal" data-bs-target="#staticBackdrop" data-title="${s.title}"
                             data-country="${s.country}" data-address="${s.address}" data-content="${s.content}">
-                            ${s.address}</td>
+                            ${s.shortAddress}</td>
                         <td data-bs-toggle="modal" data-bs-target="#staticBackdrop" data-title="${s.title}"
                             data-country="${s.country}" data-address="${s.address}" data-content="${s.content}">
-                            ${s.content}</td>
+                            ${s.shortContent}</td>
                         <c:if test="${flag}">
                             <td>
                                 <a href="/horror/modify?spotNo=${s.spotNo}" id="modifyBtn"
@@ -151,39 +164,36 @@
                 <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="staticBackdropLabel">공포스팟</h5>
+                            <h2 class="modal-title" id="staticBackdropLabel"> Horror Spot Detail Info </h2>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
 
                         <!-- Modal Body-->
                         <div class="modal-body">
-
                             <!-- kakao map -->
                             <div id="map"></div>
                             <!-- koakao map End -->
-
                             <!-- Modal Body Content-->
                             <div class="frame01">
                                 <div class="mb-3 titleBox">
                                     <label for="exampleFormControlInput1" class="form-label ">명칭</label>
                                     <input type="text" class="form-control title" id="exampleFormControlInput1"
-                                        placeholder="명칭" name="title" value="${s.title}" disabled>
+                                        placeholder="명칭" name="title"  disabled>
                                 </div>
                                 <div class="mb-3 countryBox">
                                     <label for="exampleFormControlInput2" class="form-label ">국가</label>
                                     <input type="text" class="form-control country" id="exampleFormControlInput2"
-                                        placeholder="국가" name="country" value="${s.country}" disabled>
+                                        placeholder="국가" name="country"  disabled>
                                 </div>
                             </div>
-                            <div class="mb-3">
+                            <div class="mb-3 addressBox">
                                 <label for="exampleFormControlInput3" class="form-label ">주소</label>
                                 <input type="text" class="form-control address" id="exampleFormControlInput3"
-                                    placeholder="주소" name="address" value="${s.address}" disabled>
+                                    placeholder="주소" name="address"  disabled>
                             </div>
-                            <div class="mb-3">
+                            <div class="mb-3 contentBox ">
                                 <label for="exampleFormControlTextarea1" class="form-label">내용</label>
-                                <p class="main-content">
-                                    ${s.content}
+                                <p class="main-content">                                   
                                 </p>
                             </div>
                         </div>
@@ -238,17 +248,7 @@
                 const $ad = document.querySelector('.ad');
                 $ad.remove();
             }
-
-            //삭제 
-            const $delBtn = document.getElementById('deleteBtn');
-            $delBtn.onclick = e => {
-                const spotNo = e.target.parentElement.parentElement.firstElementChild.value;
-                console.log(spotNo);
-                if (!confirm('정말 삭제하시겠습니까?')) {
-                    return;
-                }
-                location.href = "/horror/delete?spotNo=" + spotNo;
-            };
+       
 
             function alertServerMessage() {
                 const msg = '${msg}';
@@ -260,7 +260,7 @@
             }
             $('#staticBackdrop').on('shown.bs.modal', function (e) {
                 $('#staticBackdrop').trigger('focus')
-
+                console.log(e);
                 PutContentValues(e);
                 GetkakaoMap(e);
             })
@@ -310,7 +310,7 @@
 
                         // 인포윈도우로 장소에 대한 설명을 표시합니다
                         var infowindow = new kakao.maps.InfoWindow({
-                            content: '<div style="width:150px;text-align:center;padding:6px 0;color:#000;">곤지암</div>'
+                            content: '<div style="width:150px;text-align:center;padding:6px 0;color:#000;">'+$(e.relatedTarget).data('title')+'</div>'
                         });
                         infowindow.open(map, marker);
 
@@ -331,4 +331,15 @@
                 document.body.appendChild(form);
                 form.submit();
             }
+
+                 //삭제 
+                 const $delBtn = document.getElementById('deleteBtn');
+            $delBtn.onclick = e => {
+                const spotNo = e.target.parentElement.parentElement.firstElementChild.value;
+                console.log(spotNo);
+                if (!confirm('정말 삭제하시겠습니까?')) {
+                    return;
+                }
+                location.href = "/horror/delete?spotNo=" + spotNo;
+            };
         </script>

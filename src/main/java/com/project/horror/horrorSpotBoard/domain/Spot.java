@@ -13,7 +13,13 @@ public class Spot {
     private String country;
     private String address;
     private String content;
-    private int likeCnt;
+
+    private String likeCnt;
+
+
+    private String shortContent;
+    private String shortAddress;
+    private String shortTitle;
 
     public Spot(String title, String country, String address, String content) {
         this.title = title;

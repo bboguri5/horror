@@ -14,7 +14,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+
+
+interface anyCls{
+    void anyFun(Spot spot);
+}
 
 @Service
 @Log4j2
@@ -26,8 +32,14 @@ public class HorrorSpotService {
         log.info("selectAll service start");
 
         Map<String, Object> findDataMap = new HashMap<>();
-        findDataMap.put("spotList", spotMapper.selectAll(page));
+        List<Spot> spots = spotMapper.selectAll(page);
+
+        processConverting(spots);
+
+        findDataMap.put("spotList",spots);
         findDataMap.put("tc", spotMapper.getTotalCount());
+
+
 
         return findDataMap;
     }
@@ -54,6 +66,54 @@ public class HorrorSpotService {
         return spotMapper.save(spot);
     }
 
+    private void processConverting(List<Spot> SpotList) {
+
+        for (Spot s : SpotList) {
+            substringAddress(s);
+            substringContent(s);
+        }
+    }
+
+    private void substringTitle(Spot spot)
+        {
+            String title = spot.getTitle();
+            if (title.length() > 10) {
+                String subStr = title.substring(0, 10);
+                spot.setShortTitle(subStr + "...");
+                log.info(spot.getShortTitle());
+            } else {
+                spot.setShortTitle(title);
+                log.info(spot.getShortTitle());
+
+            }
+    }
+
+    private void substringAddress(Spot spot)
+    {
+        String address = spot.getAddress();
+        log.info(address.length());
+        if (address.length() > 10) {
+            String subStr = address.substring(0, 10);
+            spot.setShortAddress(subStr + "...");
+            log.info(spot.getShortAddress());
+        } else {
+            spot.setShortAddress(address);
+            log.info(spot.getShortAddress());
+
+        }
+    }
+
+    private void substringContent(Spot spot)
+    {
+        String content = spot.getContent();
+        if (content.length() > 30) {
+            String subStr = content.substring(0, 30);
+            spot.setShortContent(subStr + "...");
+        } else {
+            spot.setShortContent(content);
+
+        }
+    }
     public boolean checkLogin(
             HttpServletRequest request,
             String id, String pwd) {
@@ -74,17 +134,6 @@ public class HorrorSpotService {
         return true;
     }
 
-    private void makeLoginCookie(HttpServletResponse response, HttpServletRequest request) {
-        Cookie foundCookie = WebUtils.getCookie(request, "flag");
-        if (foundCookie == null) {
-
-            Cookie cookie = new Cookie("flag", "true");
-            cookie.setMaxAge(60 * 60);
-            cookie.setPath("/horror/spot");
-
-            response.addCookie(cookie); // 클라이언트에 쿠키 전송
-        }
-    }
 
 
 }
