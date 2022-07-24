@@ -2,8 +2,10 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="ko">
-<body>
+  <head>
   <%@ include file="../include/static-head.jsp" %>
+  </head>
+<body>
   <style>
     .container
     {

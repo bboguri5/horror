@@ -28,7 +28,7 @@ public class HorrorSpotController {
     private final HorrorSpotService spotService;
 
     @GetMapping("/spot")
-    public String spot(Model model, @ModelAttribute("search") Search search) {
+    public String spot(@ModelAttribute("search") Search search, Model model) {
 
         log.info(" Controller spot : GET - ! ");
 
@@ -39,6 +39,7 @@ public class HorrorSpotController {
 
         model.addAttribute("spotList", spotMap.get("spotList"));
         model.addAttribute("pm", pm);
+        log.info(pm.getPage().getPageNum());
         return "/horrorSpot/board-list";
     }
 

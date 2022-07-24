@@ -30,8 +30,6 @@ public class HorrorSpotService {
 
         findDataMap.put("spotList",spots);
         findDataMap.put("tc", total);
-        log.info("tc {}" , total);
-
         return findDataMap;
     }
 
