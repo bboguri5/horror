@@ -1,6 +1,11 @@
-
+body
+{
+    background: #111111;
+}
 .wrap {
-    margin: 100px auto;
+    margin: 0 auto;
+    margin-top: 200px;
+    background: #111111;
     width: 80%;
     color: #fff;
 }

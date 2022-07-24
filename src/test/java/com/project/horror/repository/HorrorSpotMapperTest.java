@@ -30,7 +30,8 @@ class HorrorSpotMapperTest {
     @Test
     void saveTest()
     {
-        boolean result = mapper.save(new Spot("asdf","asdf","sdaf","asdfasdf"));
-        System.out.println(result);
+        for (int i = 0; i < 30 ; i++) {
+           mapper.save(new Spot("title" + i,"한국","서울 금천구 디지털로 130 남성프라자 1007호","SL 아카데미"));
+        }
     }
 }

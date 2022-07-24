@@ -10,12 +10,14 @@
     <select id="selectAll" resultMap="spotMap">
         SELECT  *
         FROM (
-        SELECT ROWNUM rn, v_board.*
-        FROM (
-        SELECT *
-        FROM tbl_spot_Board
-        ORDER BY spot_no DESC
-        ) v_board
+             SELECT ROWNUM rn, v_board.*
+                FROM (
+                    SELECT *
+                     FROM tbl_spot_Board
+                         <if test="type == 'title'">WHERE title LIKE '%' || #{keyword} || '%'</if>
+                         <if test="type == 'address'">WHERE address LIKE '%' || #{keyword} || '%'</if>
+                     ORDER BY spot_no DESC
+                ) v_board
         )
         WHERE rn BETWEEN (#{pageNum} - 1) * #{amount} + 1 AND (#{pageNum} * #{amount})
     </select>
@@ -27,6 +29,8 @@
     <select id="getTotalCount" resultType="int">
         SELECT COUNT(*)
         FROM tbl_spot_Board
+        <if test="type == 'title'">WHERE title LIKE '%' || #{keyword} || '%'</if>
+        <if test="type == 'address'">WHERE address LIKE '%' || #{keyword} || '%'</if>
     </select>
     <update id="modify">
         update tbl_spot_board SET title=#{title} , country = #{country} , address= #{address}, content= #{content} where spot_no = #{spotNo}

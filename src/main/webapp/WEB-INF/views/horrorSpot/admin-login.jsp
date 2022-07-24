@@ -2,23 +2,22 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="ko">
-<head>
-    <%@ include file="../include/static-head.jsp" %>
-    <style>
-      .container
-      {
-            width:300px;
-        height:300px;
-        margin:0 auto;
-        margin-top: 200px;
-      }
-      
-      .form-control{
-        margin: 20px 0 20px 0;
-      }
-    </style>
-</head>
 <body>
+  <%@ include file="../include/static-head.jsp" %>
+  <style>
+    .container
+    {
+          width:300px;
+      height:300px;
+      margin:0 auto;
+      margin-top: 200px;
+      color: #fff;
+    }
+    
+    .form-control{
+      margin: 20px 0 20px 0;
+    }
+  </style>
     <div class="container">
         <form class="form-signin" action="/horror/loginChk" method="post">
           <h2 class="form-signin-heading">Admin Login</h2>

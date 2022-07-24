@@ -3,6 +3,7 @@ package com.project.horror.horrorSpotBoard.Controller;
 
 import com.project.horror.common.paging.Page;
 import com.project.horror.common.paging.PageMaker;
+import com.project.horror.common.search.Search;
 import com.project.horror.horrorSpotBoard.domain.Spot;
 import com.project.horror.horrorSpotBoard.service.HorrorSpotService;
 import lombok.RequiredArgsConstructor;
@@ -27,12 +28,13 @@ public class HorrorSpotController {
     private final HorrorSpotService spotService;
 
     @GetMapping("/spot")
-    public String spot(Model model) {
+    public String spot(Model model, @ModelAttribute("search") Search search) {
 
         log.info(" Controller spot : GET - ! ");
 
-        Page page = new Page();
-        Map<String, Object> spotMap = spotService.selectAll(page);
+        Page page = new Page(search.getPageNum(), search.getAmount());
+
+        Map<String, Object> spotMap = spotService.selectAll(search);
         PageMaker pm = new PageMaker(page, (int) spotMap.get("tc"));
 
         model.addAttribute("spotList", spotMap.get("spotList"));
@@ -43,6 +45,7 @@ public class HorrorSpotController {
     @PostMapping("/loginForm")
     public String login(boolean flag,Model model) {
         log.info(" Controller loginForm : Post - ! ");
+
         model.addAttribute(flag);
         return "/horrorSpot/admin-login";
     }
@@ -53,11 +56,9 @@ public class HorrorSpotController {
             Model model,
             String id, String pwd){
 
-
-
         log.info(" Controller loginChk  : Post - ! ");
-        boolean flag = spotService.checkLogin(request,id,pwd);
-        if(flag)
+
+        if(spotService.checkLogin(request,id,pwd))
         {
             return "redirect:/horror/spot";
         }
@@ -71,14 +72,18 @@ public class HorrorSpotController {
     public String write(Model model)
     {
         model.addAttribute("arg","write");
+
         return "/horrorSpot/board-write";
     }
 
     @PostMapping("/write")
-    public String write(String title, String country, String address, String content)
+    public String write(RedirectAttributes redirect, String title, String country, String address, String content)
     {
         log.info("write post - !");
+
         boolean result = spotService.save(new Spot(title,country,address,content));
+        redirect.addFlashAttribute("msg","writeSuccess");
+
         return "redirect:/horror/spot";
     }
 
@@ -99,17 +104,18 @@ public class HorrorSpotController {
 
         if(spotService.modify(spot))
         {
-            redirect.addFlashAttribute("msg","success");
+            redirect.addFlashAttribute("msg","modifySuccess");
             return  "redirect:/horror/spot";
         }
         return "redirect:/horror/spot";
     }
 
     @GetMapping("/delete")
-    public String delete(int spotNo)
+    public String delete(RedirectAttributes redirect,int spotNo)
     {
         log.info(" controller delete Get - {}", spotNo);
         spotService.delete(spotNo);
+        redirect.addFlashAttribute("msg","deleteSuccess");
         return  "redirect:/horror/spot";
     }
 
