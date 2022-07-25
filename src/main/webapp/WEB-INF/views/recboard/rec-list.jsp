@@ -31,9 +31,9 @@
 
                     .container2 {
                         width: 1650px;
-                        border: 1px solid #fff;
+                        /* border: 1px solid #fff; */
                         /* background: green; */
-                        margin: 0 auto 0;
+                        margin: 30px auto 0;
                     }
 
 
@@ -51,7 +51,7 @@
                         float: left;
                         margin-bottom: 10px;
                         margin-left: 10px;
-                        border: 2px solid #ffa;
+                        /* border: 2px solid #ffa; */
                         color: #fff;
 
 
@@ -82,6 +82,24 @@
                         /* background: #fff; */
                     }
 
+                    .good-box {
+                        display: flex;
+                        margin-top: 10px;
+                    }
+
+                    .good-box li:last-child {
+                        margin-left: 50px;
+                        /* background: green; */
+                    }
+
+                    .writer-date {
+                        display: flex;
+                    }
+
+                    .writer-date li:last-child {
+                        margin-left: 100px;
+
+                    }
 
                     .bottom-section {
                         /* background: yellow; */
@@ -179,6 +197,21 @@
                         font-size: 1.5rem;
                         font-weight: 700;
                     }
+
+                       /* 카테고리별 게시물수 조회 버튼 */
+                       ul.category {
+                        display: flex;
+                        position: absolute;
+                        left: 400px;
+
+                    }
+
+                    ul.category li {
+                        margin-left: 10px;
+                        background: #000;
+
+                    }
+
                 </style>
         </head>
 
@@ -193,100 +226,114 @@
 
                 <div class="top-section">
 
-                    <!-- 검색창 영역 -->
-                    <div class="search">
-
-                        <form action="/recboard/reclist" method="get">
-
-                            <select class="form-select" name="type" id="search-type">
-                                <option value="title">제목</option>
-                                <option value="content">내용</option>
-                                <option value="writer">작성자</option>
-                                <option value="tc">제목+내용</option>
-                            </select>
-
-                            <input type="text" class="form-control" name="keyword" value="${s.keyword}">
-
-                            <button class="btn btn-primary" type="submit">
-                                <i class="fas fa-search"></i>
-                            </button>
-
-                        </form>
-
-                    </div>
-
-                    <!-- 조회되는 게시물 수 -->
-                    <ul class="amount">
-                        <li><a class="btn btn-danger" href="/recboard/reclist?amount=8">8개</a></li>
-                        <li><a class="btn btn-danger" href="/recboard/reclist?amount=16">16개</a></li>
-                        <li><a class="btn btn-danger" href="/recboard/reclist?amount=32">32개</a></li>
-                        <li><a class="btn btn-danger" href="/recboard/reclist?amount=64">64개</a></li>
+                    <!-- 게시물 카테고리별 검색 -->
+                    <ul class="category">
+                        <li><a class="btn btn-danger" href="/recboard/reclist?amount=${pm.page.amount}&type=title&keyword=예능">#예능</a></li>
+                        <li><a class="btn btn-danger" href="/recboard/reclist?amount=${pm.page.amount}&type=title&keyword=드라마">#드라마</a></li>
+                        <li><a class="btn btn-danger" href="/recboard/reclist?amount=${pm.page.amount}&type=title&keyword=영화">#영화</a></li>
+                        <li><a class="btn btn-danger" href="/recboard/reclist?amount=${pm.page.amount}&type=title&keyword=다큐">#다큐</a></li>
+                        <li><a class="btn btn-danger" href="/recboard/reclist?amount=${pm.page.amount}">#전체목록보기</a></li>
                     </ul>
+
+
+                <!-- 검색창 영역 -->
+                <div class="search">
+
+                    <form action="/recboard/reclist" method="get">
+
+                        <select class="form-select" name="type" id="search-type">
+                            <option value="title">제목</option>
+                            <option value="content">내용</option>
+                            <option value="writer">작성자</option>
+                            <option value="tc">제목+내용</option>
+                        </select>
+
+                        <input type="text" class="form-control" name="keyword" value="${s.keyword}">
+
+                        <button class="btn btn-primary" type="submit">
+                            <i class="fas fa-search"></i>
+                        </button>
+
+                    </form>
+
                 </div>
 
-                <div class="container2 articles clearfix">
+                <!-- 조회되는 게시물 수 -->
+                <ul class="amount">
+                    <li><a class="btn btn-danger" href="/recboard/reclist?amount=8">8개</a></li>
+                    <li><a class="btn btn-danger" href="/recboard/reclist?amount=16">16개</a></li>
+                    <li><a class="btn btn-danger" href="/recboard/reclist?amount=32">32개</a></li>
+                    <li><a class="btn btn-danger" href="/recboard/reclist?amount=64">64개</a></li>
+                </ul>
+            </div>
 
-                    <c:forEach var="b" items="${bList}">
-                        <ul class="box">
-                            <li>
-                                <div class="img-box" style="overflow: hidden; ">
-                                    <img class="horror-img" src="${b.img}" alt="공포이미지" style="object-fit: cover;">
-                                </div>
-                            </li>
-                            <li>${b.boardNo} </li>
-                            <li>${b.writer}</li>
-                            <li>${b.shortTitle}</li>
-                            <c:if test="${b.newArticle}"> <span class="badge rounded-pill bg-danger">new</span></c:if>
+            <div class="container2 articles clearfix">
+
+                <c:forEach var="b" items="${bList}">
+                    <ul class="box">
+                        <li>
+                            <div class="img-box" style="overflow: hidden; ">
+                                <img class="horror-img" src="${b.img}" alt="공포이미지" style="object-fit: cover;">
+                            </div>
+                        </li>
+                        <li data-board-num="${b.boardNo}">${b.boardNo}번 게시물 </li>
+                        <li>${b.shortTitle}</li>
+                        <c:if test="${b.newArticle}"> <span class="badge rounded-pill bg-danger">new</span></c:if>
+                        <div class="writer-date">
+                            <li>작성자 : ${b.writer}</li>
                             <li>${b.prettierDate}</li>
+                        </div>
+                        <div class="good-box">
                             <li>조회수 : ${b.viewCnt}</li>
-                            <li>좋아요 : ${b.goodCnt}</li>
-                        </ul>
-                    </c:forEach>
+                            <li> <a href="/recboard/reclikeup?boardNo=${b.boardNo}"> 좋아요 : ${b.goodCnt} </a></li>
+                        </div>
+                    </ul>
+                </c:forEach>
 
+            </div>
+
+            <div class="bottom-section">
+
+                <!-- 페이지 버튼 영역 -->
+                <nav class="page-box" aria-label="Page navigation example">
+                    <ul class="pagination pagination-lg pagination-custom">
+
+                        <c:if test="${pm.prev}">
+                            <li class="page-item">
+                                <a class="page-link"
+                                    href="/recboard/reclist?pageNum=${pm.beginPage - 1}&amount=${pm.page.amount}"
+                                    aria-label="Previous">
+                                    <span aria-hidden="true">&laquo;</span>
+                                </a>
+                            </li>
+                        </c:if>
+
+                        <c:forEach var="n" begin="${pm.beginPage}" end="${pm.endPage}" step="1">
+                            <li data-page-num="${n}" class="page-item"><a class="page-link"
+                                    href="/recboard/reclist?pageNum=${n}&amount=${pm.page.amount}">${n}</a></li>
+                        </c:forEach>
+
+                        <c:if test="${pm.next}">
+                            <li class="page-item">
+                                <a class="page-link"
+                                    href="/recboard/reclist?pageNum=${pm.endPage + 1}&amount=${pm.page.amount}"
+                                    aria-label="Next">
+                                    <span aria-hidden="true">&raquo;</span>
+                                </a>
+                            </li>
+                        </c:if>
+
+
+                    </ul>
+                </nav>
+
+
+                <!-- 게시글작성 버튼 영역 -->
+                <div class="btn-write">
+                    <a class="btn btn-outline-danger btn-lg" href="/recboard/recwrite">게시글 작성</a>
                 </div>
 
-                <div class="bottom-section">
-
-                    <!-- 페이지 버튼 영역 -->
-                    <nav class="page-box" aria-label="Page navigation example">
-                        <ul class="pagination pagination-lg pagination-custom">
-
-                            <c:if test="${pm.prev}">
-                                <li class="page-item">
-                                    <a class="page-link"
-                                        href="/recboard/reclist?pageNum=${pm.beginPage - 1}&amount=${pm.page.amount}"
-                                        aria-label="Previous">
-                                        <span aria-hidden="true">&laquo;</span>
-                                    </a>
-                                </li>
-                            </c:if>
-
-                            <c:forEach var="n" begin="${pm.beginPage}" end="${pm.endPage}" step="1">
-                                <li data-page-num="${n}" class="page-item"><a class="page-link"
-                                        href="/recboard/reclist?pageNum=${n}&amount=${pm.page.amount}">${n}</a></li>
-                            </c:forEach>
-
-                            <c:if test="${pm.next}">
-                                <li class="page-item">
-                                    <a class="page-link"
-                                        href="/recboard/reclist?pageNum=${pm.endPage + 1}&amount=${pm.page.amount}"
-                                        aria-label="Next">
-                                        <span aria-hidden="true">&raquo;</span>
-                                    </a>
-                                </li>
-                            </c:if>
-
-
-                        </ul>
-                    </nav>
-
-
-                    <!-- 게시글작성 버튼 영역 -->
-                    <div class="btn-write">
-                        <a class="btn btn-outline-danger btn-lg" href="/recboard/recwrite">게시글 작성</a>
-                    </div>
-
-                </div>
+            </div>
 
 
             </div>
@@ -324,7 +371,8 @@
 
                         console.log('img 클릭됨 -', e.target);
 
-                        let bn = e.target.parentElement.parentElement.parentElement.firstElementChild.nextElementSibling.textContent;
+                        let bn = e.target.parentElement.parentElement.parentElement.firstElementChild.nextElementSibling.dataset.boardNum;
+
                         console.log('글번호:', + bn);
 
                         location.href = '/recboard/reccontent/' + bn;

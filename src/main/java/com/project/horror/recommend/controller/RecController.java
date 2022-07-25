@@ -111,4 +111,13 @@ public class RecController {
 
         return flag ? "redirect:/recboard/reccontent/" + board.getBoardNo() : "redirect:/";
     }
+
+    // 좋아요 요청 GET
+    @GetMapping("/reclikeup")
+    public String likeup(Long boardNo,HttpServletRequest request, HttpServletResponse response){
+        log.info("controller request /recboard/reclikeup GET! - {}",boardNo);
+        boolean flag = service.makeGoodCount(boardNo,response,request);
+
+        return flag? "redirect:/recboard/reclist" : "redirect:/recboard/reclist";
+    }
 }

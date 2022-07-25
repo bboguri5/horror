@@ -38,5 +38,5 @@ public interface RecMapper {
     void upViewCount(Long boardNo);
 
     // 좋아요 상승 처리
-    void upGoodCount(Long boardNo);
+    boolean upGoodCount(Long boardNo);
 }

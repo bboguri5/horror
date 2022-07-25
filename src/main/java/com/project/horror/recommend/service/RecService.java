@@ -82,6 +82,7 @@ public class RecService {
         }
 
 
+
     //  -- 신규 게시물 여부 처리
 
 
@@ -136,8 +137,9 @@ public class RecService {
         }
     }
 
-    private void makeGoodCount(Long boardNo, HttpServletResponse response, HttpServletRequest request) {
-        Cookie foundCookie = WebUtils.getCookie(request, "b" + boardNo);// 클라이언트의 쿠키 조회
+    // 게시물 좋아요 상승 중간처리
+    public boolean makeGoodCount(Long boardNo, HttpServletResponse response, HttpServletRequest request) {
+        Cookie foundCookie = WebUtils.getCookie(request, "good" + boardNo);// 클라이언트의 쿠키 조회
         if (foundCookie == null) {
             mapper.upGoodCount(boardNo);
 
@@ -149,7 +151,11 @@ public class RecService {
             cookie.setPath("recboard"); // 쿠키 작동 범위
 
             response.addCookie(cookie); // 클라이언트에게 쿠키 전송
+            log.info("여기까지 오나?");
+            return true;
         }
+
+        return false;
     }
 
 // 게시물 삭제 요청 중간 처리
@@ -166,6 +172,9 @@ public class RecService {
         log.info("modify service start - {}", board);
         return mapper.modify(board);
     }
+
+
+
 
 
 }

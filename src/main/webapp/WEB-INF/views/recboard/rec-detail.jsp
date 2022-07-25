@@ -38,6 +38,10 @@
             left: 50%;
             transform: translateX(-50%);
         }
+
+        .btn.btn-yellow {
+            background: yellow;
+        }
     </style>
 </head>
 
@@ -71,6 +75,7 @@
                 <button id="mod-btn" type="button" class="btn btn-warning">수정</button>
                 <button id="del-btn" type="button" class="btn btn-danger">삭제</button>
                 <button id="list-btn" type="button" class="btn btn-dark">목록</button>
+                <button id="like-btn" type="button" class="btn btn-yellow">좋아요</button>
             </div>
 
         </div>
@@ -80,7 +85,7 @@
 
 
     <script>
-        const [$modBtn, $delBtn, $listBtn] = [...document.querySelector('div[role=group]').children];
+        const [$modBtn, $delBtn, $listBtn, $likeBtn] = [...document.querySelector('div[role=group]').children];
 
         // const $modBtn = document.getElementById('mod-btn');
         //수정버튼
@@ -99,6 +104,11 @@
         $listBtn.onclick = e => {
             location.href = '/recboard/reclist?pageNum=${p.pageNum}&amount=${p.amount}';
         };
+
+        //좋아요버튼
+        $likeBtn.onclick = e => {
+            location.href ='/recboard/reclikeup?boardNo=${b.boardNo}';
+        }
         
     </script>
 

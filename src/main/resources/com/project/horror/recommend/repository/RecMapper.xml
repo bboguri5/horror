@@ -12,7 +12,7 @@
 <insert id="save">
     INSERT INTO tbl_recommend
     (board_no, writer, title, img, content)
-    VALUES (1 || LPAD(seq_tbl_recommend.nextval, 4, '0'), #{writer}, #{title}, #{img}, #{content})
+    VALUES (2 || LPAD(seq_tbl_recommend.nextval, 4, '0'), #{writer}, #{title}, #{img}, #{content})
 </insert>
 
 
