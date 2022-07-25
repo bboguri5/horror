@@ -28,7 +28,6 @@ import java.util.Map;
 public class HorrorSpotController {
 
     private final HorrorSpotService spotService;
-    private final LoginService loginService;
 
     @GetMapping("/spot")
     public String spot(@ModelAttribute("search") Search search, Model model) {
@@ -46,53 +45,7 @@ public class HorrorSpotController {
         return "/horrorSpot/board-list";
     }
 
-    @PostMapping("/loginForm")
-    public String login(boolean flag,Model model) {
-        log.info(" Controller loginForm : Post - ! ");
 
-        model.addAttribute(flag);
-        return "/horrorSpot/login";
-    }
-
-    @PostMapping("/signIn")
-    public String checkLogin(
-            HttpServletRequest request,
-            Model model,
-            String id, String pwd){
-
-        log.info(" Controller loginChk  : Post - ! ");
-
-        if(loginService.login(request,id,pwd))
-            return "redirect:/horror/spot";
-
-        model.addAttribute("login",false);
-        return "/horrorSpot/login";
-    }
-    @GetMapping("/signUp")
-    public String signUp(RedirectAttributes redirect,String inputId)
-    {
-        log.info(" singUp get - ! {} ",inputId);
-
-        if(inputId != null)
-        {
-            if(loginService.checkId(inputId))
-                redirect.addFlashAttribute("checkID","fail");
-            else
-            {
-                redirect.addFlashAttribute("checkID","success");
-                redirect.addFlashAttribute("inputId",inputId);
-            }
-            return "redirect:/horror/signUp";
-        }
-        return "/horrorSpot/sign-up";
-    }
-
-    @PostMapping("signUp")
-    public String signUp(Member member)
-    {
-        loginService.saveSignUpInfo(member);
-        return "redirect:/horror/spot";
-    }
 
     @GetMapping("/write")
     public String write(Model model)

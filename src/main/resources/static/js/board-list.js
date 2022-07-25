@@ -80,10 +80,6 @@ function goPost() {
 }
 
 
-
-
-
-
 // modal start
 function startModal() {
     $('#staticBackdrop').on('shown.bs.modal', function (e) {

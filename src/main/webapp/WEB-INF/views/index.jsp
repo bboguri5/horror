@@ -3,20 +3,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <%@ include file="./include/static-head.jsp" %>
 </head>
-<style>
-  
-</style>
+
 <body>
-    <nav class="wrap">
-        <div class=""></div>
-        <div></div>
-        <div></div>
-        <div></div>
-    </nav>
+    <%@ include file="./include/header.jsp" %>
 </body>
 </html>

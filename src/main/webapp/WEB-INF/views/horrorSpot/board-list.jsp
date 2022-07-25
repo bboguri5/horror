@@ -10,6 +10,8 @@
 </head>
 
 <body>
+    <%@ include file="../include/header.jsp" %>
+
     <div class="wrap">
         <div class="board-list">
             <div class="searchBox">
@@ -152,7 +154,6 @@
                 </ul>
             </nav>
         </div>
-        <a class="ad" href="javascript:void(0)" onClick="javascript:goPost()"></a>
     </div>
 </body>
 
@@ -200,22 +201,5 @@
         };
     }  
     
-            // popup 
-            function alertServerMessage() {
-        const msg = '${msg}';
-        // console.log('msg: ', msg);
-
-        if (msg === 'writeSuccess') {
-            alert('게시물이 정상 등록되었습니다.');
-        }
-        else if(msg === 'modifySuccess')
-        {
-            alert('게시물 수정이 완료되었습니다.');
-        }
-        else if(msg === 'deleteSuccess')
-        {
-            alert('삭제가 완료되었습니다.');
-        }
-    }
-
+    
 </script>
