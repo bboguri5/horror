@@ -187,34 +187,35 @@
         }
     }
 
-       // delete confirm
-       function deleteBtn(){
-            const $delBtn = document.getElementById('deleteBtn');
-            $delBtn.onclick = e => {
-                const spotNo = e.target.parentElement.parentElement.firstElementChild.value;
-                console.log(spotNo);
-                if (!confirm('정말 삭제하시겠습니까?')) {
-                    return;
-                }
-                location.href = "/horror/delete?spotNo=" + spotNo;
-            };
-        }  
-        
-                // popup 
-                function alertServerMessage() {
-            const msg = '${msg}';
-            // console.log('msg: ', msg);
+    // delete confirm
+    function deleteBtn(){
+        const $delBtn = document.getElementById('deleteBtn');
+        $delBtn.onclick = e => {
+            const spotNo = e.target.parentElement.parentElement.firstElementChild.value;
+            console.log(spotNo);
+            if (!confirm('정말 삭제하시겠습니까?')) {
+                return;
+            }
+            location.href = "/horror/delete?spotNo=" + spotNo;
+        };
+    }  
+    
+            // popup 
+            function alertServerMessage() {
+        const msg = '${msg}';
+        // console.log('msg: ', msg);
 
-            if (msg === 'writeSuccess') {
-                alert('게시물이 정상 등록되었습니다.');
-            }
-            else if(msg === 'modifySuccess')
-            {
-                alert('게시물 수정이 완료되었습니다.');
-            }
-            else if(msg === 'deleteSuccess')
-            {
-                alert('삭제가 완료되었습니다.');
-            }
+        if (msg === 'writeSuccess') {
+            alert('게시물이 정상 등록되었습니다.');
         }
+        else if(msg === 'modifySuccess')
+        {
+            alert('게시물 수정이 완료되었습니다.');
+        }
+        else if(msg === 'deleteSuccess')
+        {
+            alert('삭제가 완료되었습니다.');
+        }
+    }
+
 </script>

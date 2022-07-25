@@ -4,6 +4,7 @@ package com.project.horror.horrorSpotBoard.Controller;
 import com.project.horror.common.paging.Page;
 import com.project.horror.common.paging.PageMaker;
 import com.project.horror.common.search.Search;
+import com.project.horror.horrorSpotBoard.domain.Member;
 import com.project.horror.horrorSpotBoard.domain.Spot;
 import com.project.horror.horrorSpotBoard.service.HorrorSpotService;
 import com.project.horror.service.LoginService;
@@ -61,16 +62,36 @@ public class HorrorSpotController {
 
         log.info(" Controller loginChk  : Post - ! ");
 
-        if(loginService.checkLogin(request,id,pwd))
+        if(loginService.login(request,id,pwd))
             return "redirect:/horror/spot";
 
         model.addAttribute("login",false);
         return "/horrorSpot/login";
     }
     @GetMapping("/signUp")
-    public String signUp()
+    public String signUp(RedirectAttributes redirect,String inputId)
     {
+        log.info(" singUp get - ! {} ",inputId);
+
+        if(inputId != null)
+        {
+            if(loginService.checkId(inputId))
+                redirect.addFlashAttribute("checkID","fail");
+            else
+            {
+                redirect.addFlashAttribute("checkID","success");
+                redirect.addFlashAttribute("inputId",inputId);
+            }
+            return "redirect:/horror/signUp";
+        }
         return "/horrorSpot/sign-up";
+    }
+
+    @PostMapping("signUp")
+    public String signUp(Member member)
+    {
+        loginService.saveSignUpInfo(member);
+        return "redirect:/horror/spot";
     }
 
     @GetMapping("/write")

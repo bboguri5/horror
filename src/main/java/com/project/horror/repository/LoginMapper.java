@@ -8,6 +8,6 @@ import org.apache.ibatis.annotations.Mapper;
 public interface LoginMapper {
 
     int checkID(String id);
-    int checkPWD(String pwd);
+    int checkLogin(String id, String pwd);
     boolean saveSignUpInfo(Member member);
 }

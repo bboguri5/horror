@@ -11,7 +11,9 @@
         select COUNT(*) from tbl_login_info where id = #{id}
     </select>
 
-    <select id="checkPWD" resultType="int">
-        select COUNT(*) from tbl_login_info where pwd = #{pwd}
+    <select id="checkLogin" resultType="int">
+        select COUNT(*) from tbl_login_info where id = #{id} and pwd = #{pwd}
     </select>
+
+
 </mapper>

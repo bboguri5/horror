@@ -6,12 +6,18 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/horror")
 public class FrontController {
 
-    @GetMapping("/welcome")
+    @GetMapping("/")
     public String welcome()
     {
         return "/welcome";
     }
+
+    @GetMapping("/horror/main")
+    public String main()
+    {
+        return "/index";
+    }
+
 }
