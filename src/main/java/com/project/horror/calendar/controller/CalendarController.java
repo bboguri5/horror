@@ -22,8 +22,8 @@ public class CalendarController {
 
     // 게시물 목록 요청
 
-    @GetMapping("/list")
-    public String list(Search search, Model model) {
+    @GetMapping("/list") // "s" 타입으로 옵션태그를 보내준다
+    public String list(@ModelAttribute("s") Search search, Model model) {
 
         log.info("controller request /board/list GET!");
 
@@ -40,7 +40,7 @@ public class CalendarController {
     public String content(@PathVariable Long calendarNo, Model model) {
         Calendar calendar = calendarService.findOneService(calendarNo);
         log.info("return data - {}", calendar);
-        model.addAttribute("c", calendar);
+        model.addAttribute("calendar", calendar);
 
         return "calendar/calendar-detail";
     }

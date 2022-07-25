@@ -11,24 +11,23 @@
 
     <insert id="save">
         INSERT INTO tbl_calendar
-        (calendar_no, month, day, time, channel, genre, title, director, content)
-        VALUES (4 || LPAD(seq_tbl_calendar.nextval, 4, '0'), #{month}, #{day}, #{time}, #{channel}, #{genre}, #{title}, #{director}, #{content})
+        (calendar_no, month, day, time, channel, genre, limit, title, director, content)
+        VALUES (4 || LPAD(seq_tbl_calendar.nextval, 4, '0'), #{month}, #{day}, #{time}, #{channel}, #{genre}, #{limit}, #{title}, #{director}, #{content})
     </insert>
 
     <select id="findAll" resultMap="calendarMap">
-         SELECT ROWNUM rn, c_board.*
-        FROM (
+
                 SELECT *
                 FROM tbl_calendar
-                <if test="type == 'title'">WHERE channel LIKE '%' || #{keyword} || '%'</if>
-                <if test="type == 'director'">WHERE genre LIKE '%' || #{keyword} || '%'</if>
-                <if test="type == 'content'">WHERE title LIKE '%' || #{keyword} || '%'</if>
+                <if test="type == 'title'">WHERE title LIKE '%' || #{keyword} || '%'</if>
+                <if test="type == 'genre'">WHERE genre LIKE '%' || #{keyword} || '%'</if>
+                <if test="type == 'content'">WHERE content LIKE '%' || #{keyword} || '%'</if>
                 <if test="type == 'tc'">
                     WHERE title LIKE '%' || #{keyword} || '%'
                         OR content LIKE '%' || #{keyword} || '%'
                 </if>
-                ORDER BY calendar_no DESC
-                ) c_board
+                ORDER BY month, day, time
+
     </select>
 
     <select id="findOne" resultMap="calendarMap">
@@ -43,7 +42,7 @@
 
     <update id="modify">
         UPDATE tbl_calendar
-        SET month = #{month}, day = #{day}, time = #{time}, channel = #{channel}, genre = #{genre}, title=#{title}, director=#{director}, content=#{content}
+        SET month = #{month}, day = #{day}, time = #{time}, channel = #{channel}, genre = #{genre}, limit = #{limit}, title=#{title}, director=#{director}, content=#{content}
         WHERE calendar_no = #{calendarNo}
     </update>
 

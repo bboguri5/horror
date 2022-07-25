@@ -16,8 +16,10 @@ public class Calendar {
     private String time;
     private String channel;
     private String genre;
+    private String limit;
     private String title;
     private String id;
+
     private String director;
     private String content;
 }
