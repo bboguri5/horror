@@ -1,6 +1,5 @@
 package com.project.horror.horrorSpotBoard.service;
 
-import com.project.horror.common.paging.Page;
 import com.project.horror.common.search.Search;
 import com.project.horror.horrorSpotBoard.domain.Spot;
 import com.project.horror.horrorSpotBoard.repository.HorrorSpotMapper;
@@ -8,8 +7,6 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Service;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -85,29 +82,4 @@ public class HorrorSpotService {
 
         }
     }
-    public boolean checkLogin(
-            HttpServletRequest request,
-            String id, String pwd) {
-
-        log.info("checkLogin service start");
-
-        if (!(id.equals("admin") && pwd.equals("1234"))) {
-            return false;
-        }
-        makeSession(request);
-        return true;
-    }
-
-    private void makeSession(HttpServletRequest request) {
-        HttpSession session = request.getSession(false);
-        log.info(" service session : {}" ,session);
-
-        if(session!= null)
-        {
-            session.setAttribute("flag", true);
-            session.setMaxInactiveInterval(10800);
-        }
-    }
-
-
 }

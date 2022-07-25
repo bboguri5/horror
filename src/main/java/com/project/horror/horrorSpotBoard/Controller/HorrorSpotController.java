@@ -6,6 +6,7 @@ import com.project.horror.common.paging.PageMaker;
 import com.project.horror.common.search.Search;
 import com.project.horror.horrorSpotBoard.domain.Spot;
 import com.project.horror.horrorSpotBoard.service.HorrorSpotService;
+import com.project.horror.service.LoginService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Controller;
@@ -26,6 +27,7 @@ import java.util.Map;
 public class HorrorSpotController {
 
     private final HorrorSpotService spotService;
+    private final LoginService loginService;
 
     @GetMapping("/spot")
     public String spot(@ModelAttribute("search") Search search, Model model) {
@@ -48,10 +50,10 @@ public class HorrorSpotController {
         log.info(" Controller loginForm : Post - ! ");
 
         model.addAttribute(flag);
-        return "/horrorSpot/admin-login";
+        return "/horrorSpot/login";
     }
 
-    @PostMapping("/loginChk")
+    @PostMapping("/signIn")
     public String checkLogin(
             HttpServletRequest request,
             Model model,
@@ -59,14 +61,16 @@ public class HorrorSpotController {
 
         log.info(" Controller loginChk  : Post - ! ");
 
-        if(spotService.checkLogin(request,id,pwd))
-        {
+        if(loginService.checkLogin(request,id,pwd))
             return "redirect:/horror/spot";
-        }
-        {
-            model.addAttribute("flag",false);
-            return "/horrorSpot/admin-login";
-        }
+
+        model.addAttribute("login",false);
+        return "/horrorSpot/login";
+    }
+    @GetMapping("/signUp")
+    public String signUp()
+    {
+        return "/horrorSpot/sign-up";
     }
 
     @GetMapping("/write")

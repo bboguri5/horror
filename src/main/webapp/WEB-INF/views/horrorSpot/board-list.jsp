@@ -2,34 +2,36 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <%@ include file="../include/static-head.jsp" %>
     <link rel="stylesheet" href="/css/board-list.css">
 
 </head>
+
 <body>
     <div class="wrap">
         <div class="board-list">
-                <div class="searchBox">
-                    <form action="/horror/spot" method="get">
-                        <select class="form-select formInner" name="type" id="search-type">
-                            <option value="title">명칭</option>
-                            <option value="address">주소</option>
-                        </select>
-                        <input type="text" class="form-input formInner" name="keyword" value="${search.keyword}">
-                        <button class="btn btn-primary formInner" type="submit">
-                            <i class="fas fa-search"></i>
-                        </button>
-                    </form>
-                    <div class="pageReset">
-                        <a href="/horror/spot"  class="totalbtn btn btn-dark">전체글</a>
-                        <select id="selBox" class ="form-select" name="sel" >
-                            <option value="10">10</option>
-                            <option value="20">20</option>
-                            <option value="30">30</option>
-                        </select>
-                    </div>
+            <div class="searchBox">
+                <form action="/horror/spot" method="get">
+                    <select class="form-select formInner" name="type" id="search-type">
+                        <option value="title">명칭</option>
+                        <option value="address">주소</option>
+                    </select>
+                    <input type="text" class="form-input formInner" name="keyword" value="${search.keyword}">
+                    <button class="btn btn-primary formInner" type="submit">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </form>
+                <div class="pageReset">
+                    <a href="/horror/spot" class="totalbtn btn btn-dark">전체글</a>
+                    <select id="selBox" class="form-select" name="sel">
+                        <option value="10">10</option>
+                        <option value="20">20</option>
+                        <option value="30">30</option>
+                    </select>
                 </div>
+            </div>
 
             <table class="table table-dark table-striped table-hover articles">
                 <tr>
@@ -70,91 +72,93 @@
                 <a href="/horror/write" id="writeBtn" class="btn btn-dark">등록</a>
             </c:if>
         </div>
-            <!-- Modal -->
-            <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-                aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h2 class="modal-title" id="staticBackdropLabel"> Horror Spot Detail Info </h2>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
+        <!-- Modal -->
+        <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+            aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h2 class="modal-title" id="staticBackdropLabel"> Horror Spot Detail Info </h2>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
 
-                        <!-- Modal Body-->
-                        <div class="modal-body">
-                            
-                            <!-- kakao map -->
-                            <div id="map"></div>
-                            <!-- koakao map End -->
+                    <!-- Modal Body-->
+                    <div class="modal-body">
 
-                            <!-- Modal Body Content-->
-                            <div class="frame01">
-                                <div class="mb-3 titleBox">
-                                    <label for="exampleFormControlInput1" class="form-label ">명칭</label>
-                                    <input type="text" class="form-control title" id="exampleFormControlInput1"
-                                        placeholder="명칭" name="title"  disabled>
-                                </div>
-                                <div class="mb-3 countryBox">
-                                    <label for="exampleFormControlInput2" class="form-label ">국가</label>
-                                    <input type="text" class="form-control country" id="exampleFormControlInput2"
-                                        placeholder="국가" name="country"  disabled>
-                                </div>
+                        <!-- kakao map -->
+                        <div id="map"></div>
+                        <!-- koakao map End -->
+
+                        <!-- Modal Body Content-->
+                        <div class="frame01">
+                            <div class="mb-3 titleBox">
+                                <label for="exampleFormControlInput1" class="form-label ">명칭</label>
+                                <input type="text" class="form-control title" id="exampleFormControlInput1"
+                                    placeholder="명칭" name="title" disabled>
                             </div>
-                            <div class="mb-3 addressBox">
-                                <label for="exampleFormControlInput3" class="form-label ">주소</label>
-                                <input type="text" class="form-control address" id="exampleFormControlInput3"
-                                    placeholder="주소" name="address"  disabled>
-                            </div>
-                            <div class="mb-3 contentBox ">
-                                <label for="exampleFormControlTextarea1" class="form-label">내용</label>
-                                <p class="main-content">                                   
-                                </p>
+                            <div class="mb-3 countryBox">
+                                <label for="exampleFormControlInput2" class="form-label ">국가</label>
+                                <input type="text" class="form-control country" id="exampleFormControlInput2"
+                                    placeholder="국가" name="country" disabled>
                             </div>
                         </div>
-                        <!-- Modal Body End -->
-
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <div class="mb-3 addressBox">
+                            <label for="exampleFormControlInput3" class="form-label ">주소</label>
+                            <input type="text" class="form-control address" id="exampleFormControlInput3"
+                                placeholder="주소" name="address" disabled>
                         </div>
+                        <div class="mb-3 contentBox ">
+                            <label for="exampleFormControlTextarea1" class="form-label">내용</label>
+                            <p class="main-content">
+                            </p>
+                        </div>
+                    </div>
+                    <!-- Modal Body End -->
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                     </div>
                 </div>
             </div>
-            <!-- Modal End -->
+        </div>
+        <!-- Modal End -->
 
-            <!-- 게시글 목록 하단 영역 -->
-            <div class="bottom-section">
-                <!-- 페이지 버튼 영역 -->
-                <nav aria-label="Page navigation example">
-                    <ul class="pagination pagination-lg pagination-custom">
+        <!-- 게시글 목록 하단 영역 -->
+        <div class="bottom-section">
+            <!-- 페이지 버튼 영역 -->
+            <nav aria-label="Page navigation example">
+                <ul class="pagination pagination-lg pagination-custom">
 
-                        <c:if test="${pm.prev}">
-                            <li class="page-item"><a class="page-link"
-                                    href="/horror/spot?pageNum=${pm.beginPage - 1}&amount=${pm.page.amount}&type=${search.type}&keyword=${search.keyword}">prev</a>
-                            </li>
-                        </c:if>
+                    <c:if test="${pm.prev}">
+                        <li class="page-item"><a class="page-link"
+                                href="/horror/spot?pageNum=${pm.beginPage - 1}&amount=${pm.page.amount}&type=${search.type}&keyword=${search.keyword}">prev</a>
+                        </li>
+                    </c:if>
 
-                        <c:forEach var="n" begin="${pm.beginPage}" end="${pm.endPage}" step="1">
-                            <li data-page-num="${n}" class="page-item">
+                    <c:forEach var="n" begin="${pm.beginPage}" end="${pm.endPage}" step="1">
+                        <li data-page-num="${n}" class="page-item">
 
-                                <a class="page-link" href="/horror/spot?pageNum=${n}&amount=${pm.page.amount}&type=${search.type}&keyword=${search.keyword}">${n}</a>
-                            </li>
-                        </c:forEach>
+                            <a class="page-link"
+                                href="/horror/spot?pageNum=${n}&amount=${pm.page.amount}&type=${search.type}&keyword=${search.keyword}">${n}</a>
+                        </li>
+                    </c:forEach>
 
-                        <c:if test="${pm.next}">
-                            <li class="page-item"><a class="page-link"
-                                    href="/horror/spot?pageNum=${pm.endPage + 1}&amount=${pm.page.amount}&type=${search.type}&keyword=${search.keyword}">next</a>
-                            </li>
-                        </c:if>
+                    <c:if test="${pm.next}">
+                        <li class="page-item"><a class="page-link"
+                                href="/horror/spot?pageNum=${pm.endPage + 1}&amount=${pm.page.amount}&type=${search.type}&keyword=${search.keyword}">next</a>
+                        </li>
+                    </c:if>
 
-                    </ul>
-                </nav>
-            </div>
-                <a class="ad" href="javascript:void(0)" onClick="javascript:goPost()"></a>
-            </div>
+                </ul>
+            </nav>
+        </div>
+        <a class="ad" href="javascript:void(0)" onClick="javascript:goPost()"></a>
+    </div>
 </body>
 
 <script src="/js/board-list.js"></script>
 <script>
+   
     fixPageCountOption();
     appendPageActive(); // append page Active 
 
@@ -174,14 +178,43 @@
     function appendPageActive() {
         const curPageNum = '${pm.page.pageNum}';
         const $ul = document.querySelector('.pagination');
-        
-            for(const $li of [...$ul.children] )
-            {
-                if(curPageNum === $li.dataset.pageNum)
-                {
-                    $li.classList.add('active');
-                    break;
-                }
-            } 
+
+        for (const $li of [...$ul.children]) {
+            if (curPageNum === $li.dataset.pageNum) {
+                $li.classList.add('active');
+                break;
+            }
+        }
     }
+
+       // delete confirm
+       function deleteBtn(){
+            const $delBtn = document.getElementById('deleteBtn');
+            $delBtn.onclick = e => {
+                const spotNo = e.target.parentElement.parentElement.firstElementChild.value;
+                console.log(spotNo);
+                if (!confirm('정말 삭제하시겠습니까?')) {
+                    return;
+                }
+                location.href = "/horror/delete?spotNo=" + spotNo;
+            };
+        }  
+        
+                // popup 
+                function alertServerMessage() {
+            const msg = '${msg}';
+            // console.log('msg: ', msg);
+
+            if (msg === 'writeSuccess') {
+                alert('게시물이 정상 등록되었습니다.');
+            }
+            else if(msg === 'modifySuccess')
+            {
+                alert('게시물 수정이 완료되었습니다.');
+            }
+            else if(msg === 'deleteSuccess')
+            {
+                alert('삭제가 완료되었습니다.');
+            }
+        }
 </script>

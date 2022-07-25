@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.project.horror.repository.LoginMapper">
+
+    <insert id="saveSignUpInfo">
+        INSERT INTO tbl_login_info VALUES (#{id},#{pwd},#{name},#{birth},#{email})
+    </insert>
+    <select id="checkID" resultType="int">
+        select COUNT(*) from tbl_login_info where id = #{id}
+    </select>
+
+    <select id="checkPWD" resultType="int">
+        select COUNT(*) from tbl_login_info where pwd = #{pwd}
+    </select>
+</mapper>
