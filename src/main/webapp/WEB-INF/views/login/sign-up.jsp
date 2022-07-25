@@ -19,8 +19,9 @@
         }
         #login-id{
             margin-right: 10px;
-            width: 200px;
+            width: 300px;
         }
+   
     </style>
 
 </head>
@@ -30,7 +31,7 @@
         <div class="input-form-backgroud row">
             <div class="input-form col-md-12 mx-auto">
                 <h4 class="mb-3">회원가입</h4>
-                <form action="/horror/signUp" class="validation-form" method="post" >
+                <form action="/signUp" class="validation-form" method="post" onsubmit="return warnJoin()" >
                     <div class="row">
                         <div class="col-md-6 mb-3">
                             <label for="login-id">아이디</label>
@@ -56,7 +57,7 @@
                             <input type="email" class="form-control" id="login-email" name="email" placeholder="ex) you@example.com" disabled>
                         </div>
                     </div>
-                    <button class="btn btn-primary btn-lg btn-block" type="submit">가입 완료</button>
+                    <button class="btn btn-danger btn-lg btn-block" type="submit">가입 완료</button>
                 </form>
             </div>
         </div>
@@ -64,11 +65,27 @@
     </div>
 
     <script>
+            function warnJoin()
+            {
+                if(confirm("심약자 노약자 임산부는 회원가입이 불가합니다."))
+                {
+                   if(confirm("감당하실 수 있겠습니까?"))
+                   {
+                        if(confirm("레알?"))
+                        {
+                            return true;
+                        }
+                   }
+                
+                }
+                return false;
+            }
+
            function checkID()
            {
                 const $loginId = document.getElementById('login-id');
                 console.log($loginId);
-                location.href = '/horror/signUp?inputId='+$loginId.value;
+                location.href = '/signUp?inputId='+$loginId.value;
            }
 
             const idResult = '${checkID}'
@@ -76,7 +93,7 @@
                 alert("가입 가능한 ID입니다.");
                 disabledTrue();
             }
-            else if (checkIDresult === "fail"){
+            else if (idResult === "fail"){
                 alert("ID 중복입니다.");
             }
             

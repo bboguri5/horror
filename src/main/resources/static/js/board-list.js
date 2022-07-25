@@ -70,16 +70,6 @@ function alertServerMessage() {
     }
 }
 
-// no value post send
-function goPost() {
-    let form = document.createElement('form');
-    form.setAttribute('method', 'post');
-    form.setAttribute('action', '/horror/loginForm');
-    document.body.appendChild(form);
-    form.submit();
-}
-
-
 // modal start
 function startModal() {
     $('#staticBackdrop').on('shown.bs.modal', function (e) {

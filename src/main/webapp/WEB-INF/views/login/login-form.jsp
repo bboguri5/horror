@@ -36,7 +36,7 @@
 
   </style>
     <div class="container">
-        <form class="form-signin" action="/horror/signIn" method="post">
+        <form class="form-signin" action="/signIn" method="post">
           <h2 class="form-signin-heading">Admin Login</h2>
           <label for="inputID" class="sr-only">ID</label>
           <input type="id" id="inputID" class="form-control" name="id" placeholder="Id" required autofocus>
@@ -45,7 +45,7 @@
           <input type="hidden" name="cnt" value="${cnt}" class="cnt">
           <button class="signInBtn btn btn-primary btn-block" type="submit">Sign in</button>
         </form>
-        <a href="/horror/signUp"class="signUpBtn btn btn-primary ">Sign up</a>
+        <a href="/signUp"class="signUpBtn btn btn-primary ">Sign up</a>
       </div> 
 </body>
 

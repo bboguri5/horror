@@ -4,21 +4,15 @@ package com.project.horror.horrorSpotBoard.Controller;
 import com.project.horror.common.paging.Page;
 import com.project.horror.common.paging.PageMaker;
 import com.project.horror.common.search.Search;
-import com.project.horror.horrorSpotBoard.domain.Member;
 import com.project.horror.horrorSpotBoard.domain.Spot;
 import com.project.horror.horrorSpotBoard.service.HorrorSpotService;
-import com.project.horror.service.LoginService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import java.util.Map;
 
 @Log4j2
@@ -44,8 +38,6 @@ public class HorrorSpotController {
         log.info(pm.getPage().getPageNum());
         return "/horrorSpot/board-list";
     }
-
-
 
     @GetMapping("/write")
     public String write(Model model)
