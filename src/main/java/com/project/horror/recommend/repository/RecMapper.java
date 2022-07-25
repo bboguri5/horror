@@ -14,9 +14,9 @@ public interface RecMapper {
     boolean save(RecBoard board);
 
     // 게시글 전체 조회
-    List<RecBoard> findAll();
+//    List<RecBoard> findAll();
 
-//    List<RecBoard> findAll(RecPage page);
+    List<RecBoard> findAll(RecSearch search);
 
     // 게시글 전체 조회 with search
 //    List<RecBoard> findAll2(RecSearch search);
@@ -36,4 +36,7 @@ public interface RecMapper {
 
     // 조회수 상승 처리
     void upViewCount(Long boardNo);
+
+    // 좋아요 상승 처리
+    void upGoodCount(Long boardNo);
 }

@@ -15,13 +15,13 @@
     VALUES (1 || LPAD(seq_tbl_recommend.nextval, 4, '0'), #{writer}, #{title}, #{img}, #{content})
 </insert>
 
-    
+
 <delete id="remove">
 
         DELETE FROM tbl_recommend WHERE board_no = #{boardNo}
 
 </delete>
-    
+
 <update id="modify">
     UPDATE tbl_recommend
     SET title = #{title} , content = #{content}
@@ -43,6 +43,10 @@
         UPDATE tbl_recommend SET view_cnt = view_cnt +1 WHERE board_no = #{boardNo}
     </update>
 
+    <update id="upGoodCount">
+        UPDATE tbl_recommend SET good_cnt = good_cnt +1 WHERE board_no = #{boardNo}
+    </update>
+
 
     <resultMap id="RecBoardMapper" type="com.project.horror.recommend.domain.RecBoard">
         <result property="boardNo" column="board_no"></result>
@@ -52,17 +56,22 @@
     </resultMap>
 
     <select id="findAll" resultMap="RecBoardMapper">
+        SELECT  *
+        FROM (
+            SELECT ROWNUM rn, v_board.*
+            FROM (
+                    SELECT *
+                    FROM tbl_recommend
+                    <if test="type == 'title'">WHERE  title LIKE '%' || #{keyword} || '%'</if>
+                    <if test="type == 'writer'">WHERE  writer LIKE '%' || #{keyword} || '%'</if>
+                    <if test="type == 'content'">WHERE  content LIKE '%' || #{keyword} || '%'</if>
+                    <if test="type == 'tc'">WHERE  title LIKE '%' || #{keyword} || '%'
+                                            OR content LIKE '%' || #{keyword} || '%'</if>
+                    ORDER BY board_no DESC
+                ) v_board
+            )
+        WHERE rn BETWEEN (#{pageNum} - 1) * #{amount} + 1 AND (#{pageNum} * #{amount})
 
-        SELECT *
-              FROM (
-                   SELECT ROWNUM rn, v_board.*
-                      FROM (
-                                SELECT *
-                                FROM tbl_recommend
-                                ORDER BY board_no DESC
-                                ) v_board
-                )
-<!--        WHERE rn BETWEEN (#{pageNum} - 1) * #{amount} + 1 AND (#{pageNum} * #{amount})-->
 
     </select>
 

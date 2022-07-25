@@ -22,4 +22,10 @@ public class RecBoard {
     private Date regDate;
     private String id;
 
+    // 커스텀 필드
+    private String prettierDate; // 변경된 날짜포맷 문자열
+    private String shortTitle;// 변경된 제목
+    private boolean newArticle;//
+
+
 }

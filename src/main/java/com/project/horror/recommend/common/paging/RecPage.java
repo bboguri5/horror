@@ -2,6 +2,7 @@ package com.project.horror.recommend.common.paging;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 @ToString
@@ -13,12 +14,12 @@ public class RecPage {
         private int pageNum; // 페이지 번호
         private int amount; // 한 페이지당 배치할 게시물 수
 
-        public RecPage() {
-            this.pageNum = 1;
-            this.amount = 10;
-        }
+    public RecPage() {
+        this.pageNum = 1;
+        this.amount = 8;
+    }
 
-        public void setPageNum(int pageNum) {
+    public void setPageNum(int pageNum) {
             if (pageNum <= 0 || pageNum > Integer.MAX_VALUE) {
                 this.pageNum = 1;
                 return;
@@ -27,8 +28,8 @@ public class RecPage {
         }
 
         public void setAmount(int amount) {
-            if (amount < 10 || amount > 100) {
-                this.amount = 10;
+            if (amount < 8 || amount > 100) {
+                this.amount = 8;
                 return;
             }
             this.amount = amount;
