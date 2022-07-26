@@ -140,8 +140,10 @@
                     </div>
 
                     <div class="btn-group btn-group-lg custom-btn-group" role="group">
+                        <c:if test="${flag}">
                         <button id="mod-btn" type="button" class="btn btn-warning">수정</button>
                         <button id="del-btn" type="button" class="btn btn-danger">삭제</button>
+                        </c:if>
                         <button id="list-btn" type="button" class="btn btn-dark">목록</button>
                         <button id="like-btn" type="button" class="btn btn-yellow">좋아요</button>
                     </div>

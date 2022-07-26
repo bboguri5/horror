@@ -83,8 +83,6 @@
 </body>
 <script>
 
-    console.log('${spotNo}')
-    console.log('${arg}');
       //목록버튼 이벤트
       const $toList = document.getElementById('to-list');
         $toList.onclick = e => {
