@@ -1,10 +1,12 @@
 package com.project.horror.community.repository;
 
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import com.project.horror.common.paging.Page;
 import com.project.horror.community.domain.CommunityBoard;
 import com.project.horror.community.domain.CommunityCode;
+import com.project.horror.community.domain.CommunityReply;
 import com.project.horror.community.domain.CommunitySearch;
 
 import java.util.List;
@@ -44,7 +46,7 @@ public interface CommunityMapper {
     // 조회수 상승 처리
     void upViewCount(Long boardNo);
 
-    // 카테고리 목록 조회 
+    // 카테고리 목록 조회
     List<CommunityCode> getCategoryList();
 
     // 좋아요 상승 처리
@@ -55,4 +57,19 @@ public interface CommunityMapper {
 
     // 좋아요 생성이력 확인
     int checkLikeHistory(CommunityBoard communityBoard);
+
+    // 댓글 등록
+    boolean makeReply(CommunityReply communityReply);
+
+    // 댓글 전체 조회
+    List<CommunityReply> findAllReply(CommunityReply communityReply);
+
+    // 댓글 상세 조회
+    CommunityReply findOneReply(long boardNo, long replyNo);
+
+    // 댓글 삭제
+    boolean removeReply(@Param("boardNo") long boardNo, @Param("replyNo") long replyNo);
+
+    // 댓글 수정
+    boolean modifyReply(CommunityReply communityReply);
 }

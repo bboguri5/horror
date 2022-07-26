@@ -59,7 +59,7 @@
                 <div class="mb-3">
                     <label for="exampleFormControlInput1" class="form-label">작성자</label>
                     <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="이름" name="writer"
-                        value="${board.writer}" maxlength="20">
+                        value="${board.writer}" maxlength="7">
                 </div>
                 <div class="mb-3">
                     <label for="category-input" class="form-label">카테고리</label>

@@ -9,6 +9,7 @@ import org.springframework.web.util.WebUtils;
 import com.project.horror.common.paging.Page;
 import com.project.horror.community.domain.CommunityBoard;
 import com.project.horror.community.domain.CommunityCode;
+import com.project.horror.community.domain.CommunityReply;
 import com.project.horror.community.domain.CommunitySearch;
 import com.project.horror.community.repository.CommunityMapper;
 
@@ -95,7 +96,7 @@ public class CommunityMapperService {
     }
 
     // 게시물 전체 조회 요청 중간 처리 with paging
-    public Map<String,Object> findAllWithPagingService(Page page) {
+    public Map<String, Object> findAllWithPagingService(Page page) {
         log.info("findAll service start");
 
         Map<String, Object> findDataMap = new HashMap<>();
@@ -112,7 +113,7 @@ public class CommunityMapperService {
     }
 
     // 게시물 전체 조회 요청 중간 처리 with searching
-    public Map<String,Object> findAllWithSearchService(CommunitySearch search) {
+    public Map<String, Object> findAllWithSearchService(CommunitySearch search) {
         log.info("findAll service start");
 
         Map<String, Object> findDataMap = new HashMap<>();
@@ -198,5 +199,36 @@ public class CommunityMapperService {
         log.info("checkLikeHistory service start - {}", communityBoard);
         return mapper.checkLikeHistory(communityBoard);
     }
-}
 
+    // 댓글 등록
+    public boolean makeReplyService(CommunityReply communityReply) {
+        log.info("makeReply service start - {}", communityReply);
+        return mapper.makeReply(communityReply);
+    }
+
+    // 댓글 전체 조회
+    public List<CommunityReply> findAllReplyService(CommunityReply communityReply) {
+        return mapper.findAllReply(communityReply);
+    }
+    
+    // 댓글 상세 조회
+    public CommunityReply findOneReplyService(Long boardNo, Long reply_no) {
+        log.info("findOneReply service start - boardNo: {}, reply: {}", boardNo, reply_no);
+
+        CommunityReply communityReply = mapper.findOneReply(boardNo, reply_no);
+
+        return communityReply;
+    }
+
+    // 댓글 삭제
+    public boolean removeReplyService(Long boardNo, Long replyNo) {
+        log.info("removeReply service start - {}", boardNo + " " + replyNo);
+        return mapper.removeReply(boardNo, replyNo);
+    }
+
+    // 댓글 수정
+    public boolean modifyReplyService(CommunityReply communityReply) {
+        log.info("modifyReply service start - {}", communityReply);
+        return mapper.modifyReply(communityReply);
+    }
+}

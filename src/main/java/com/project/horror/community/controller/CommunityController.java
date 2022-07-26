@@ -1,5 +1,6 @@
 package com.project.horror.community.controller;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -8,10 +9,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.project.horror.community.domain.CommunityCode;
+import com.project.horror.community.domain.CommunityReply;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -32,13 +36,13 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 
 /*
-     * 게시물 목록 요청: /horror/community/list: GET
-     * 게시물 상세조회 요청: /horror/community/content: GET
-     * 게시글 쓰기화면 요청: /horror/community/write: GET
-     * 게시글 등록 요청: /horror/community/write: POST
-     * 게시글 삭제 요청: /horror/community/delete: GET
-     * 게시글 수정화면 요청: /horror/community/modify: GET
-     * 게시글 수정 요청: /horror/community/modify: POST
+ * 게시물 목록 요청: /horror/community/list: GET
+ * 게시물 상세조회 요청: /horror/community/content: GET
+ * 게시글 쓰기화면 요청: /horror/community/write: GET
+ * 게시글 등록 요청: /horror/community/write: POST
+ * 게시글 삭제 요청: /horror/community/delete: GET
+ * 게시글 수정화면 요청: /horror/community/modify: GET
+ * 게시글 수정 요청: /horror/community/modify: POST
  */
 
 @Controller
@@ -78,6 +82,11 @@ public class CommunityController {
         List<CommunityCode> ctgrList = boardService.getCategoryListService();
         model.addAttribute("ctgrList", ctgrList);
 
+        CommunityReply communityReply = new CommunityReply();
+        communityReply.setBoardNo(boardNo);
+        List<CommunityReply> rplyList = boardService.findAllReplyService(communityReply);
+        model.addAttribute("rplyList", rplyList);
+
         // 데이터를 실어서 보내줄 model
         model.addAttribute("b", communityBoard);
         return "/community/community-board-detail";
@@ -114,7 +123,11 @@ public class CommunityController {
 
         log.info("controller request /horror/community/delete GET! - bno: {}", boardNo);
 
-        return boardService.removeService(boardNo) ? "redirect:/horror/community/list" : "redirect:/";
+        boolean flag = boardService.removeService(boardNo);
+
+        if (flag) boardService.removeReplyService(boardNo, -1L);
+
+        return flag ? "redirect:/horror/community/list" : "redirect:/";
     }
 
     // 게시물 수정 화면 요청
@@ -148,25 +161,76 @@ public class CommunityController {
     public ResponseEntity<Map<String, String>> like(@RequestBody CommunityBoard communityBoard) {
 
         log.info("controller request /horror/community/like PUT! - {}", communityBoard);
-        
+
         Map<String, String> rtnMap = new HashMap<>();
 
         // 좋아요 생성이력 확인
         int checkResult = boardService.checkLikeHistoryService(communityBoard);
 
         if( checkResult > 0 ) {
-        	rtnMap.put("message", "이미 좋아요를 하셨습니다.");
-        	
+            rtnMap.put("message", "이미 좋아요를 하셨습니다.");
+
         } else {
             // 좋아요 상승 처리
             boardService.upLikeCountService(communityBoard);
-            
+
             // 좋아요 이력 생성
             boardService.makeLikeHistoryService(communityBoard);
-            
+
             rtnMap.put("message", "좋아요 하셨습니다.");
         }
-        
-    	return ResponseEntity.status(HttpStatus.OK).body(rtnMap);
+
+        return ResponseEntity.status(HttpStatus.OK).body(rtnMap);
     }
+
+    // 댓글 등록
+    @ResponseBody
+    @PostMapping("/reply")
+    public ResponseEntity<List<CommunityReply>> makeReply(@RequestBody CommunityReply communityReply) {
+
+        log.info("controller request /horror/community/reply POST! - {}", communityReply);
+
+        List<CommunityReply> replyList = new ArrayList<>();
+
+        boolean result = boardService.makeReplyService(communityReply);
+        if(result == true) replyList = boardService.findAllReplyService(communityReply);
+
+        return new ResponseEntity<List<CommunityReply>>(replyList, HttpStatus.OK);
+    }
+
+    // 댓글 삭제 요청
+    @DeleteMapping("/reply/delete/{boardNo}/{replyNo}")
+    public ResponseEntity<Map<String, String>> removeReply(@PathVariable long boardNo, @PathVariable long replyNo) {
+        // 변수이름이 같아야한다 @PathVariable 변수이름 =  uri 변수이름
+
+        log.info("controller request /horror/community/delete/reply DELETE! - {}", boardNo + " " + replyNo);
+
+        Map<String, String> rtnMap = new HashMap<>();
+
+        boolean result = boardService.removeReplyService(boardNo, replyNo);
+
+        if(result == true) {
+            rtnMap.put("STATUS", "OK");
+        } else {
+            rtnMap.put("STATUS", "FAIL");
+        }
+
+        return ResponseEntity.status(HttpStatus.OK).body(rtnMap);
+    }
+
+    // 댓글 수정 요청
+//    @ResponseBody
+//    @PutMapping("/reply/modify")
+//    public ResponseEntity<CommunityReply> modifyReply(@RequestBody CommunityReply communityReply) {
+//
+//        log.info("controller request /horror/community/reply/modify Put! - {}", communityReply);
+//
+//        ResponseEntity<Community>
+//
+//        CommunityReply communityReply = new CommunityReply();
+//
+//
+//
+//        return ResponseEntity.status(HttpStatus.OK).body();
+//    }
 }
