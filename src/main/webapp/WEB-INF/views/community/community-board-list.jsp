@@ -7,20 +7,20 @@
     <%@ include file="../include/static-head.jsp" %>
 
     <style>
-        body {
-            background: #000;
+        
+        .wrap {
+            margin-top: 150px !important;
         }
-
-        .board-list {
-            width: 70%;
-            margin: 230px auto 0;
-            z-index: 1000;
+        
+        h1.title {
+            font-weight: 700;
+            margin-bottom: 50px;
         }
-
+    
         .board-list .articles {
             margin: 10px auto 100px;
             border-collapse: collapse;
-            font-size: 1.5em;
+            font-size: 1.4em;
             border-radius: 10px;
 
             text-align: center;
@@ -30,12 +30,11 @@
             text-align: right;
             position: relative;
             top: -70px;
-        } */
+        } 
 
         /* 목록 개수별 보기 스타일 */
         .board-list .amount {
             display: flex;
-            /* background: skyblue; */
             justify-content: flex-end; /* 맨 끝으로 */
         }
 
@@ -85,6 +84,7 @@
 
         .board-list .top-section .search form input[name=keyword] {
             flex: 3;
+            margin-right: 10px;
         }
 
 
@@ -121,11 +121,10 @@
 </head>
 
 <body>
+    <%@ include file="../include/header.jsp" %>
 
-    <div class="wrap">
-
-        <%@ include file="../include/header.jsp" %>
-
+    <div class="wrap"> 
+        <h1 class="title">Community</h1>
         <div class="board-list">
 
             <div class="top-section">
@@ -163,6 +162,7 @@
                     <li><a class="btn btn-danger" href="/horror/community/list?amount=20">20</a></li>
                     <li><a class="btn btn-danger" href="/horror/community/list?amount=30">30</a></li>
                 </ul>
+
             </div>
             
             <table class="table table-light table-hover articles">
@@ -174,7 +174,7 @@
                         <th>작성자</th>
                         <th>작성시간</th>
                         <th>조회수</th>
-                        <th>추천수</th>
+                        <th>좋아요</th>
                     </tr>
                 </thead>
                 <tbody>

@@ -1,14 +1,17 @@
 package com.project.horror.community.domain;
 
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 
-@Setter @Getter @ToString @EqualsAndHashCode
+@Setter @Getter @ToString 
 @AllArgsConstructor
 public class CommunitySearch {
 
     private int pageNum; // 페이지 번호
     private int amount;  // 한 페이지당 배치할 게시물 수
-    
+
     private String category;
     private String type;
     private String keyword;

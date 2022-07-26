@@ -1,39 +1,27 @@
 package com.project.horror.community.controller;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
+import com.project.horror.common.paging.Page;
+import com.project.horror.common.paging.PageMaker;
+import com.project.horror.community.domain.CommunityBoard;
 import com.project.horror.community.domain.CommunityCode;
 import com.project.horror.community.domain.CommunityReply;
-
+import com.project.horror.community.domain.CommunitySearch;
+import com.project.horror.community.service.CommunityMapperService;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.log4j.Log4j2;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.project.horror.common.paging.Page;
-import com.project.horror.common.paging.PageMaker;
-import com.project.horror.community.domain.CommunityBoard;
-import com.project.horror.community.domain.CommunitySearch;
-import com.project.horror.community.service.CommunityMapperService;
-
-import lombok.RequiredArgsConstructor;
-import lombok.extern.log4j.Log4j2;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /*
  * 게시물 목록 요청: /horror/community/list: GET
@@ -55,9 +43,12 @@ public class CommunityController {
 
     // 게시물 목록 요청
     @GetMapping("/list")
-    public String list(@ModelAttribute("s") CommunitySearch search, Model model) {
+    public String list(@ModelAttribute("s") CommunitySearch search, Model model, HttpServletRequest request) {
 
         log.info("controller request /horror/community/list GET! - search: {}", search);
+
+        if(request.getSession(false)==null)
+            return "redirect:/login";
 
         Map<String, Object> boardMap = boardService.findAllWithSearchService(search);
         log.debug("return data - {}", boardMap);
@@ -75,6 +66,9 @@ public class CommunityController {
     public String content(@PathVariable Long boardNo, Model model, HttpServletResponse response, HttpServletRequest request, @ModelAttribute("p") Page page) {
         // response 쿠키를 실어서 보내주려고
         log.info("controller request /horror/community/content GET! - {}", boardNo);
+
+        if(request.getSession(false)==null)
+            return "redirect:/login";
 
         CommunityBoard communityBoard = boardService.findOneService(boardNo, response, request);
         log.info("return data - {}", communityBoard);
@@ -94,9 +88,12 @@ public class CommunityController {
 
     // 게시물 쓰기 화면 요청
     @GetMapping("/write")
-    public String write(Model model) {
+    public String write(Model model, HttpServletRequest request) {
 
         log.info("controller request /horror/community/write GET!");
+
+        if(request.getSession(false)==null)
+            return "redirect:/login";
 
         List<CommunityCode> ctgrList = boardService.getCategoryListService();
         model.addAttribute("ctgrList", ctgrList);
@@ -134,6 +131,10 @@ public class CommunityController {
     @GetMapping("/modify")
     public String modify(Long boardNo, Model model, HttpServletResponse response, HttpServletRequest request) {
         log.info("controller request /horror/community/modify GET! - bno: {}", boardNo);
+
+        if(request.getSession(false)==null)
+            return "redirect:/login";
+
         CommunityBoard communityBoard = boardService.findOneService(boardNo, response, request);
 
         log.info("find article: {}", communityBoard);
@@ -168,7 +169,7 @@ public class CommunityController {
         int checkResult = boardService.checkLikeHistoryService(communityBoard);
 
         if( checkResult > 0 ) {
-            rtnMap.put("message", "이미 좋아요를 하셨습니다.");
+            rtnMap.put("message", "이미 좋아요를 누르셨습니다.");
 
         } else {
             // 좋아요 상승 처리
@@ -177,7 +178,7 @@ public class CommunityController {
             // 좋아요 이력 생성
             boardService.makeLikeHistoryService(communityBoard);
 
-            rtnMap.put("message", "좋아요 하셨습니다.");
+            rtnMap.put("message", "좋아요!");
         }
 
         return ResponseEntity.status(HttpStatus.OK).body(rtnMap);
@@ -199,7 +200,7 @@ public class CommunityController {
     }
 
     // 댓글 삭제 요청
-    @DeleteMapping("/reply/delete/{boardNo}/{replyNo}")
+    @DeleteMapping("/reply/{boardNo}/{replyNo}")
     public ResponseEntity<Map<String, String>> removeReply(@PathVariable long boardNo, @PathVariable long replyNo) {
         // 변수이름이 같아야한다 @PathVariable 변수이름 =  uri 변수이름
 
@@ -219,18 +220,23 @@ public class CommunityController {
     }
 
     // 댓글 수정 요청
-//    @ResponseBody
-//    @PutMapping("/reply/modify")
-//    public ResponseEntity<CommunityReply> modifyReply(@RequestBody CommunityReply communityReply) {
-//
-//        log.info("controller request /horror/community/reply/modify Put! - {}", communityReply);
-//
-//        ResponseEntity<Community>
-//
-//        CommunityReply communityReply = new CommunityReply();
-//
-//
-//
-//        return ResponseEntity.status(HttpStatus.OK).body();
-//    }
+    @ResponseBody
+    @PutMapping("/reply")
+    public ResponseEntity<Map<String, String>> modifyReply(@RequestBody CommunityReply communityReply) {
+
+        log.info("controller request /horror/community/reply Put! - {}", communityReply);
+
+        // 좋아요 이력 생성
+        Boolean result = boardService.modifyReplyService(communityReply);
+
+        Map<String, String> rtnMap = new HashMap<>();
+        if(result == true) {
+            rtnMap.put("status", "OK");
+            rtnMap.put("message", "댓글 수정완료!");
+        } else {
+            rtnMap.put("message", "FAIL");
+        }
+
+        return ResponseEntity.status(HttpStatus.OK).body(rtnMap);
+    }
 }
