@@ -2,15 +2,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 
-<!-- header -->
-<header>
+<!-- footer-->
+<footer>
 
-
-    <input type="text" id="userID" value="fffff">
-
-
-
-
-</header>
-<!-- //header -->
-
+</footer>
+<!-- //footer-->

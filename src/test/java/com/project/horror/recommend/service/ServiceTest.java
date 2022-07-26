@@ -21,10 +21,10 @@ class RecServiceTest {
 
     @Test
     @DisplayName("게시물이 등록 되어야 한다.")
-    void serviceSaveTest(){
+    void serviceSaveTest1(){
 
         RecBoard b = new RecBoard();
-        for (int i = 0; i < 1; i++) {
+        for (int i = 0; i < 30; i++) {
             b.setTitle("제목"+i+"  #드라마"+i);
             b.setWriter("양재영");
             b.setContent("내용"+i);

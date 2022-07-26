@@ -44,7 +44,7 @@
 <body>
     <div class="wrap">
         <div class="content-container">
-            <form action="/horror/${arg}" method="post">
+            <form action="/horror/spot_board/${arg}" method="post">
                 <c:if test="${arg}=='modify'">
                     <input type="hidden" name="spotNo" value="${spotNo}">
                 </c:if>
@@ -85,7 +85,7 @@
       //목록버튼 이벤트
       const $toList = document.getElementById('to-list');
         $toList.onclick = e => {
-            location.href = '/horror/spot';
+            location.href = '/horror/spot_board/spot';
         };
 </script>
 </html>

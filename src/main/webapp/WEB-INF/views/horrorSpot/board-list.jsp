@@ -15,7 +15,7 @@
     <div class="wrap">
         <div class="board-list">
             <div class="searchBox">
-                <form action="/horror/spot" method="get">
+                <form action="/horror/spot_board/spot" method="get">
                     <select class="form-select formInner" name="type" id="search-type">
                         <option value="title">명칭</option>
                         <option value="address">주소</option>
@@ -26,7 +26,7 @@
                     </button>
                 </form>
                 <div class="pageReset">
-                    <a href="/horror/spot" class="totalbtn btn btn-dark">전체글</a>
+                    <a href="/horror/spot_board/spot" class="totalbtn btn btn-dark">전체글</a>
                     <select id="selBox" class="form-select" name="sel">
                         <option value="10">10</option>
                         <option value="20">20</option>
@@ -62,7 +62,7 @@
                             ${s.shortContent}</td>
                         <c:if test="${flag}">
                             <td>
-                                <a href="/horror/modify?spotNo=${s.spotNo}" id="modifyBtn"
+                                <a href="/horror/spot_board/modify?spotNo=${s.spotNo}" id="modifyBtn"
                                     class="btn btn-warning">수정</a>
                                 <a id="deleteBtn" class="btn btn-danger" onclick="deleteBtn(event)">삭제</a>
                             </td>
@@ -71,7 +71,7 @@
                 </c:forEach>
             </table>
             <c:if test="${flag}">
-                <a href="/horror/write" id="writeBtn" class="btn btn-dark">등록</a>
+                <a href="/horror/spot_board/write" id="writeBtn" class="btn btn-dark">등록</a>
             </c:if>
         </div>
         <!-- Modal -->
@@ -133,7 +133,7 @@
 
                     <c:if test="${pm.prev}">
                         <li class="page-item"><a class="page-link"
-                                href="/horror/spot?pageNum=${pm.beginPage - 1}&amount=${pm.page.amount}&type=${search.type}&keyword=${search.keyword}">prev</a>
+                                href="/horror/spot_board/spot?pageNum=${pm.beginPage - 1}&amount=${pm.page.amount}&type=${search.type}&keyword=${search.keyword}">prev</a>
                         </li>
                     </c:if>
 
@@ -141,13 +141,13 @@
                         <li data-page-num="${n}" class="page-item">
 
                             <a class="page-link"
-                                href="/horror/spot?pageNum=${n}&amount=${pm.page.amount}&type=${search.type}&keyword=${search.keyword}">${n}</a>
+                                href="/horror/spot_board/spot?pageNum=${n}&amount=${pm.page.amount}&type=${search.type}&keyword=${search.keyword}">${n}</a>
                         </li>
                     </c:forEach>
 
                     <c:if test="${pm.next}">
                         <li class="page-item"><a class="page-link"
-                                href="/horror/spot?pageNum=${pm.endPage + 1}&amount=${pm.page.amount}&type=${search.type}&keyword=${search.keyword}">next</a>
+                                href="/horror/spot_board/spot?pageNum=${pm.endPage + 1}&amount=${pm.page.amount}&type=${search.type}&keyword=${search.keyword}">next</a>
                         </li>
                     </c:if>
 

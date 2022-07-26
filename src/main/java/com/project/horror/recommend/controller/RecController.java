@@ -21,14 +21,14 @@ import java.util.Map;
 @Controller
 @RequiredArgsConstructor
 @Log4j2
-@RequestMapping("/recboard")
+@RequestMapping("recboard")
 public class RecController {
 
     private final RecService service;
 
     //게시물 목록 요청
     @GetMapping("/reclist")
-    public String list(Model model, @ModelAttribute("s")RecSearch search) {
+    public String list(Model model, @ModelAttribute("recs")RecSearch search) {
         log.info("controller request /recboard/reclist GET! - search : {}", search);
         Map<String, Object> boardMap = service.findAllService(search);
         log.info("return data - {}", boardMap);
@@ -50,7 +50,7 @@ public class RecController {
     @GetMapping("/reccontent/{boardNo}")
     public String content(@PathVariable Long boardNo, Model model
             ,HttpServletResponse response, HttpServletRequest request
-            /*@ModelAttribute("p") Page page, */) {
+            ,@ModelAttribute("p") RecPage page) {
         log.info("controller request /recboard/reccontent GET ! - {}", boardNo);
 
         RecBoard board = service.findOneService(boardNo, response, request);

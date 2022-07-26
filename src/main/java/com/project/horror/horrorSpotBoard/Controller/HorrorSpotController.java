@@ -18,7 +18,7 @@ import java.util.Map;
 
 @Log4j2
 @Controller
-@RequestMapping("horror")
+@RequestMapping("/horror/spot_board")
 @RequiredArgsConstructor
 public class HorrorSpotController {
 
@@ -67,7 +67,7 @@ public class HorrorSpotController {
         redirect.addFlashAttribute("msg","writeSuccess"); // 팝업 메시지
 
         log.info(" save : {} / spot : {}",result,spot);
-        return "redirect:/horror/spot";
+        return "redirect:/horror/spot_board/spot";
     }
 
     // 수정
@@ -88,9 +88,9 @@ public class HorrorSpotController {
         if(spotService.modify(spot))
         {
             redirect.addFlashAttribute("msg","modifySuccess");
-            return  "redirect:/horror/spot";
+            return  "redirect:/horror/spot_board/spot";
         }
-        return "redirect:/horror/spot";
+        return "redirect:/horror/spot_board/spot";
     }
 
     @GetMapping("/delete")
@@ -99,7 +99,7 @@ public class HorrorSpotController {
         log.info(" controller delete Get - {}", spotNo);
         spotService.delete(spotNo);
         redirect.addFlashAttribute("msg","deleteSuccess");
-        return  "redirect:/horror/spot";
+        return  "redirect:/horror/spot_board/spot";
     }
 }
 
