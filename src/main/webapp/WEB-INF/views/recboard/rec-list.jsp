@@ -289,7 +289,7 @@
                                 <option value="tc">제목+내용</option>
                             </select>
 
-                            <input type="text" class="form-control" name="keyword" value="${s.keyword}">
+                            <input type="text" class="form-control" name="keyword" value="${recs.keyword}">
 
                             <button class="btn btn-primary" type="submit">
                                 <i class="fas fa-search"></i>
@@ -405,7 +405,7 @@
                     const $select = document.getElementById('search-type');
 
                     for (let $opt of [...$select.children]) {
-                        if ($opt.value === '${s.type}') {
+                        if ($opt.value === '${recs.type}') {
                             $opt.setAttribute('selected', 'selected');
                             break;
                         }
