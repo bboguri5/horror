@@ -11,7 +11,8 @@
         .container {
             color: #fff;
             margin-top: 200px;
-            width: 50%;
+            width: 45%;
+            position: relative;
         }
         .idBox{
             display: flex;
@@ -20,6 +21,34 @@
         #login-id{
             margin-right: 10px;
             width: 300px;
+        }
+
+        h4.mb-3
+        {
+              font-family: "horror", sans-serif;
+              color: #740707;
+              /* text-shadow: 5px 1px 2px #e31515; */
+                font-size: 80px;
+        }
+
+        .btn
+        {
+            font-family: 'East Sea Dokdo', cursive;
+            background: #560E07 ;
+            color: #fff;
+            border: 0;
+            font-size: 25px;
+        }
+
+        label{
+            font-family: 'East Sea Dokdo', cursive;
+            margin-bottom: 5px;
+            font-size: 30px;
+        }
+
+        .joinbtn{
+            position: absolute;
+            right: 30px;
         }
    
     </style>
@@ -30,7 +59,7 @@
     <div class="container">
         <div class="input-form-backgroud row">
             <div class="input-form col-md-12 mx-auto">
-                <h4 class="mb-3">회원가입</h4>
+                <h4 class="mb-3">Sign Up</h4>
                 <form action="/signUp" class="validation-form" method="post" onsubmit="return warnJoin()" >
                     <div class="row">
                         <div class="col-md-6 mb-3">
@@ -57,7 +86,7 @@
                             <input type="email" class="form-control" id="login-email" name="email" placeholder="ex) you@example.com" disabled>
                         </div>
                     </div>
-                    <button class="btn btn-danger btn-lg btn-block" type="submit">가입 완료</button>
+                    <button class="joinbtn btn btn-danger btn-lg btn-block" type="submit">가입 완료</button>
                 </form>
             </div>
         </div>
@@ -88,7 +117,8 @@
                 location.href = '/signUp?inputId='+$loginId.value;
            }
 
-            const idResult = '${checkID}'
+           const idResult = '${checkID}'
+
             if(idResult === "success"){
                 alert("가입 가능한 ID입니다.");
                 disabledTrue();

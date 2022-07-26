@@ -51,6 +51,7 @@ public class HorrorSpotController {
     @GetMapping("/write")
     public String write(Model model)
     {
+        // write 화면 modify랑 write가 같이 사용하닌깐 form으로 인자를 전달하기 위함
         model.addAttribute("arg","write");
         return "horrorSpot/board-write";
     }
@@ -63,7 +64,7 @@ public class HorrorSpotController {
         log.info("write post - !");
 
         boolean result = spotService.save(spot);
-        redirect.addFlashAttribute("msg","writeSuccess");
+        redirect.addFlashAttribute("msg","writeSuccess"); // 팝업 메시지
 
         log.info(" save : {} / spot : {}",result,spot);
         return "redirect:/horror/spot";
@@ -100,7 +101,5 @@ public class HorrorSpotController {
         redirect.addFlashAttribute("msg","deleteSuccess");
         return  "redirect:/horror/spot";
     }
-
-
 }
 

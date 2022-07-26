@@ -68,7 +68,7 @@ public class FrontController {
         log.info(" singUp get - ! {} ",inputId);
         if(inputId != null)
         {
-            if(inputId.equals("admin"))
+            if(inputId.equals("admin")) // 어드민일 경우 중복
             {
                 redirect.addFlashAttribute("checkID","fail");
                 return "redirect:/signUp";
@@ -79,7 +79,7 @@ public class FrontController {
             else
             {
                 redirect.addFlashAttribute("checkID","success");
-                redirect.addFlashAttribute("inputId",inputId);
+                redirect.addFlashAttribute("inputId",inputId); // 중복이 아님으로 jsp에 입력한 값을 넣어주기위해
             }
             return "redirect:/signUp";
         }
