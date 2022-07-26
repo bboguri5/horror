@@ -116,10 +116,10 @@
                     }
 
                     #to-list {
-                        background: rgb(13, 54, 239);
+                        background: #adb5bd;                        
                         width: 200px;
                         font-family: 'horror';
-                        color: white;
+                        color: #664d03;
                         text-shadow: 4px 5px 7px #41464b;
                         margin-left: 10px;
                         font-size: 25px;

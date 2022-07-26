@@ -67,6 +67,24 @@
                         font-weight: 700; 
                                                 
                     }
+                    
+                    .writer-box {
+                        display: flex;
+                    }
+
+                    .writer-label {
+                        width: 100px;
+                    }
+
+                    .title-box{
+                        display: flex;
+                    }
+
+                    .title-label{
+                        width: 100px;
+                    }
+
+
 
                     .content-container .main-content {
                         border: 2px solid #ccc;
@@ -102,13 +120,13 @@
                 <h1 class="main-title">Board_Number : ${b.boardNo}</h1>
                 <div class="content-container">
 
-                    <div class="mb-3">
-                        <label for="exampleFormControlInput1" class="form-label">작성자</label>
+                    <div class="mb-3 writer-box">
+                        <label for="exampleFormControlInput1" class="form-label writer-label">작성자</label>
                         <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="이름"
                             name="writer" value="${b.writer}" disabled>
                     </div>
-                    <div class="mb-3">
-                        <label for="exampleFormControlInput2" class="form-label">글제목</label>
+                    <div class="mb-3 title-box">
+                        <label for="exampleFormControlInput2" class="form-label title-label">글제목</label>
                         <input type="text" class="form-control" id="exampleFormControlInput2" placeholder="제목"
                             name="title" value="${b.title}" disabled>
                     </div>
