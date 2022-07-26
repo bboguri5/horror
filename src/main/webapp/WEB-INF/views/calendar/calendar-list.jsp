@@ -120,7 +120,7 @@
             <div class="top-section">
                 <!-- 검색창 -->
                 <div class="search">
-                    <form action="/horror/list" mdethod="get">
+                    <form action="/horror/calendar_board/list" mdethod="get">
 
                         <select class="form-select" name="type" id="search-type">
                             <option value="title">제목</option>
@@ -140,7 +140,7 @@
 
                 <!-- 글쓰기 버튼 영역 -->
                 <div class="btn-write">
-                    <a class="btn btn-outline-danger btn-lg" href="/horror/write">글쓰기</a>
+                    <a class="btn btn-outline-danger btn-lg" href="/horror/calendar_board/write">글쓰기</a>
                 </div>
 
             </div>
@@ -192,7 +192,7 @@
                 let bn = e.target.parentElement.firstElementChild.textContent;
                 // console.log('글번호: ' + bn);
 
-                location.href = '/horror/content/' + bn ; 
+                location.href = '/horror/calendar_board/content/' + bn ;
             });
         }
 

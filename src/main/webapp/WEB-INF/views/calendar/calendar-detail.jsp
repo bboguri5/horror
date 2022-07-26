@@ -127,7 +127,7 @@
         // const $modBtn = document.getElementById('mod-btn');
         //수정버튼
         $modBtn.onclick = e => { // get임 post할려면 form써야됌
-            location.href = '/horror/modify?calendarNo=${calendar.calendarNo}';
+            location.href = '/horror/calendar_board/modify?calendarNo=${calendar.calendarNo}';
         };
 
         //삭제버튼
@@ -135,11 +135,11 @@
             if(!confirm('정말 삭제하시겠습니까?')) {
                 return;
             }
-            location.href = '/horror/delete?calendarNo=${calendar.calendarNo}';
+            location.href = '/horror/calendar_board/delete?calendarNo=${calendar.calendarNo}';
         };
         //목록버튼
         $listBtn.onclick = e => {               // page에서 pagenum/ amount/ 잊지않기위해쓴다//pageNum=${p.pageNum}&amount=${p.amount}
-            location.href = '/horror/list?';
+            location.href = '/horror/calendar_board/list?';
         };
     </script>
 

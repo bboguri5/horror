@@ -1,7 +1,7 @@
-package com.project.horror.service;
+package com.project.horror.login.service;
 
 import com.project.horror.horrorSpotBoard.domain.Member;
-import com.project.horror.repository.LoginMapper;
+import com.project.horror.login.repository.LoginMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Service;

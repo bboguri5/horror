@@ -71,7 +71,7 @@
 
             <h1>영화 수정하기</h1>
 
-            <form action="/horror/modify" method="post">
+            <form action="/horror/calendar_board/modify" method="post">
                 <!-- hidden는 사용자몰래 데이터전송 -->
                 <input type="hidden" name="calendarNo" value="${calendar.calendarNo}">
 

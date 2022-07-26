@@ -1,4 +1,4 @@
-package com.project.horror.repository;
+package com.project.horror.login.repository;
 
 import com.project.horror.horrorSpotBoard.domain.Member;
 import org.apache.ibatis.annotations.Mapper;

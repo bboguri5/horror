@@ -141,12 +141,12 @@
     </header>
     <div id="navBox">
         <div class="menu1">
-            <div class="community menu"><a href="/horror/spot"></a></div>
-            <div class="media menu"><a href="/horror/spot"></a></div>
+            <div class="community menu"><a href="/horror/community/list"></a></div>
+            <div class="media menu"><a href="/recboard/reclist"></a></div>
         </div>
         <div class="menu2">
-            <div class="spot menu"><a href="/horror/spot"></a></div>
-            <div class="calendar menu"><a href="/horror/spot"></a></div>
+            <div class="spot menu"><a href="/horror/spot_board/spot"></a></div>
+            <div class="calendar menu"><a href="/horror/calendar_board/list"></a></div>
         </div>
     </div>
 

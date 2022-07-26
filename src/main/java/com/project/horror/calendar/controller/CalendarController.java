@@ -15,7 +15,7 @@ import java.util.Map;
 @Controller // Model에 뷰를 넘겨줌
 @Log4j2
 @RequiredArgsConstructor // 의존성주입
-@RequestMapping("/horror")
+@RequestMapping("horror/calendar_board")
 public class CalendarController {
 
     private final CalendarService calendarService;
@@ -66,7 +66,7 @@ public class CalendarController {
 
         if (flag) ra.addFlashAttribute("msg", "reg-success");
 
-        return flag ? "redirect:/horror/list" : "calendar:/";
+        return flag ? "redirect:/horror/calendar_board/list" : "calendar:/";
     }
 
     // 게시물 삭제 요청
@@ -74,7 +74,7 @@ public class CalendarController {
     public String delete(Long calendarNo) {
         log.info("controller request /calendar/delete GET! - bno: {}", calendarNo);
         return calendarService.removeService(calendarNo)
-                ? "redirect:/horror/list" : "redirect:/";
+                ? "redirect:/horror/calendar_board/list" : "redirect:/";
     }
 
     // 수정 화면 요청
@@ -93,7 +93,7 @@ public class CalendarController {
     public String modify(Calendar calendar) {
         log.info("controller request /board/modify POST! - {}", calendar);
         boolean flag = calendarService.modifyService(calendar);
-        return flag ? "redirect:/horror/content/" + calendar.getCalendarNo() : "redirect:/";
+        return flag ? "redirect:/horror/calendar_board/content/" + calendar.getCalendarNo() : "redirect:/";
     }
 
 }

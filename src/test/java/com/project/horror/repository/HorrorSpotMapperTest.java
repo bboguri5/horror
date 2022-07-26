@@ -1,5 +1,6 @@
 package com.project.horror.repository;
 
+import com.project.horror.common.search.Search;
 import com.project.horror.horrorSpotBoard.domain.Spot;
 import com.project.horror.horrorSpotBoard.repository.HorrorSpotMapper;
 import com.project.horror.horrorSpotBoard.service.HorrorSpotService;
@@ -17,8 +18,8 @@ class HorrorSpotMapperTest {
     @Test
     void selectAllTest()
     {
-//        List<Spot> spots = spotService.selectAll();
-//        System.out.println(spots);
+        List<Spot> spots = mapper.selectAll(new Search());
+        System.out.println(spots);
     }
     @Test
     void deleteTest()

@@ -21,7 +21,7 @@ import java.util.Map;
 @Controller
 @RequiredArgsConstructor
 @Log4j2
-@RequestMapping("/recboard")
+@RequestMapping("recboard")
 public class RecController {
 
     private final RecService service;

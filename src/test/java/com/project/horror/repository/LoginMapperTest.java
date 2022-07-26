@@ -1,6 +1,7 @@
 package com.project.horror.repository;
 
 import com.project.horror.horrorSpotBoard.domain.Member;
+import com.project.horror.login.repository.LoginMapper;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;

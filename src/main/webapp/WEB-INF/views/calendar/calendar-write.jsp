@@ -51,7 +51,7 @@
 
             <h1>영화 등록하기</h1>
 
-            <form id="write-form" action="/horror/write" method="post" autocomplete="off">
+            <form id="write-form" action="/horror/calendar_board/write" method="post" autocomplete="off">
                 <!-- name은 calendar의 데이터이름 // name이 있어야 데이터를 옮긴다-->
                 <div class="firstBox">
                     <div class="month col-md-3 mb-3">
@@ -202,7 +202,7 @@
         //목록버튼 이벤트
         const $toList = document.getElementById('to-list');
         $toList.onclick = e => {
-            location.href = '/horror/list';
+            location.href = '/horror/calendar_board/list';
         };
 
     </script>

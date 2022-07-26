@@ -1,7 +1,7 @@
-package com.project.horror.controller;
+package com.project.horror.login.controller;
 
 import com.project.horror.horrorSpotBoard.domain.Member;
-import com.project.horror.service.LoginService;
+import com.project.horror.login.service.LoginService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Controller;
