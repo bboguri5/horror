@@ -89,9 +89,9 @@
             text-align: center;
             
         }
-        .calendar-list .articles tr :nth-child(8) {
+        /* .calendar-list .articles tr :nth-child(8) {
             width: 300px;
-        }
+        } */
 
         .calendar-list .articles td {
             padding: 10px;
@@ -158,6 +158,7 @@
                             <div class="limit-circle">${c.limit}</div>
                         </td>
                         <td>${c.title}</td>
+                        <td>${c.movieTime}</td>
                     </tr>
                 </c:forEach>
 
@@ -250,24 +251,33 @@
             }
         }
 
-        function Today() {
+        function Live() {
             const $search = document.querySelector(".articles");
-            let target = '${target}';
+            let targetDay = '${targetDay}';
+            let targetMonth = '${targetMonth}';
+            let targetTime = '${targetTime}';
             // let tr = $search.children[0]; table과 tr 사이에 tbody가 숨어잇다 // 쓰레기코드다
             
 
             for (let $tr of [...$search.children[0].children]) {
                 // div가 첫째자식임
-                const $divDay = $tr.children[2];
-                const dayValue = $divDay.textContent;
-                console.log(dayValue);
+                const $divMonth = $tr.children[1].textContent;
+                const $divDay = $tr.children[2].textContent;
+                const $divTime = $tr.children[3].textContent;
+                const $divMovieTime = $tr.children[8].textContent;
+                console.log($divTime);
+                $divMovieTime = $divMovieTime.substr(0, $divMovieTime.length - 1);
+                console.log($divMovieTime);
+                console.log(targetTime);
+                
+                
 
-                if(dayValue === target) {
+                if($divDay === targetDay && $divMonth === targetMonth && ($divTime<tragetTime<$divTime+$divMovieTime)) {
                     const $td = document.createElement('td');
-                    $td.textContent = 'today';
-                    $td.style.backgroundColor = 'turquoise';
-                    $td.style.border = "1px solid black";
-                    $td.style.borderRadius = "5px";
+                    $td.textContent = 'live';
+                    $td.style.color = 'red';
+                    // $td.style.border = "1px solid black";
+                    // $td.style.borderRadius = "5px";
                     $tr.appendChild($td);
                 }
             }
@@ -280,7 +290,7 @@
             fixSearchOption();
             changeColor();
             Straight();
-            Today();
+            Live();
 
         })();
 

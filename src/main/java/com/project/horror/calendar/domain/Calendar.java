@@ -18,6 +18,7 @@ public class Calendar {
     private String genre;
     private String limit;
     private String title;
+    private String movieTime;
     private String id;
 
     private String director;

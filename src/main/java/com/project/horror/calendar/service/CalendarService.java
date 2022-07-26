@@ -39,10 +39,14 @@ public class CalendarService {
         System.out.println(today);
         SimpleDateFormat date = new SimpleDateFormat("yyyy년/MM월/dd일");
         SimpleDateFormat time = new SimpleDateFormat("a hh:mm:ss");
-        SimpleDateFormat target = new SimpleDateFormat("dd일");
+        SimpleDateFormat targetMonth = new SimpleDateFormat("MM월");
+        SimpleDateFormat targetDay = new SimpleDateFormat("dd일");
+        // 대문자 HH 하면 오전 오후없어지고 오후돼면 +12됌
+        SimpleDateFormat targetTime = new SimpleDateFormat("HH:mm");
         // SimpleDateFormat 썻으니 format넣어서 출력
         System.out.println("time = " + time.format(today));
         System.out.println("date = " + date.format(today));
+        System.out.println("targetTime = " + targetTime.format(today));
         // 월 일중 10미만은 0을 붙인다
         for (Calendar c : boardList) {
         // 월에 10미만은 0을붙인다
@@ -58,9 +62,14 @@ public class CalendarService {
         }
 
         findDataMap.put("cList", boardList);
+//        년 월 일
         findDataMap.put("date", date.format(today));
+//        오전/오후 시간
         findDataMap.put("time", time.format(today));
-        findDataMap.put("target", target.format(today));
+//        날 시간 영상시간뺴기
+        findDataMap.put("targetDay", targetDay.format(today));
+        findDataMap.put("targetMonth", targetMonth.format(today));
+        findDataMap.put("targetTime", targetTime.format(today));
 
         return findDataMap;
     }

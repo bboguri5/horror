@@ -33,7 +33,9 @@ public class CalendarController {
         model.addAttribute("cList", calendarMap.get("cList"));
         model.addAttribute("time", calendarMap.get("time"));
         model.addAttribute("date", calendarMap.get("date"));
-        model.addAttribute("target", calendarMap.get("target"));
+        model.addAttribute("targetDay", calendarMap.get("targetDay"));
+        model.addAttribute("targetMonth", calendarMap.get("targetMonth"));
+        model.addAttribute("targetTime", calendarMap.get("targetTime"));
 
 
         return "calendar/calendar-list";

@@ -11,6 +11,7 @@ CREATE TABLE tbl_calendar (
     , channel VARCHAR2(30) NOT NULL
     , genre VARCHAR2(30) NOT NULL
     , title VARCHAR2(50) NOT NULL
+    , movie_time VARCHAR2(30) NOT NULL
     , director VARCHAR2(30) NOT NULL
     , content VARCHAR2(2000)
     , id VARCHAR2 (30)

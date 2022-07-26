@@ -36,7 +36,7 @@
         display: flex;
         justify-content: space-between;
     }
-    .title, .director
+    .title, .director, .movie-time
     {
         margin-right: 5px;
     }
@@ -88,6 +88,10 @@
                         <label for="title-input" class="form-label">제목</label>
                         <input type="text" class="form-control" id="title-input" placeholder="제목" name="title">
                     </div>
+                    <div class="movieTime col-md-5 mb-3">
+                        <label for="movie-time-input" class="form-label">영상시간</label>
+                        <input type="text" class="form-control" id="movie-time-input" placeholder="영화시간" name="movieTime">
+                    </div>
                     <div class="director col-md-5 mb-3">
                         <label for="director-input" class="form-label">감독명</label>
                         <input type="text" class="form-control" id="director-input" placeholder="감독명" name="director">
@@ -128,6 +132,7 @@
             const $channelInput = document.getElementById('channel-input');
             const $genreInput = document.getElementById('genre-input');
             const $titleInput = document.getElementById('title-input');
+            const $movieTimeInput = document.getElementById('movie-time-input');
             const $limitInput = document.getElementById('limit-input');
             const $directorInput = document.getElementById('director-input');
             const $contentInput = document.getElementById('content-input');
@@ -139,6 +144,7 @@
             console.log('channe: ',$channelInput.value);
             console.log('genre: ',$genreInput.value);
             console.log('title: ',$titleInput.value);
+            console.log('title: ',$movieTimeInput.value);
             console.log('limit: ',$limitInput.value);
             console.log('director: ',$directorInput.value);
             console.log('content: ',$contentInput.textContent);
@@ -162,6 +168,8 @@
             $limitInput.value.trim() !== '15' &&
             $limitInput.value.trim() !== '19') {
                 alert('전 or 12 or 15 or 19중 하나를 입력하세요');
+            } else if ($movieTimeInput.value.trim() === '') {
+                alert('영상시간은 필수값입니다~');
             } else if ($directorInput.value.trim() === '') {
                 alert('감독명은 필수값입니다~');
             } else if ($contentInput.value.trim() === '') {

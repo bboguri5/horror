@@ -43,7 +43,7 @@
             display: flex;
             justify-content: space-between;
         }
-        .title, .director
+        .title, .director, .movieTime
         {
             margin-right: 5px;
         }
@@ -91,6 +91,10 @@
             <div class="title col-md-5 mb-3">
                 <label for="title-input" class="form-label">제목</label>
                 <input type="text" class="form-control" id="title-input" placeholder="제목" name="title" value="${calendar.title}" disabled>
+            </div>
+            <div class="movieTime col-md-5 mb-3">
+                <label for="movie-time-input" class="form-label">영상시간</label>
+                <input type="text" class="form-control" id="movie-time-input" placeholder="영화시간" name="movieTime" value="${calendar.movieTime}" disabled>
             </div>
             <div class="director col-md-5 mb-3">
                 <label for="director-input" class="form-label">감독명</label>
