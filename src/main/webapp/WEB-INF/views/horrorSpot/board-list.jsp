@@ -10,9 +10,12 @@
 </head>
 
 <body>
+    <!-- header -->
     <%@ include file="../include/header.jsp" %>
+    <!-- /header -->
 
     <div class="wrap">
+        <h1 class="boardTitle"> Horror Spot Board </h1>
         <div class="board-list">
             <div class="searchBox">
                 <form action="/horror/spot_board/spot" method="get">
@@ -21,7 +24,7 @@
                         <option value="address">주소</option>
                     </select>
                     <input type="text" class="form-input formInner" name="keyword" value="${search.keyword}">
-                    <button class="btn btn-primary formInner" type="submit">
+                    <button class="btn searchBtn btn-primary formInner" type="submit">
                         <i class="fas fa-search"></i>
                     </button>
                 </form>
@@ -36,7 +39,7 @@
             </div>
 
             <table class="table table-dark table-striped table-hover articles">
-                <tr>
+                <tr class="column">
                     <th>명칭</th>
                     <th>국가</th>
                     <th>주소</th>

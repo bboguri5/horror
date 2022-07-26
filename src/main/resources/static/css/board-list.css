@@ -1,3 +1,7 @@
+.wrap {
+    padding: 50px 300px 100px 300px;
+}
+
 /* modal */
 #map {
     width: 700px;
@@ -8,7 +12,7 @@
 .frame01 {
     display: flex;
     justify-content: space-between;
-    padding: 20px 20px 0 20px ;
+    padding: 20px 20px 0 20px;
 
 }
 
@@ -21,6 +25,8 @@
     border: 2px solid #76787a;
     padding: 15px;
     border-radius: 10px;
+    background: #fff;
+    color: #000;
 }
 
 .titleBox,
@@ -29,7 +35,7 @@
 }
 
 .modal-content {
-    background: #323539;
+    background: #02152c;
     color: #fff;
     border: 2px solid #76787a;
 }
@@ -55,13 +61,12 @@
     box-shadow: inset 0px 0px 5px white;
 }
 
-.addressBox,.contentBox
-{
-    padding: 20px 20px 0 20px ;
+.addressBox,
+.contentBox {
+    padding: 20px 20px 0 20px;
 }
 
-.modal-title
-{
+.modal-title {
     margin-left: 30px;
 }
 
@@ -74,40 +79,36 @@
 }
 
 .page-link {
-    background: #323539;
-    color: #fff;
-    border: 2px solid #76787a;
+    padding: 0.75rem 1.5rem;
+    font-size: 1.25rem;
+    color: #ffffff;
+    border: 0;
+    margin-right: 7px;
+    background: #560707
 }
 
-.pagination-custom li.active a
-{
-    background: #fff !important;
-    color: #000 !important;
-    border-color: #76787a !important;
+.pagination-custom li.active a {
+    background: #a80110 !important;
+    color: #ffffff !important;
+    border: 0;
     font-weight: 700 !important;
 }
-.pagination-custom li:hover a
-{
+
+.pagination-custom li:hover a {
     background: rgb(227, 224, 224) !important;
     color: #000 !important;
     border-color: #76787a !important;
-    
+
 }
 
-/* admin tag */
-.ad {
-    width: 300px;
-    height: 300px;
-    display: block;
-    background: #fff;
-}
+/* table */
 
 #modifyBtn {
     margin-left: 30px;
 }
 
 .table>:not(caption)>*>* {
-    padding:1rem 0rem 1rem 3rem;
+    padding: 1rem 0rem 1rem 3rem;
 }
 
 #writeBtn {
@@ -115,52 +116,134 @@
     float: right;
     margin-right: 50px;
     width: 120px;
+    background: #560E07;
+    border: 0;
+
+    padding: 0;
+    font-size: 30px !important;
 }
 
-tbody {
-    width: 80%;
+tbody .column{
+    background: #390707 !important;
+}
+
+.table-dark {
+    --bs-table-bg: #111111;
+    --bs-table-striped-bg: none;
+    --bs-table-striped-color: #fff;
+    --bs-table-active-bg: #dd1111;
+    --bs-table-active-color: #fff;
+    --bs-table-hover-bg: #491010;
+    --bs-table-hover-color: #fff;
+    color: #fff;
+    border: none;
 }
 
 /* select box  */
 
-.searchBox{
+.searchBox {
     width: 100%;
     display: flex;
     justify-content: space-between;
     margin-bottom: 30px;
 }
-.searchBox form
-{
+
+.searchBox form {
     display: flex;
     justify-content: space-around;
-    width: 35%;
 
 }
-.searchBox form .form-input
-{
-    width: 70%;
+
+.searchBox form .form-input {
+    width: 300px;
 }
-.searchBox form #search-type{
-    width: 25%;
+
+.searchBox form #search-type {
+    width: 100px;
 }
-.formInner
-{
+
+.formInner {
     margin-right: 10px;
 }
 
-.pageReset
-{
-    margin-left: 700px;
+.searchBtn {
+    background: #560E07;
+    border: 0;
+}
+
+.pageReset {
+    margin-left: 300px;
     display: flex;
     justify-content: space-between;
 }
 
-.pageReset .totalbtn
+a.totalbtn.btn.btn-dark
 {
-    margin-right: 10px;
-    width: 150px;
-    height: 40px;
+    padding: 0;
+    font-size: 30px !important;
 }
-.pageReset #selBox{
-    width: auto ;
+.pageReset .totalbtn {
+    margin-right: 10px;
+    width: 100px;
+    background: #560E07;
+    border: 0;
+}
+
+.pageReset #selBox {
+    width: auto;
+}
+
+
+.btn-warning {
+    color: #fff;
+    border-color: #e8ff03;
+    background: none;
+
+    padding: 0;
+    font-size: 30px !important;
+}
+
+.btn-danger {
+    color: #fff;
+    border-color: #e70118;
+    background: none;
+
+    padding: 0;
+    font-size: 30px !important;
+}
+
+/* font */
+
+.btn{
+    font-family: 'East Sea Dokdo', cursive;
+}
+
+.boardTitle
+{
+    font-family: 'horror', sans-serif;
+    font-size: 100px;
+    text-align: center;
+    color: #560E07;
+    text-shadow: 5px 1px 2px #e31515;
+    margin-bottom: 150px;
+}
+
+#staticBackdropLabel
+{
+    font-family: 'horror', sans-serif;
+    font-size: 50px;
+    color: #ee1f0b;
+    margin-left: 20px;
+}
+
+button.btn.btn-secondary{
+    font-size: 30px;
+    background: #560E07;
+    border: 0;
+
+}
+
+.modal label{
+    font-family: 'East Sea Dokdo', cursive;
+    font-size: 30px;
 }

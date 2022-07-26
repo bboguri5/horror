@@ -9,7 +9,9 @@
 <title></title>
 </head>
 <body>
-
+   <!-- header -->
+   <%@ include file="../include/header.jsp" %>
+   <!-- /header -->
     <div class="wrap">
 
         <div class="content-container">

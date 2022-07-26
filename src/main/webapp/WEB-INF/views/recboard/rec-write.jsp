@@ -178,6 +178,9 @@
                 src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ0HVXA7rghXLJFhcyBHM7kCpekWzLJ_ZvCpw&usqp=CAU"
                 style="object-fit: cover;">
         </h1> -->
+           <!-- header -->
+    <%@ include file="../include/header.jsp" %>
+    <!-- /header -->
 
         <div class="left-img">
             <img class="horror-img" src="https://t.pimg.jp/077/322/588/1/77322588.jpg" alt="공포이미지"

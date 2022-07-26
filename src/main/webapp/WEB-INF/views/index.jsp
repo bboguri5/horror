@@ -78,6 +78,7 @@
 
             .community a:hover {
                 transform: scale(3);
+                transition: .5s;
                 position: absolute;
                 top: 200px;
                 left: 200px;
@@ -91,6 +92,7 @@
 
             .media a:hover {
                 transform: scale(3);
+                transition: .5s;
                 position: absolute;
                 top: 200px;
                 left: 200px;
@@ -103,6 +105,7 @@
 
             .spot a:hover {
                 transform: scale(3);
+                transition: .5s;
                 position: absolute;
                 top: 200px;
                 left: 200px;
@@ -117,6 +120,7 @@
 
             .calendar a:hover {
                 transform: scale(3);
+                transition: .5s;
                 position: absolute;
                 top: 200px;
                 left: 200px;
@@ -126,7 +130,7 @@
 
 
             /* side bar */
-            .sidenav {
+            /* .sidenav {
                 height: 100%;
                 width: 0;
                 position: fixed;
@@ -146,8 +150,6 @@
                 color: #818181;
                 display: block;
                 transition: 0.3s;
-                /* font-family: 'horror'; */
-                /* letter-spacing: 4px; */
                 font-family: 'horror';
                 letter-spacing: 4px;
                 text-shadow: 4px 5px 7px red;
@@ -184,23 +186,11 @@
                 font-family: 'horror';
                 letter-spacing: 4px;
                 text-shadow: 4px 5px 7px red;
-            }
+            } */
         </style>
 
         <body>
-            <header>
-                <div id="mySidenav" class="sidenav">
-                    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-                    <a href="#">community</a>
-                    <a href="#">media</a>
-                    <a href="#">spot</a>
-                    <a href="#">calendar</a>
-                </div>
-
-                <span class="menuOpen" style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; open</span>
-
-
-            </header>
+         
             <div id="navBox">
                 <div class="menu1">
                     <div class="community menu">
@@ -222,13 +212,7 @@
 
         </body>
         <script>
-            function openNav() {
-                document.getElementById("mySidenav").style.width = "250px";
-            }
-
-            function closeNav() {
-                document.getElementById("mySidenav").style.width = "0";
-            }
+           
 
 
             // ##[community] 이미지 확대 이벤트 [community]
