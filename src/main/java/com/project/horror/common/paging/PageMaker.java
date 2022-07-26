@@ -1,5 +1,6 @@
 package com.project.horror.common.paging;
 
+
 import com.project.horror.common.paging.Page;
 import lombok.Getter;
 import lombok.Setter;
