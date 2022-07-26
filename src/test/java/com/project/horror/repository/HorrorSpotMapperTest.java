@@ -31,8 +31,9 @@ class HorrorSpotMapperTest {
     @Test
     void saveTest()
     {
-        for (int i = 0; i < 30 ; i++) {
-           mapper.save(new Spot("title" + i,"한국","서울 금천구 디지털로 130 남성프라자 1007호","SL 아카데미"));
-        }
+        Spot spot = mapper.selectOne(30135);
+        spot.setAddress("꺄갸갹ㄱ");
+        mapper.modify(spot);
+        System.out.println(spot);
     }
 }

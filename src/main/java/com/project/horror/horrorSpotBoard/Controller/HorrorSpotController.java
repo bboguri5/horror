@@ -18,13 +18,11 @@ import java.util.Map;
 
 @Log4j2
 @Controller
-@RequestMapping("/horror/spot_board")
+@RequestMapping("horror/spot_board")
 @RequiredArgsConstructor
 public class HorrorSpotController {
 
     private final HorrorSpotService spotService;
-
-
 
     // spot 리스트 목록 
     @GetMapping("/spot")
@@ -42,7 +40,7 @@ public class HorrorSpotController {
 
         model.addAttribute("spotList", spotMap.get("spotList"));
         model.addAttribute("pm", pm);
-        log.info(pm.getPage().getPageNum());
+        log.info("?? -> {} ",pm.getPage().getPageNum());
 
         return "horrorSpot/board-list";
     }

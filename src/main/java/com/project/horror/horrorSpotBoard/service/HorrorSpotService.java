@@ -37,7 +37,7 @@ public class HorrorSpotService {
 
     public boolean modify(Spot spot)
     {
-        log.info("modify service start");
+        log.info("modify service start {} ",spot);
         return spotMapper.modify(spot);
     }
 

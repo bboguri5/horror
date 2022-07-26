@@ -33,7 +33,7 @@
         <if test="type == 'address'">WHERE address LIKE '%' || #{keyword} || '%'</if>
     </select>
     <update id="modify">
-        update tbl_spot_board SET title=#{title} , country = #{country} , address= #{address}, content= #{content} where spot_no = #{spotNo}
+        update tbl_spot_board SET title= #{title} , country = #{country} , address= #{address}, content= #{content} where spot_no = #{spotNo}
     </update>
     <delete id="delete">
         DELETE FROM tbl_spot_Board
