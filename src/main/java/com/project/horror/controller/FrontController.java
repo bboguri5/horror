@@ -18,19 +18,30 @@ import javax.servlet.http.HttpServletRequest;
 public class FrontController {
     private final LoginService loginService;
 
+
+    // 웰컴 화면
     @GetMapping("/")
     public String welcome()
     {
         return "/welcome";
     }
 
+    // 로그인 화면
     @GetMapping("/login")
     public String login(Model model, boolean flag) {
         log.info(" Controller loginForm : Post - ! {}" ,flag);
         model.addAttribute(flag);
-        return "/login/login-form";
+        return "login/login-form";
     }
 
+    // 메인 화면
+    @GetMapping("/horror/main")
+    public String index()
+    {
+        return "index";
+    }
+
+    // 로그인 정보 DB랑 비교
     @PostMapping("/signIn")
     public String checkLogin(
             HttpServletRequest request,
@@ -39,25 +50,31 @@ public class FrontController {
 
         log.info(" Controller loginChk  : Post - ! ");
 
-        if(loginService.login(request,id,pwd))
+        if(loginService.login(request,id,pwd)) // id/pwd 체크
         {
             log.info("접속 완료");
-            return "";
+            return "redirect:horror/main";
         }
         
         log.info("접속 불가");
         model.addAttribute("login",false);
-        return "/login/login-form";
+        return "login/login-form";
     }
 
+    // 회원가입
     @GetMapping("/signUp")
     public String signUp(RedirectAttributes redirect, String inputId)
     {
         log.info(" singUp get - ! {} ",inputId);
-
         if(inputId != null)
         {
-            if(loginService.checkId(inputId))
+            if(inputId.equals("admin"))
+            {
+                redirect.addFlashAttribute("checkID","fail");
+                return "redirect:/signUp";
+            }
+            // 아이디 중복시 checkID 값에 따라 jsp에서 js를 통해 실패/성공 문구팝업 발생
+            if(loginService.checkId(inputId))// id 인증
                 redirect.addFlashAttribute("checkID","fail");
             else
             {
@@ -66,26 +83,16 @@ public class FrontController {
             }
             return "redirect:/signUp";
         }
-        return "/login/sign-up";
+        return "login/sign-up";
     }
 
+    // 회원가입 폼 DB에 전달 후 sucess페이지 보여주기
     @PostMapping("/signUp")
     public String signUp(Member member)
     {
         loginService.saveSignUpInfo(member);
-        return "/login/sign-up-success";
+        return "login/sign-up-success";
     }
-
-    @PostMapping("/horror/index")
-    public String index()
-    {
-        return "/index";
-    }
-
-
-    @GetMapping("/horror/main")
-    public String main()
-    {}
 
 
 }

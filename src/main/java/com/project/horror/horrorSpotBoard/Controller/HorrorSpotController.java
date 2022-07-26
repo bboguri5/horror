@@ -13,52 +13,63 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.Map;
 
 @Log4j2
 @Controller
-@RequestMapping("/horror")
+@RequestMapping("horror")
 @RequiredArgsConstructor
 public class HorrorSpotController {
 
     private final HorrorSpotService spotService;
 
+
+
+    // spot 리스트 목록 
     @GetMapping("/spot")
-    public String spot(@ModelAttribute("search") Search search, Model model) {
+    public String spot(@ModelAttribute("search") Search search, Model model,HttpServletRequest request) {
 
         log.info(" Controller spot : GET - ! ");
 
-        Page page = new Page(search.getPageNum(), search.getAmount());
+        if(request.getSession(false)==null) // 아이디 없이 spot 주소를 찾아가면 접근 못하도록 차단
+            return "redirect:/login";
 
+        //paging 처리하여 select
+        Page page = new Page(search.getPageNum(), search.getAmount());
         Map<String, Object> spotMap = spotService.selectAll(search);
         PageMaker pm = new PageMaker(page, (int) spotMap.get("tc"));
 
         model.addAttribute("spotList", spotMap.get("spotList"));
         model.addAttribute("pm", pm);
         log.info(pm.getPage().getPageNum());
-        return "/horrorSpot/board-list";
+
+        return "horrorSpot/board-list";
     }
 
+    // 글쓰기 화면
     @GetMapping("/write")
     public String write(Model model)
     {
         model.addAttribute("arg","write");
-
-        return "/horrorSpot/board-write";
+        return "horrorSpot/board-write";
     }
 
+
+    // 글쓰기 정보 등록
     @PostMapping("/write")
-    public String write(RedirectAttributes redirect, String title, String country, String address, String content)
+    public String write(RedirectAttributes redirect, Spot spot)
     {
         log.info("write post - !");
 
-        boolean result = spotService.save(new Spot(title,country,address,content));
+        boolean result = spotService.save(spot);
         redirect.addFlashAttribute("msg","writeSuccess");
 
+        log.info(" save : {} / spot : {}",result,spot);
         return "redirect:/horror/spot";
     }
 
-
+    // 수정
     @GetMapping("/modify")
     public String modify(Model model, int spotNo) {
 
@@ -66,7 +77,7 @@ public class HorrorSpotController {
         model.addAttribute("s", spotService.selectOne(spotNo));
         model.addAttribute("arg","modify");
         model.addAttribute("spotNo",spotNo);
-        return "/horrorSpot/board-write";
+        return "horrorSpot/board-write";
     }
 
     @PostMapping("/modify")

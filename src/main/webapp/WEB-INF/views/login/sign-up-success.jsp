@@ -67,7 +67,7 @@
     반갑습니다반갑습니다반갑습니다반갑습니다반갑습니다반갑습니다반갑습니다반갑습니다반갑습니다반갑습니다반갑습니다반갑습니다반갑습니다반갑습니다반갑습니다
     <div class="joinBox">
         <img class="joinPageImg"
-            src="https://img.jjang0u.com/data4/coms/160/202106/06/e8/273690957a3f0673832f60f90aa184c3_633729.gif"
+            src="https://im4.ezgif.com/tmp/ezgif-4-b894faab36.gif"
             alt="곤지암">
         <a class="main btn btn-dark" href="/horror/main">홈으로 가기</a>
     </div>

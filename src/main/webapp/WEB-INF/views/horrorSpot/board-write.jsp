@@ -45,7 +45,9 @@
     <div class="wrap">
         <div class="content-container">
             <form action="/horror/${arg}" method="post">
-                <input type="hidden" name="spotNo" value="${spotNo}">
+                <c:if test="${arg}=='modify'">
+                    <input type="hidden" name="spotNo" value="${spotNo}">
+                </c:if>
                 <div class="frame01">
                     <div class="mb-3 titleBox">
                         <label for="exampleFormControlInput1" class="form-label ">명칭</label>
@@ -77,7 +79,6 @@
 
         </div>
     </div>
-
 
 </body>
 <script>

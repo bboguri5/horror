@@ -16,7 +16,7 @@
         position: absolute;
         transform: translate(-50%, -50%);
         height: 700px;
-        width: 1000px;
+        width: 800px;
         left: 50%;
         top: 450px;
         background: orange;
@@ -28,110 +28,137 @@
         display: flex;
         justify-content: space-between;
     }
+
     .menu2 {
         height: 350px;
         display: flex;
         justify-content: space-between;
     }
-    .menu{
+
+    .menu {
         width: 50%;
         height: 350px;
-        flex:1;
+        flex: 1;
         border: 1px solid #fff;
+
+        /* 컨텐츠 가운데 */
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
 
-    header .box {
-  display: none;
-  height: 40px;
-  line-height: 40px;
-  margin: 0 80px;
-  padding: 10px;
-}
+    .menu a {
+        width: 350px;
+        height: 300px;
+        display: block;
+        background: #000;
+    }
 
-header .box > ul {
-  display: flex;
-}
+    .community a:hover {
+        background: blue;
+    }
 
-header .box > ul li {
-  font-size: 12px;
-  font-weight: bold;
-  text-transform: uppercase;
-}
+    .media a:hover {
+        background: gray;
+    }
 
-#overlay {
-  background: #000;
-  bottom: 0;
-  height: 100%;
-  left: 0;
-  opacity: 0;
-  overflow: hidden;
-  position: fixed;
-  right: 0;
-  top: 0;
-  visibility: hidden;
-  width: 100%;
-  z-index: 99;
-  -webkit-transition: all .5s ease-in-out;
-  -moz-transition: all .5s ease-in-out;
-  transition: all .5s ease-in-out;
-}
+    .spot a:hover {
+        background: yellow;
+    }
 
-html.active #overlay {
-  opacity: .65;
-  visibility: visible;
-  -webkit-transition: all .5s ease-in-out;
-  -moz-transition: all .5s ease-in-out;
-  transition: all .5s ease-in-out;
-}
+    .calendar a:hover {
+        background: brown;
+    }
 
-.menu > a{
-    width: 100px;
-    height: 100px;
-    background: #000;
-}
 
+
+    /* side bar */
+    .sidenav {
+        height: 100%;
+        width: 0;
+        position: fixed;
+        z-index: 1;
+        top: 0;
+        right: 0;
+        background-color: #111;
+        overflow-x: hidden;
+        transition: 0.5s;
+        padding-top: 60px;
+    }
+
+    .sidenav a {
+        padding: 8px 8px 8px 32px;
+        text-decoration: none;
+        font-size: 25px;
+        color: #818181;
+        display: block;
+        transition: 0.3s;
+    }
+
+    .sidenav a:hover {
+        color: #f1f1f1;
+    }
+
+    .sidenav .closebtn {
+        position: absolute;
+        top: 0;
+        right: 25px;
+        font-size: 36px;
+        margin-left: 50px;
+    }
+
+    @media screen and (max-height: 450px) {
+        .sidenav {
+            padding-top: 15px;
+        }
+
+        .sidenav a {
+            font-size: 18px;
+        }
+    }
+
+    .menuOpen {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        color: #fff;
+    }
 </style>
 
 <body>
     <header>
-        <div class="inner-header">
-            <h1 class="logo">
-                <a href="#">
-                    <img src="img/logo.png" alt="로고이미지">
-                </a>
-            </h1>
-            <h2 class="intro-text">Welcome</h2>
-            <a href="#" class="menu-open">
-                <span class="menu-txt">MENU</span>
-                <span class="lnr lnr-menu"></span>
-            </a>
+        <div id="mySidenav" class="sidenav">
+            <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+            <a href="#">community</a>
+            <a href="#">media</a>
+            <a href="#">spot</a>
+            <a href="#">calendar</a>
         </div>
 
-        <nav class="gnb">
-            <a href="#" class="close">
-                <span class="lnr lnr-cross"></span>
-            </a>
-            <ul>
-                <li><a href="#">Home</a></li>
-                <li><a href="#">About</a></li>
-                <li><a href="#">Work</a></li>
-                <li><a href="#">Contact</a></li>
-                <li><a href="#">News</a></li>
-                <li><a href="#">Favorite</a></li>
-            </ul>
-        </nav>
+        <span class="menuOpen" style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; open</span>
+
+
     </header>
     <div id="navBox">
         <div class="menu1">
-            <div class="community menu"></div>
-            <div class="media menu"></div>
+            <div class="community menu"><a href="/horror/spot"></a></div>
+            <div class="media menu"><a href="/horror/spot"></a></div>
         </div>
         <div class="menu2">
             <div class="spot menu"><a href="/horror/spot"></a></div>
-            <div class="calendar menu"></div>
+            <div class="calendar menu"><a href="/horror/spot"></a></div>
         </div>
     </div>
 
 </body>
+<script>
+    function openNav() {
+        document.getElementById("mySidenav").style.width = "250px";
+    }
+
+    function closeNav() {
+        document.getElementById("mySidenav").style.width = "0";
+    }
+</script>
 
 </html>

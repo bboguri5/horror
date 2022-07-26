@@ -64,7 +64,7 @@
                             <td>
                                 <a href="/horror/modify?spotNo=${s.spotNo}" id="modifyBtn"
                                     class="btn btn-warning">수정</a>
-                                <a id="deleteBtn" class="btn btn-danger">삭제</a>
+                                <a id="deleteBtn" class="btn btn-danger" onclick="deleteBtn(event)">삭제</a>
                             </td>
                         </c:if>
                     </tr>
@@ -159,9 +159,11 @@
 
 <script src="/js/board-list.js"></script>
 <script>
-   
+
+
     fixPageCountOption();
     appendPageActive(); // append page Active 
+
 
     // page count option 
     function fixPageCountOption() {
@@ -187,19 +189,4 @@
             }
         }
     }
-
-    // delete confirm
-    function deleteBtn(){
-        const $delBtn = document.getElementById('deleteBtn');
-        $delBtn.onclick = e => {
-            const spotNo = e.target.parentElement.parentElement.firstElementChild.value;
-            console.log(spotNo);
-            if (!confirm('정말 삭제하시겠습니까?')) {
-                return;
-            }
-            location.href = "/horror/delete?spotNo=" + spotNo;
-        };
-    }  
-    
-    
 </script>

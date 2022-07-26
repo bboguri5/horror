@@ -6,19 +6,38 @@
 
 })();
 
-const result1 = '${flag}';
-if (result1 === 'true') // login status 
+
+const result = '${flag}';
+if (result === 'true') // login status 
 {
-    const $ad = document.querySelector('.ad');
-    $ad.remove();
+    console.log(result)
+    deleteBtn();
+    alertServerMessage();
 }
 
-const result2 = '${flag}';
-if (result2 === 'true') // login status 
-{
-    alertServerMessage();
-    deleteBtn();
 
+// popup 
+function alertServerMessage() {
+    const msg = '${msg}';
+    // console.log('msg: ', msg);
+
+    if (msg === 'writeSuccess') {
+        alert('게시물이 정상 등록되었습니다.');
+    } else if (msg === 'modifySuccess') {
+        alert('게시물 수정이 완료되었습니다.');
+    } else if (msg === 'deleteSuccess') {
+        alert('삭제가 완료되었습니다.');
+    }
+}
+
+// delete confirm
+function deleteBtn(e) {
+    const spotNo = e.target.parentElement.parentElement.firstElementChild.value;
+    console.log(spotNo);
+    if (!confirm('정말 삭제하시겠습니까?')) {
+        return;
+    }
+    location.href = "/horror/delete?spotNo=" + spotNo;
 }
 
 function selectPageCount() {
@@ -42,7 +61,6 @@ function appendPageActive() {
     }
 }
 
-
 // search option
 function fixSearchOption() {
     const $select = document.getElementById('search-type');
@@ -56,19 +74,6 @@ function fixSearchOption() {
 }
 
 
-// popup 
-function alertServerMessage() {
-    const msg = '${msg}';
-    // console.log('msg: ', msg);
-
-    if (msg === 'writeSuccess') {
-        alert('게시물이 정상 등록되었습니다.');
-    } else if (msg === 'modifySuccess') {
-        alert('게시물 수정이 완료되었습니다.');
-    } else if (msg === 'deleteSuccess') {
-        alert('삭제가 완료되었습니다.');
-    }
-}
 
 // modal start
 function startModal() {
