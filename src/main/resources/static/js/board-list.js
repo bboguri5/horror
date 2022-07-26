@@ -19,7 +19,7 @@ if (result === 'true') // login status
 // popup 
 function alertServerMessage() {
     const msg = '${msg}';
-    // console.log('msg: ', msg);
+    console.log('msg: ', msg);
 
     if (msg === 'writeSuccess') {
         alert('게시물이 정상 등록되었습니다.');

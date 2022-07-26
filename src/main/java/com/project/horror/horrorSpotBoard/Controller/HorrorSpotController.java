@@ -24,8 +24,6 @@ public class HorrorSpotController {
 
     private final HorrorSpotService spotService;
 
-
-
     // spot 리스트 목록 
     @GetMapping("/spot")
     public String spot(@ModelAttribute("search") Search search, Model model,HttpServletRequest request) {

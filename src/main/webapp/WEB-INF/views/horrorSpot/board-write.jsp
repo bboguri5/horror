@@ -45,7 +45,7 @@
     <div class="wrap">
         <div class="content-container">
             <form action="/horror/spot_board/${arg}" method="post">
-                <c:if test="${arg}=='modify'">
+                <c:if test="${arg eq 'modify'}">
                     <input type="hidden" name="spotNo" value="${spotNo}">
                 </c:if>
                 <div class="frame01">
