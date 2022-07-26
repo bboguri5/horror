@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<!--mapper 태그는 sql을 매핑할때 사용하는 태그
+    nmaespace 속성에는 사용할 인터페이스의 풀 패키지경로 + 인터페이스이름
+-->
+<mapper namespace="com.project.horror.recommend.repository.RecMapper">
+
+<insert id="save">
+    INSERT INTO tbl_recommend
+    (board_no, writer, title, img, content)
+    VALUES (2 || LPAD(seq_tbl_recommend.nextval, 4, '0'), #{writer}, #{title}, #{img}, #{content})
+</insert>
+
+
+<delete id="remove">
+
+        DELETE FROM tbl_recommend WHERE board_no = #{boardNo}
+
+</delete>
+
+<update id="modify">
+    UPDATE tbl_recommend
+    SET title = #{title} , content = #{content}
+    WHERE board_no = #{boardNo}
+</update>
+
+    <select id="getTotalCount" resultType="int">
+        SELECT COUNT(*) AS cnt FROM tbl_recommend
+        <if test="type == 'title'">WHERE title LIKE '%' || #{keyword} || '%'</if>
+        <if test="type == 'writer'">WHERE writer LIKE '%' || #{keyword} || '%'</if>
+        <if test="type == 'content'">WHERE content LIKE '%' || #{keyword} || '%'</if>
+        <if test="type == 'tc'">
+            WHERE title LIKE '%' || #{keyword} || '%'
+            OR content LIKE '%' || #{keyword} || '%'
+        </if>
+    </select>
+
+    <update id="upViewCount">
+        UPDATE tbl_recommend SET view_cnt = view_cnt +1 WHERE board_no = #{boardNo}
+    </update>
+
+    <update id="upGoodCount">
+        UPDATE tbl_recommend SET good_cnt = good_cnt +1 WHERE board_no = #{boardNo}
+    </update>
+
+
+    <resultMap id="RecBoardMapper" type="com.project.horror.recommend.domain.RecBoard">
+        <result property="boardNo" column="board_no"></result>
+        <result property="viewCnt" column="view_cnt"></result>
+        <result property="goodCnt" column="good_cnt"></result>
+        <result property="regDate" column="reg_date"></result>
+    </resultMap>
+
+    <select id="findAll" resultMap="RecBoardMapper">
+        SELECT  *
+        FROM (
+            SELECT ROWNUM rn, v_board.*
+            FROM (
+                    SELECT *
+                    FROM tbl_recommend
+                    <if test="type == 'title'">WHERE  title LIKE '%' || #{keyword} || '%'</if>
+                    <if test="type == 'writer'">WHERE  writer LIKE '%' || #{keyword} || '%'</if>
+                    <if test="type == 'content'">WHERE  content LIKE '%' || #{keyword} || '%'</if>
+                    <if test="type == 'tc'">WHERE  title LIKE '%' || #{keyword} || '%'
+                                            OR content LIKE '%' || #{keyword} || '%'</if>
+                    ORDER BY board_no DESC
+                ) v_board
+            )
+        WHERE rn BETWEEN (#{pageNum} - 1) * #{amount} + 1 AND (#{pageNum} * #{amount})
+
+
+    </select>
+
+    <select id="findOne" resultMap="RecBoardMapper">
+        SELECT * FROM tbl_recommend
+        WHERE board_no = #{boardNo}
+
+    </select>
+
+</mapper>
