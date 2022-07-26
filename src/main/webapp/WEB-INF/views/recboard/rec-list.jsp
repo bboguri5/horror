@@ -390,10 +390,11 @@
 
 
                     <!-- 게시글작성 버튼 영역 -->
-                    <div class="btn-write">
-                        <a class="btn btn-outline-danger btn-lg" href="/recboard/recwrite">게시글 작성</a>
-                    </div>
-
+                    <c:if test="${flag}">
+                        <div class="btn-write">
+                            <a class="btn btn-outline-danger btn-lg" href="/recboard/recwrite">게시글 작성</a>
+                        </div>
+                    </c:if>
                 </div>
 
 

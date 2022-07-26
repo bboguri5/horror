@@ -4,13 +4,7 @@
 
 <!-- header -->
 <header>
-
-
     <input type="text" id="userID" value="fffff">
-
-
-
-
 </header>
 <!-- //header -->
 
