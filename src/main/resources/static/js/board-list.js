@@ -37,13 +37,13 @@ function deleteBtn(e) {
     if (!confirm('정말 삭제하시겠습니까?')) {
         return;
     }
-    location.href = "/horror/delete?spotNo=" + spotNo;
+    location.href = "/horror/spot_board/delete?spotNo=" + spotNo;
 }
 
 function selectPageCount() {
     const $selBox = document.querySelector('#selBox')
     $selBox.addEventListener('change', e => {
-        location.href = '/horror/spot?amount=' + e.target.value;
+        location.href = '/horror/spot_board/spot?amount=' + e.target.value;
     });
 }
 
