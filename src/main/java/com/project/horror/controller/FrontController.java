@@ -18,7 +18,6 @@ import javax.servlet.http.HttpServletRequest;
 public class FrontController {
     private final LoginService loginService;
 
-
     // 웰컴 화면
     @GetMapping("/")
     public String welcome()

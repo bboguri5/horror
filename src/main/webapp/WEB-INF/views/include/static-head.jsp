@@ -7,9 +7,10 @@
 
 <title> Horror </title>
 
-<!-- 파비콘 넣기 -->
+
 <link rel="icon" href="siteicon.ico">
-<link rel="apple-touch-icon" href="siteicon.ico">
+<link rel="apple-touch-icon" href="siteicon.ico"> 
+
 
 <!-- reset css -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reset-css@5.0.1/reset.min.css">
@@ -18,7 +19,6 @@
 <!-- https://linearicons.com/free#cdn -->
 <link rel="stylesheet" href="https://cdn.linearicons.com/free/1.0.0/icon-font.min.css">
 
-<!-- jquery -->
 <script src="/js/jquery-3.3.1.min.js"></script>
 
 <!-- bootstrap css -->
