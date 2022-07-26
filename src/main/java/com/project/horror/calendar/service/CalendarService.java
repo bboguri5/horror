@@ -8,9 +8,12 @@ import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.logging.SimpleFormatter;
 
 @Service
 @Log4j2
@@ -31,8 +34,33 @@ public class CalendarService {
         Map<String, Object> findDataMap = new HashMap<>();
 
         List<Calendar> boardList = repository.findAll(search);
+        // 현재시간 // 우리가보는 평소에 보는 시간을출력할려면 SimpleDateFormat써야함
+        Date today = new Date();
+        System.out.println(today);
+        SimpleDateFormat date = new SimpleDateFormat("yyyy년/MM월/dd일");
+        SimpleDateFormat time = new SimpleDateFormat("a hh:mm:ss");
+        SimpleDateFormat target = new SimpleDateFormat("dd일");
+        // SimpleDateFormat 썻으니 format넣어서 출력
+        System.out.println("time = " + time.format(today));
+        System.out.println("date = " + date.format(today));
+        // 월 일중 10미만은 0을 붙인다
+        for (Calendar c : boardList) {
+        // 월에 10미만은 0을붙인다
+            String m = c.getMonth().substring(0, c.getMonth().length()-1);
+            int month = Integer.parseInt(m);
+            String newMonth = month < 10 ? "0" + c.getMonth() : c.getMonth();
+            c.setMonth(newMonth);
+        // 일에 10미만은 0을붙인다
+            String d = c.getDay().substring(0, c.getDay().length()-1);
+            int day = Integer.parseInt(d);
+            String newDay = day < 10 ? "0" + c.getDay() : c.getDay();
+            c.setDay(newDay);
+        }
 
         findDataMap.put("cList", boardList);
+        findDataMap.put("date", date.format(today));
+        findDataMap.put("time", time.format(today));
+        findDataMap.put("target", target.format(today));
 
         return findDataMap;
     }

@@ -79,8 +79,8 @@
                     </div>
                     <div class="limit col-md-3 mb-3">
                         <label for="limit-input" class="form-label">나이제한</label>
-                        <input type="text" class="form-control" id="limit-input" placeholder="나이제한" name="limit">
-                    </div>
+                        <input type="text" maxlength="2" class="form-control" id="limit-input" placeholder="나이제한" name="limit">
+                    </div> 
                 </div>
 
                 <div class="thirdBox">
@@ -113,6 +113,12 @@
 
     <script>
 
+        //월 일 변환함수
+        function add() {
+            const $monthInput = document.getElementById('month-input');
+            const $dayInput = document.getElementById('day-input');
+        }
+
         // 게시물 등록 입력값 검증 함수
         function validateFormValue() {
             // 이름입력태그, 제목 입력태그
@@ -137,10 +143,12 @@
             console.log('director: ',$directorInput.value);
             console.log('content: ',$contentInput.textContent);
 
-            if ($monthInput.value.trim() === '') {
-                alert('월은 필수값입니다~');
-            } else if ($dayInput.value.trim() === '') {
-                alert('일은 필수값입니다~');
+            if ($monthInput.value.trim() !== '월' && 
+            (13>$monthInput.value.trim()>0)) {
+                alert('(1~12)월 로 입력해주세요');
+            } else if ($dayInput.value.trim() !== '일' &&
+            (32>$dayInput.value.trim()>0)) {
+                alert('(1~31)일 로 입력해주세요');
             } else if ($timeInput.value.trim() === '') {
                 alert('시간은 필수값입니다~');
             } else if ($channelInput.value.trim() === '') {
@@ -149,8 +157,11 @@
                 alert('장르는 필수값입니다~');
             } else if ($titleInput.value.trim() === '') {
                 alert('제목은 필수값입니다~');
-            } else if ($limitInput.value.trim() === '') {
-                alert('나이는 필수값입니다~');
+            } else if ($limitInput.value.trim() !== '전' &&
+            $limitInput.value.trim() !== '12' &&
+            $limitInput.value.trim() !== '15' &&
+            $limitInput.value.trim() !== '19') {
+                alert('전 or 12 or 15 or 19중 하나를 입력하세요');
             } else if ($directorInput.value.trim() === '') {
                 alert('감독명은 필수값입니다~');
             } else if ($contentInput.value.trim() === '') {

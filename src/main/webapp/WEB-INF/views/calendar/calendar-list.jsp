@@ -13,8 +13,16 @@
             width: 70%;
             margin: 100px auto 100px;
         }
-        .calendar-list h1{
+        /* .calendar-list h1{
             margin-bottom: 50px;
+        } */
+
+        /* .calendar-list .title {
+            display: flex;
+            justify-content: space-between;
+        } */
+        .calendar-list h2 {
+            text-align: right;
         }
 
         /* 검색창 */
@@ -45,13 +53,15 @@
         }
         .calendar-list .articles tr :nth-child(2),
         .calendar-list .articles tr :nth-child(3) {
-            font-size: 30px;
+            font-size: 25px;
+            width: 80px;
         }
         .calendar-list .articles tr :nth-child(4) {
             color: red;
             font-size: 20px;
             display: flex;
             align-items: center;
+            width: 90px;
         }
         .calendar-list .articles tr :nth-child(4) .circle {
             width: 10px;
@@ -60,11 +70,16 @@
             background: red;
             margin-right: 5px;
         }
+        .calendar-list .articles tr :nth-child(5) {
+            width: 120px;
+        }
         .calendar-list .articles tr :nth-child(6) {
             color: green;
+            width: 80px;
         }
         .calendar-list .articles tr :nth-child(7) {
             color: white;
+            width: 40px;
         }
         .calendar-list .articles tr :nth-child(7) .limit-circle {
             width: 30px;
@@ -72,6 +87,10 @@
             border-radius: 50%;
             background: green;
             text-align: center;
+            
+        }
+        .calendar-list .articles tr :nth-child(8) {
+            width: 300px;
         }
 
         .calendar-list .articles td {
@@ -92,7 +111,11 @@
 
         <div class="calendar-list">
 
+            
             <h1>상영 일정</h1>
+            <h2>${date}</h2>
+            <h2>${time}</h2>
+            
 
             <div class="top-section">
                 <!-- 검색창 -->
@@ -163,10 +186,10 @@
 
                 if (!e.target.matches('.articles td')) return;
 
-                console.log('tr 클릭됨! - ', e.target);
+                // console.log('tr 클릭됨! - ', e.target);
 
                 let bn = e.target.parentElement.firstElementChild.textContent;
-                console.log('글번호: ' + bn);
+                // console.log('글번호: ' + bn);
 
                 location.href = '/horror/content/' + bn ; 
             });
@@ -191,7 +214,7 @@
                 // div가 첫째자식임
                 const $divLimitCircle = $tr.children[6].firstElementChild;
                 const limitValue = $divLimitCircle.textContent;
-                console.log(limitValue);
+                // console.log(limitValue);
 
                 if ('19' === limitValue) {
                     $divLimitCircle.style.backgroundColor = 'red';
@@ -213,7 +236,7 @@
 
                 const $divStraight = $tr.children[2];
                 const limitValue = $divStraight.textContent;
-                console.log(limitValue);
+                // console.log(limitValue);
 
                 prev = cur;
                 cur = limitValue;
@@ -227,6 +250,29 @@
             }
         }
 
+        function Today() {
+            const $search = document.querySelector(".articles");
+            let target = '${target}';
+            // let tr = $search.children[0]; table과 tr 사이에 tbody가 숨어잇다 // 쓰레기코드다
+            
+
+            for (let $tr of [...$search.children[0].children]) {
+                // div가 첫째자식임
+                const $divDay = $tr.children[2];
+                const dayValue = $divDay.textContent;
+                console.log(dayValue);
+
+                if(dayValue === target) {
+                    const $td = document.createElement('td');
+                    $td.textContent = 'today';
+                    $td.style.backgroundColor = 'turquoise';
+                    $td.style.border = "1px solid black";
+                    $td.style.borderRadius = "5px";
+                    $tr.appendChild($td);
+                }
+            }
+        }
+
         (function () {
 
             alertServerMessage();
@@ -234,6 +280,7 @@
             fixSearchOption();
             changeColor();
             Straight();
+            Today();
 
         })();
 
