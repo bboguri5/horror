@@ -105,6 +105,13 @@ class RecMapperTest {
 
     }
 
+    @Test
+    @DisplayName("검색된 게시물의 총 수를 출력한다.")
+    void getTotalCount(){
+        RecSearch search = new RecSearch("title", "예능");
+
+    }
+
 
 
 }

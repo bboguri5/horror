@@ -10,7 +10,7 @@ import lombok.ToString;
 @ToString
 public class RecPageMaker {
     // 한번에 그려낼 페이지 수
-    private static final int PAGE_COUNT = 10;
+    private static final int PAGE_COUNT = 8;
 
     // 렌더링시 페이지시작 값, 페이지 끝값
     private int beginPage, endPage;

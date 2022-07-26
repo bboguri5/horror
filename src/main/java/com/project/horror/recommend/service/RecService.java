@@ -45,7 +45,7 @@ public class RecService {
         processConverting(boardList);
 
         findDataMap.put("bList", boardList);
-        findDataMap.put("tc", mapper.getTotalCount());
+        findDataMap.put("tc", mapper.getTotalCount(search));
 
         return findDataMap;
     }

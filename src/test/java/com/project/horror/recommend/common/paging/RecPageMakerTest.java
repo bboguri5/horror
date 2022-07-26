@@ -1,5 +1,6 @@
 package com.project.horror.recommend.common.paging;
 
+import com.project.horror.recommend.common.search.RecSearch;
 import com.project.horror.recommend.repository.RecMapper;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +16,7 @@ class RecPageMakerTest {
 
     @Test
     void pageInfoTest(){
-        int totalCount = mapper.getTotalCount();
+        int totalCount = mapper.getTotalCount(new RecSearch("title","드라마"));
         RecPageMaker pm = new RecPageMaker(new RecPage(12, 5), totalCount);
 
         System.out.println(pm);

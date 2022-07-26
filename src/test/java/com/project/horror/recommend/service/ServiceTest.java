@@ -24,11 +24,11 @@ class RecServiceTest {
     void serviceSaveTest(){
 
         RecBoard b = new RecBoard();
-        for (int i = 0; i < 82; i++) {
-            b.setTitle("공포게시물등록"+i);
+        for (int i = 0; i < 1; i++) {
+            b.setTitle("제목"+i+"  #드라마"+i);
             b.setWriter("양재영");
-            b.setContent("공포게시물의 내용칸 입렵 매크로"+i);
-            b.setImg("https://search.pstatic.net/common/?src=http%3A%2F%2Fcafefiles.naver.net%2FMjAyMDAzMjlfMTUx%2FMDAxNTg1NDcxNDEwOTk1.5mHcUh7h-Asp0PsMzUyxhc1mOaHFwmqmW1SI3uYRhVMg.5UJPggfA0DwsVAOns0S_N_5L7dqHv-DZIbXuBFiI7agg.GIF%2FexternalFile.gif&type=a340");
+            b.setContent("내용"+i);
+            b.setImg("https://search.pstatic.net/sunny/?src=https%3A%2F%2Fi1.sndcdn.com%2Fartworks-MpLaNf6zO1NnznMu-klY5EQ-t500x500.jpg&type=a340");
 
             service.saveService(b);
         }
