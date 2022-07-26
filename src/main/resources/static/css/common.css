@@ -1,0 +1,24 @@
+@import url('https://fonts.googleapis.com/css2?family=Mochiy+Pop+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=East+Sea+Dokdo&family=Mochiy+Pop+One&display=swap');
+
+.mochiy {
+ 
+}
+
+body
+{
+    background: #111111;
+}
+.wrap {
+    margin: 0 auto;
+    margin-top: 200px;
+    background: #111111;
+    width: 80%;
+    color: #fff;
+}
+
+@font-face {
+    font-family:'horror';
+    src: url('../font/youmurdererbb_reg.ttf') format('truetype');
+
+}
