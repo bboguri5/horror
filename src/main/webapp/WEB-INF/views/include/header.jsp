@@ -68,6 +68,8 @@
     <input type="text" id="userID" value="fffff">
     <header>
         <div id="mySidenav" class="sidenav">
+            <a href="/logout">logout</a>
+
             <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
             <a href="/horror/community/list">community</a>
             <a href="/recboard/reclist">media</a>

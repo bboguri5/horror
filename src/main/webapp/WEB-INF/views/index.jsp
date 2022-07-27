@@ -190,7 +190,9 @@
         </style>
 
         <body>
-         
+             <!-- header -->
+            <%@ include file="./include/header.jsp" %>
+            <!-- /header -->
             <div id="navBox">
                 <div class="menu1">
                     <div class="community menu">
@@ -209,11 +211,9 @@
                     </div>
                 </div>
             </div>
-
         </body>
         <script>
            
-
 
             // ##[community] 이미지 확대 이벤트 [community]
 
