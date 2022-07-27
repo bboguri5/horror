@@ -37,17 +37,21 @@ public class FrontController {
     @GetMapping("/logout")
     public String logout(HttpServletRequest request)
     {
+        log.info("logout start");
         HttpSession session = request.getSession(false);
-        if (session != null) {
+        if ((session.getAttribute("user") != null) || (session.getAttribute("flag")!=null)) {
             session.invalidate();
+            log.info("logout session : {}",session);
         }
         return "redirect:/login";
     }
 
     // 메인 화면
     @GetMapping("/horror/main")
-    public String index()
+    public String index(HttpServletRequest request)
     {
+        if(request.getSession(false)==null)
+            return "redirect:/login";
         return "index";
     }
 

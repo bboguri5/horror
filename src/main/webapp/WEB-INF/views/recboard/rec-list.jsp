@@ -67,6 +67,8 @@
                         /* border: 2px solid #ffa; */
                         color: #fff;
 
+                        position: relative;
+
 
                     }
 
@@ -244,6 +246,14 @@
                         margin-left: 20px;
                         background: #000;
 
+                    }
+                    .board-li{
+                        display: none;
+                    }
+
+                    .rounded-pill{
+                        position: absolute;
+                        right: 0;
                     }
                 </style>
         </head>

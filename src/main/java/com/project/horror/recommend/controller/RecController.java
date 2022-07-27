@@ -28,8 +28,12 @@ public class RecController {
 
     //게시물 목록 요청
     @GetMapping("/reclist")
-    public String list(Model model, @ModelAttribute("recs")RecSearch search) {
+    public String list(Model model, @ModelAttribute("recs")RecSearch search,HttpServletRequest request) {
         log.info("controller request /recboard/reclist GET! - search : {}", search);
+
+        if(request.getSession(false)==null)
+            return "redirect:/login";
+
         Map<String, Object> boardMap = service.findAllService(search);
         log.info("return data - {}", boardMap);
 
@@ -71,6 +75,7 @@ public class RecController {
     // 게시물 등록 화면 요청
     @PostMapping("/recwrite")
     public String write(RecBoard board, RedirectAttributes ra) { // @RequestBody 는 테스트 할때만 사용.
+        log.info(board.getImg().length());
         log.info("controller request /recboard/recwrite POST! - {}", board);
         boolean flag = service.saveService(board);
 
@@ -118,6 +123,6 @@ public class RecController {
         log.info("controller request /recboard/reclikeup GET! - {}",boardNo);
         boolean flag = service.makeGoodCount(boardNo,response,request);
 
-        return flag? "redirect:/recboard/reclist" : "redirect:/recboard/reclist";
+        return "redirect:/recboard/reccontent/"+boardNo ;
     }
 }

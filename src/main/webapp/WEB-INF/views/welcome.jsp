@@ -25,7 +25,7 @@
 <body>
     <div class="imgbox">
         <a href="/login">
-            <img src="http://file3.instiz.net/data/file3/2018/03/09/b/a/2/ba21066df826cf82a3c221cf6c8d8b06.gif">
+            <img src="/img/horror02.gif">
         </a>
     </div>
 </body>

@@ -5,6 +5,7 @@
 
 <head>
 <%@ include file="../include/static-head.jsp" %>
+<link rel="stylesheet" href="/css/jiyeonCommon.css">
 
 <style>
     .write-container {
@@ -45,6 +46,9 @@
 </head>
 
 <body>
+       <!-- header -->
+       <%@ include file="../include/header.jsp" %>
+       <!-- /header -->
     <div class="wrap">
 
         <div class="write-container">
@@ -90,7 +94,7 @@
                     </div>
                     <div class="movieTime col-md-3 mb-3">
                         <label for="movie-time-input" class="form-label">영상시간</label>
-                        <input type="text" class="form-control" id="movie-time-input" placeholder="영화시간" name="movieTime">
+                        <input type="text" class="form-control" id="movie-time-input" placeholder="00분" name="movieTime">
                     </div>
                     <div class="director col-md-3 mb-3">
                         <label for="director-input" class="form-label">감독명</label>

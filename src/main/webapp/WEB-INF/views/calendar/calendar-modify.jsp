@@ -5,6 +5,7 @@
 
 <head>
     <%@ include file="../include/static-head.jsp" %>
+    <link rel="stylesheet" href="/css/jiyeonCommon.css">
 
     <style>
         .content-container {
@@ -63,7 +64,9 @@
 </head>
 
 <body>
-
+   <!-- header -->
+   <%@ include file="../include/header.jsp" %>
+   <!-- /header -->
     <div class="wrap">
 
         <div class="content-container">

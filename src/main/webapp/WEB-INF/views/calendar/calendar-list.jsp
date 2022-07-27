@@ -7,6 +7,7 @@
 </head>
 
     <%@ include file="../include/static-head.jsp" %>
+    <link rel="stylesheet" href="/css/jiyeonCommon.css">
 
     <style>
         .calendar-list {
@@ -106,7 +107,9 @@
 
 
 <body>
-
+   <!-- header -->
+   <%@ include file="../include/header.jsp" %>
+   <!-- /header -->
     <div class="wrap">
 
         <div class="calendar-list">
@@ -294,7 +297,7 @@
                 
                 
 
-                if(($divDay === targetDay) && ($divMonth === targetMonth) && (startMovie<currentTime && currentTime<endMovie)) {
+                if(($divDay === targetDay) && ($divMonth === targetMonth) && (startMovie<=currentTime && currentTime<=endMovie)) {
                     const $td = document.createElement('td');
                     $td.textContent = 'live';
                     $td.style.color = 'red';

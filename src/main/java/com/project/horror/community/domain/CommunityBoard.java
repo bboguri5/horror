@@ -24,4 +24,15 @@ public class CommunityBoard {
     private String shortTitle;   // 줄임 제목
     private String prettierDate; // 변경된 날짜포맷 문자열
     private boolean newArticle;  // 신규 게시물 여부
+
+
+    public CommunityBoard(String writer,  String title, String content, String category,String id) {
+        this.writer = writer;
+        this.category = category;
+        this.categoryNm = categoryNm;
+        this.title = title;
+        this.content = content;
+        this.id = id;
+    }
 }
+

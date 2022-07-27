@@ -78,7 +78,6 @@
 
             .community a:hover {
                 transform: scale(3);
-                transition: .5s;
                 position: absolute;
                 top: 200px;
                 left: 200px;
@@ -92,7 +91,6 @@
 
             .media a:hover {
                 transform: scale(3);
-                transition: .5s;
                 position: absolute;
                 top: 200px;
                 left: 200px;
@@ -105,7 +103,6 @@
 
             .spot a:hover {
                 transform: scale(3);
-                transition: .5s;
                 position: absolute;
                 top: 200px;
                 left: 200px;
@@ -120,7 +117,6 @@
 
             .calendar a:hover {
                 transform: scale(3);
-                transition: .5s;
                 position: absolute;
                 top: 200px;
                 left: 200px;

@@ -18,6 +18,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -47,8 +48,11 @@ public class CommunityController {
 
         log.info("controller request /horror/community/list GET! - search: {}", search);
 
-        if(request.getSession(false)==null)
+        HttpSession session = request.getSession(false);
+        if(session ==null)
             return "redirect:/login";
+
+        log.info("session : {}",session);
 
         Map<String, Object> boardMap = boardService.findAllWithSearchService(search);
         log.debug("return data - {}", boardMap);

@@ -24,7 +24,7 @@
 
 <update id="modify">
     UPDATE tbl_recommend
-    SET title = #{title} , content = #{content}
+    SET title = #{title} , content = #{content} , img = #{img}
     WHERE board_no = #{boardNo}
 </update>
 

@@ -7,6 +7,8 @@
 
 <head>
     <%@ include file="../include/static-head.jsp" %>
+    <link rel="stylesheet" href="/css/jiyeonCommon.css">
+
 
     <style>
 

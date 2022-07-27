@@ -24,15 +24,16 @@
     }
 
     .main {
-        padding: 30px;
-        font-size: 3rem;
+        padding: 0;
+        font-size: 100px;
+        color: ;
         display: block;
         font-family: 'horror', sans-serif ;
     
     }
 
     .wrap {
-        color: rgb(251, 0, 0);
+        color: #740707;
         font-size: 80px;
         font-weight: 700;
         font-family: 'East Sea Dokdo', cursive;

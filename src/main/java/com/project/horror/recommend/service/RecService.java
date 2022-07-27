@@ -170,7 +170,9 @@ public class RecService {
     // 게시물 수정 요청 중간 처리
     public boolean modifyService(RecBoard board) {
         log.info("modify service start - {}", board);
-        return mapper.modify(board);
+        boolean result = mapper.modify(board);
+        log.info("modify : {}" ,result);
+        return result;
     }
 
 

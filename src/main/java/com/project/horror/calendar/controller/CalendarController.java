@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.Map;
 
 @Controller // Model에 뷰를 넘겨줌
@@ -23,9 +24,12 @@ public class CalendarController {
     // 게시물 목록 요청
 
     @GetMapping("/list") // "s" 타입으로 옵션태그를 보내준다
-    public String list(@ModelAttribute("s") Search search, Model model) {
+    public String list(@ModelAttribute("s") Search search, Model model, HttpServletRequest request) {
 
         log.info("controller request /board/list GET!");
+
+        if(request.getSession(false)==null) // 아이디 없이 spot 주소를 찾아가면 접근 못하도록 차단
+            return "redirect:/login";
 
         Map<String, Object> calendarMap = calendarService.findAllService(search);
         log.info("return data - {}", calendarMap);
