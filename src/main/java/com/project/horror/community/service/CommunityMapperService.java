@@ -1,17 +1,16 @@
 package com.project.horror.community.service;
 
-import lombok.RequiredArgsConstructor;
-import lombok.extern.log4j.Log4j2;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.util.WebUtils;
-
 import com.project.horror.common.paging.Page;
 import com.project.horror.community.domain.CommunityBoard;
 import com.project.horror.community.domain.CommunityCode;
 import com.project.horror.community.domain.CommunityReply;
 import com.project.horror.community.domain.CommunitySearch;
 import com.project.horror.community.repository.CommunityMapper;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.log4j.Log4j2;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.util.WebUtils;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
@@ -210,7 +209,7 @@ public class CommunityMapperService {
     public List<CommunityReply> findAllReplyService(CommunityReply communityReply) {
         return mapper.findAllReply(communityReply);
     }
-    
+
     // 댓글 상세 조회
     public CommunityReply findOneReplyService(Long boardNo, Long reply_no) {
         log.info("findOneReply service start - boardNo: {}, reply: {}", boardNo, reply_no);

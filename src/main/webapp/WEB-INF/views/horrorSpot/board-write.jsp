@@ -38,10 +38,48 @@
         .countryBox {
             width: 48%;
         }
+
+        /* form */
+
+
+        .form-label {
+            font-family: 'East Sea Dokdo', cursive;
+            font-size: 30px;
+            color: #c71202;
+        }
+
+        .btn-group
+        {
+            font-family: 'East Sea Dokdo', cursive;
+        }
+
+        .content-container .custom-btn-group {
+            position: absolute;
+            bottom: -20%;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        #mod-btn {
+            background: #85810f;
+            font-size: 30px;
+            color: #fff;
+            border: 0;
+
+        }
+        #to-list{
+            background: #560E07;
+            font-size: 30px;
+            color: #fff;
+            border: 0;
+        }
+
     </style>
 </head>
 
 <body>
+    <!-- header -->
+    <%@ include file="../include/header.jsp" %>
+    <!-- /header -->
     <div class="wrap">
         <div class="content-container">
             <form action="/horror/spot_board/${arg}" method="post">
@@ -52,18 +90,18 @@
                     <div class="mb-3 titleBox">
                         <label for="exampleFormControlInput1" class="form-label ">명칭</label>
                         <input type="text" class="form-control title" id="exampleFormControlInput1" placeholder="명칭"
-                            name="title" value="${s.title}" >
+                            name="title" value="${s.title}">
                     </div>
                     <div class="mb-3 countryBox">
                         <label for="exampleFormControlInput2" class="form-label ">국가</label>
                         <input type="text" class="form-control country" id="exampleFormControlInput2" placeholder="국가"
-                            name="country" value="${s.country}" >
+                            name="country" value="${s.country}">
                     </div>
                 </div>
                 <div class="mb-3">
                     <label for="exampleFormControlInput3" class="form-label ">주소</label>
                     <input type="text" class="form-control address" id="exampleFormControlInput3" placeholder="주소"
-                        name="address" value="${s.address}" >
+                        name="address" value="${s.address}">
                 </div>
                 <div class="mb-3">
                     <label for="exampleFormControlTextarea1" class="form-label">내용</label>
@@ -82,11 +120,11 @@
 
 </body>
 <script>
-
-      //목록버튼 이벤트
-      const $toList = document.getElementById('to-list');
-        $toList.onclick = e => {
-            location.href = '/horror/spot_board/spot';
-        };
+    //목록버튼 이벤트
+    const $toList = document.getElementById('to-list');
+    $toList.onclick = e => {
+        location.href = '/horror/spot_board/spot';
+    };
 </script>
+
 </html>

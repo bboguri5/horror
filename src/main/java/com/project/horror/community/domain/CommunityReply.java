@@ -2,9 +2,7 @@ package com.project.horror.community.domain;
 
 import lombok.*;
 
-import java.util.Date;
-
-@Setter @Getter @ToString @EqualsAndHashCode
+@Setter @Getter @ToString
 @NoArgsConstructor @AllArgsConstructor
 public class CommunityReply {
 
@@ -15,6 +13,4 @@ public class CommunityReply {
     private String id;
     private long upReplyNo;
     private String regDate; // 등록일자
-
-    // custom data field
 }

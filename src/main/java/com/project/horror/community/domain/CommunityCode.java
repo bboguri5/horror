@@ -2,7 +2,7 @@ package com.project.horror.community.domain;
 
 import lombok.*;
 
-@Setter @Getter @ToString @EqualsAndHashCode
+@Setter @Getter @ToString 
 @NoArgsConstructor @AllArgsConstructor
 public class CommunityCode {
 
@@ -11,6 +11,4 @@ public class CommunityCode {
     private String code;
     private String codeNm;
     private int sort;
-
-    // custom data field
 }

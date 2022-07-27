@@ -7,17 +7,40 @@
 <%@ include file="../include/static-head.jsp" %>
 
 <style>
+
     .write-container {
-        width: 50%;
-        margin: 200px auto 150px;
+        /* width: 50%;
+        margin: 200px auto 150px; */
         font-size: 1.2em;
+        position: relative;
     }
+
+    .write-container .custom-btn-group {
+        position: absolute;
+        bottom: -15%;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+     /* 카테고리 */
+     .category-box {
+            margin-top: 25px;
+        }
+
+        .form-label {
+            margin-right: 15px;
+        }
+
+        .form-check-input {
+            margin-right: 5px;
+        }
 </style>
 </head>
 
 <body>
+    <%@ include file="../include/header.jsp" %>
+
     <div class="wrap">
-        <%@ include file="../include/header.jsp" %>
 
         <div class="write-container">
 
@@ -26,9 +49,9 @@
                 <div class="mb-3">
                     <label for="writer-input" class="form-label">작성자</label>
                     <input type="text" class="form-control" id="writer-input" placeholder="이름"
-                        name="writer" maxlength="20">
+                        name="writer" maxlength="7">
                 </div>
-                <div class="mb-3">
+                <div class="mb-3 category-box">
                     <label for="category-input" class="form-label">카테고리</label>
                     <c:forEach var="ctgr" items="${ctgrList}">
                         <label for="category_${ctgr.code}">
@@ -45,11 +68,12 @@
                     <textarea name="content" class="form-control" id="exampleFormControlTextarea1" rows="10"></textarea>
                 </div>
 
-                <div class="d-grid gap-2">
-                    <button id="reg-btn" class="btn btn-dark" type="button">글 작성하기</button>
-                    <button id="to-list" class="btn btn-warning" type="button">목록으로</button>
+                <!--<div class="d-grid gap-2">-->
+                <div class="btn-group btn-group-lg custom-btn-group">
+                    <button id="reg-btn" class="btn btn-warning btn-lg m-2" type="button">작성</button>
+                    <button id="to-list" class="btn btn-dark btn-lg m-2" type="button">목록</button>
                 </div>
-                
+
                 <input type="hidden" class="form-control" id="id-input" name="id">
                 <!--<input type="hidden" class="form-control" id="category-input" name="category">-->
 
@@ -63,7 +87,7 @@
     </div>
 
 
-    <script>
+     <script>
 
         // 게시물 등록 입력값 검증 함수
         function validateFormValue() {
@@ -101,11 +125,10 @@
             // 카테고리 입력
             //const $category = document.getElementById('category-input');
             //$category.value = ;
-            
+
             // ID에 기본값 입력
-            const $userID = document.getElementById('userID');
             const $id = document.getElementById('id-input');
-            $id.value = $userID.value;
+            $id.value = '${user}';
 
             // 필수 입력값을 잘 채웠으면 form summit
             const $form = document.getElementById('write-form');

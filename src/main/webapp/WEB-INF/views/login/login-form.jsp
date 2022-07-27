@@ -18,7 +18,7 @@
     }
 
     .form-signin-heading{
-      font-family: "horror", sans-serif;
+      font-family: 'horror', sans-serif;
       color: #740707;
       font-size: 100px;
     }
@@ -73,7 +73,7 @@ const result = '${login}';
  
 if(result === 'false')
 {
-  alert("로그인이 실패하였습니다. 다시 입력해주세요.");
+  alert("아이디 또는 비밀번호가 일치하지 않습니다.\n 확인 후 다시 입력해 주시기 바랍니다.");
 }
 
 </script>
