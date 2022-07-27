@@ -50,7 +50,7 @@ public class RecController {
     @GetMapping("/reccontent/{boardNo}")
     public String content(@PathVariable Long boardNo, Model model
             ,HttpServletResponse response, HttpServletRequest request
-            ,@ModelAttribute("p") RecPage paㅣge) {
+            ,@ModelAttribute("p") RecPage page) {
         log.info("controller request /recboard/reccontent GET ! - {}", boardNo);
 
         RecBoard board = service.findOneService(boardNo, response, request);
@@ -118,6 +118,6 @@ public class RecController {
         log.info("controller request /recboard/reclikeup GET! - {}",boardNo);
         boolean flag = service.makeGoodCount(boardNo,response,request);
 
-        return flag? "redirect:/recboard/reclist" : "redirect:/recboard/reclist";
+        return "redirect:/recboard/reccontent/"+ boardNo;
     }
 }
