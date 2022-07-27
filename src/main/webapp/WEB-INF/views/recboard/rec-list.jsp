@@ -14,7 +14,7 @@
                     font-family: 'horror';
                     src: url('/youmurdererbb_reg.ttf') format('truetype');
                 }
-
+                    
                     
                     ul {
                         padding: 0;
@@ -248,7 +248,9 @@
 
 
         <body>
-
+   <!-- header -->
+   <%@ include file="../include/header.jsp" %>
+   <!-- /header -->
             <div class="wrapper">
 
                 <h1 class="title"> Horror Movie / content Recommend Board </h1>
