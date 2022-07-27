@@ -10,6 +10,7 @@
 
 
                 <style>
+
                      @font-face {
                     font-family: 'horror';
                     src: url('/youmurdererbb_reg.ttf') format('truetype');
@@ -32,7 +33,7 @@
                         /* background: green;   */
                         margin: 50px auto 50px;
                         text-align: center;
-                        font-size:90px;
+                        font-size: 90px;
                         color: rgb(234, 10, 10);
                         font-family: 'horror';
                         text-shadow: 4px 5px 7px red;
@@ -103,22 +104,22 @@
                     }
 
                     /* 글제목 */
-                    .box .title-li{
+                    .box .title-li {
                         font-size: 25px;
                         margin-bottom: 30px;
                     }
-                    
+
                     .good-box {
                         display: flex;
                     }
-                    
+
                     .good-box li:last-child {
                         margin-left: 10px;
-                        
+
                         /* background: green; */
                     }
-                    
-                    .fa-brands{
+
+                    .fa-brands {
                         margin-left: 20px;
                     }
 
@@ -145,7 +146,8 @@
                     .btn-write {
                         /* background: green; */
                         position: absolute;
-                        right: 50px;
+                        right: 60px;
+                        bottom: 25px;
 
                     }
 
@@ -323,12 +325,13 @@
 
                             <c:choose>
                                 <c:when test="${b.newArticle}">
-                                    <span class="badge rounded-pill bg-danger">new</span> <li class="title-li" style="margin-bottom : 5px">${b.shortTitle}</li>
+                                    <span class="badge rounded-pill bg-danger">new</span>
+                                    <li class="title-li" style="margin-bottom : 5px">${b.shortTitle}</li>
                                 </c:when>
 
                                 <c:otherwise>
                                     <li class="title-li">${b.shortTitle}</li>
-                            </c:otherwise>
+                                </c:otherwise>
                             </c:choose>
 
 
@@ -346,7 +349,7 @@
                             <div class="good-box">
                                 <li>조회수 : ${b.viewCnt}</li>
 
-                                <a href="/recboard/reclikeup?boardNo=${b.boardNo}"> 
+                                <a href="/recboard/reclikeup?boardNo=${b.boardNo}">
                                     <i class="fa-brands fa-gratipay"></i> </a>
                                 <li> 좋아요 : ${b.goodCnt}</li>
                             </div>

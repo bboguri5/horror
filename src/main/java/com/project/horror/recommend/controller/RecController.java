@@ -50,7 +50,7 @@ public class RecController {
     @GetMapping("/reccontent/{boardNo}")
     public String content(@PathVariable Long boardNo, Model model
             ,HttpServletResponse response, HttpServletRequest request
-            ,@ModelAttribute("p") RecPage page) {
+            ,@ModelAttribute("p") RecPage paㅣge) {
         log.info("controller request /recboard/reccontent GET ! - {}", boardNo);
 
         RecBoard board = service.findOneService(boardNo, response, request);
