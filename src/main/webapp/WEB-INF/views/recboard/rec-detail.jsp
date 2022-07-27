@@ -10,6 +10,9 @@
                     @font-face {
                         font-family: 'horror';
                         src: url('/youmurdererbb_reg.ttf') format('truetype');
+
+                        font-family: 'horrorkor';
+                        src: url('/OK CHAN.ttf') format('truetype');
                     }
 
                     body {
@@ -53,52 +56,104 @@
 
                     .content-container {
                         width: 60%;
-                        margin-left: 120px;
+                        margin: 0 100px 150px 250px;
                         /* position: relative; */
+
+                        color: #fff;
+                        font-family: 'horrorkor';
+                        letter-spacing: 5px;
+                        font-size: 25px;
                     }
 
                     .main-title {
-                        margin: 25px 0 30px 120px;
+                        margin: 5px 0 5px 120px;
                         font-family: 'horror';
                         color: red;
                         text-shadow: 4px 5px 7px #41464b;
                         letter-spacing: 4px;
                         font-size: 70px;
-                        font-weight: 700; 
-                                                
+                        font-weight: 700;
                     }
-                    
+
+                    .media-img {
+                        width: 350px;
+                        height: 230px;
+                        margin-left: 180px;
+                    }
+
+                    .img-box {
+                        width: 100%;
+                        height: 230px;
+                        box-shadow: -5px -3px 3px 3px rgb(247, 243, 243) inset, 3px 2px 3px 3px red;
+                        border: 5px solid red;
+                    }
+
+
+
                     .writer-box {
                         display: flex;
+                        text-shadow: 4px 5px 7px #41464b;
+                        margin-top: 20px;
                     }
 
                     .writer-label {
                         width: 100px;
+                        margin: 0;
+                        text-shadow: 4px 5px 7px #41464b;
                     }
 
-                    .title-box{
+                    #exampleFormControlInput1 {
+                        width: 200px;
+                        background: rgba(0, 0, 0, 0.2);
+                        border: 0;
+                        color: #fff;
+                        font-family: 'horrorkor';
+                        letter-spacing: 5px;
+                        font-size: 25px;
+                        padding: 0;
+                        text-shadow: 4px 5px 7px #41464b;
+                        margin-left: 20px;
+
+                    }
+
+                    .title-box {
                         display: flex;
                     }
 
-                    .title-label{
+                    .title-label {
                         width: 100px;
+                    }
+
+                    input#exampleFormControlInput2 {
+                        width: 500px;
+                        background: rgba(0, 0, 0, 0.2);
+                        border: 0;
+                        color: #dc3545;
+                        text-shadow: 4px 5px 7px #41464b;
+                        font-family: 'horrorkor';
+                        letter-spacing: 5px;
+                        font-size: 25px;
+                        padding: 0;
+                        text-align: center;
                     }
 
 
 
                     .content-container .main-content {
-                        border: 2px solid #ccc;
+                        border: 4px solid #41464b;
                         border-radius: 20px;
                         padding: 10px 25px;
-                        font-size: 1.1em;
+                        font-size: 20px;
                         text-align: justify;
                         min-height: 400px;
-                        
+                        font-weight: 400;
+                        font-family: ui-serif;
+
                     }
 
                     .content-container .custom-btn-group {
                         position: absolute;
-                        bottom: -10%;
+                        bottom: -50px;
                         left: 50%;
                         transform: translateX(-50%);
                     }
@@ -120,6 +175,10 @@
                 <h1 class="main-title">Board_Number : ${b.boardNo}</h1>
                 <div class="content-container">
 
+                    <div class="media-img">
+                        <img class="img-box" src="${b.img}" alt="공포이미지">
+                    </div>
+
                     <div class="mb-3 writer-box">
                         <label for="exampleFormControlInput1" class="form-label writer-label">작성자</label>
                         <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="이름"
@@ -131,7 +190,7 @@
                             name="title" value="${b.title}" disabled>
                     </div>
                     <div class="mb-3">
-                        <label for="exampleFormControlTextarea1" class="form-label">내용</label>
+                        <!-- <label for="exampleFormControlTextarea1" class="form-label">내용</label> -->
 
                         <p class="main-content">
                             ${b.content}
@@ -141,8 +200,8 @@
 
                     <div class="btn-group btn-group-lg custom-btn-group" role="group">
                         <c:if test="${flag}">
-                        <button id="mod-btn" type="button" class="btn btn-warning">수정</button>
-                        <button id="del-btn" type="button" class="btn btn-danger">삭제</button>
+                            <button id="mod-btn" type="button" class="btn btn-warning" onclick="modify()">수정</button>
+                            <button id="del-btn" type="button" class="btn btn-danger" onclick="deleteClick()">삭제</button>
                         </c:if>
                         <button id="list-btn" type="button" class="btn btn-dark">목록</button>
                         <button id="like-btn" type="button" class="btn btn-yellow">좋아요</button>
@@ -161,21 +220,30 @@
 
 
             <script>
-                const [$modBtn, $delBtn, $listBtn, $likeBtn] = [...document.querySelector('div[role=group]').children];
+                const $modBtn = document.getElementById('mod-btn');
+                const $delBtn = document.getElementById('del-btn');
+                const $listBtn = document.getElementById('list-btn');
+                const $likeBtn = document.getElementById('like-btn');
+
+                // console.log(typeof(${b.boardNo}));
+                // console.log(typeof(${p.amount}));
+
+                // console.log($modBtn);
+                // console.log($delBtn);
+                // console.log($listBtn);
+                // console.log($likeBtn);
 
                 // const $modBtn = document.getElementById('mod-btn');
                 //수정버튼
-                $modBtn.onclick = e => {
-                    location.href = '/recboard/recmodify?boardNo=${b.boardNo}';
-                };
+                // $modBtn.onclick = e => {
+                //     location.href = '/recboard/recmodify?boardNo=${b.boardNo}';
+                // };
 
-                //삭제버튼
-                $delBtn.onclick = e => {
-                    if (!confirm('정말 삭제하시겠습니까?')) {
-                        return;
-                    }
-                    location.href = '/recboard/recdelete/${b.boardNo}';
-                };
+                // $modBtn.addEventListener('onclick',function(){
+                //     location.href = '/recboard/recmodify?boardNo=?{b.boardNo}'
+                // });
+                    
+
                 //목록버튼
                 $listBtn.onclick = e => {
                     location.href = '/recboard/reclist?pageNum=${p.pageNum}&amount=${p.amount}';
@@ -185,6 +253,21 @@
                 $likeBtn.onclick = e => {
                     location.href = '/recboard/reclikeup?boardNo=${b.boardNo}';
                 }
+                
+                //삭제버튼
+                function deleteClick(){
+                    if (!confirm('정말 삭제하시겠습니까?')) {
+                        return;
+                    }
+                    location.href = '/recboard/recdelete/${b.boardNo}';
+                }
+              
+                //수정버튼
+                function modify(){
+                    location.href = '/recboard/recmodify?boardNo=${b.boardNo}';
+                }
+
+                
 
             </script>
 

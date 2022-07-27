@@ -7,8 +7,8 @@
 
 <title> Horror </title>
 
-<link rel="icon" href="siteicon.ico">
-<link rel="apple-touch-icon" href="siteicon.ico"> 
+<!-- <link rel="icon" href="siteicon.ico">
+<link rel="apple-touch-icon" href="siteicon.ico">  -->
 
 <!-- reset css -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reset-css@5.0.1/reset.min.css">
