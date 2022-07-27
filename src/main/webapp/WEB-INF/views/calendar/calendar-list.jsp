@@ -262,24 +262,44 @@
 
             for (let $tr of [...$search.children[0].children]) {
                 // div가 첫째자식임
-                const $divMonth = $tr.children[1].textContent;
-                const $divDay = $tr.children[2].textContent;
-                const $divTime = $tr.children[3].textContent;
-                const $divMovieTime = $tr.children[8].textContent;
-                console.log($divTime);
-                $divMovieTime = $divMovieTime.substr(0, $divMovieTime.length - 1);
-                console.log($divMovieTime);
-                console.log(targetTime);
+                let $divMonth = $tr.children[1].textContent; // 월
+                let $divDay = $tr.children[2].textContent; // 일
+                let $divTime = $tr.children[3].textContent; // 영화시작시간
+                let $divMovieTime = $tr.children[8].textContent; // 영화길이 
+                console.log($divTime); // 309 : 9:30 출력
+                $divMovieTime = $divMovieTime.substr(0, $divMovieTime.length - 1); //
+                $divMovieTime = parseInt($divMovieTime); // num 120
+                console.log($divMovieTime); // 120 출력
+                
+                let minute = $divTime.substr(3, 2);
+                minute = parseInt(minute);
+                console.log(minute);
+
+                $divTime = parseInt($divTime); // num 20 326
+                
+                console.log($divTime); // 9
+                let startMovie = $divTime*60+minute; // 1200
+
+                let currentMinute = targetTime.substr(3, 2);
+                currentMinute = parseInt(currentMinute);
+                console.log(currentMinute);
+
+                currentTime = parseInt(targetTime); // 현재 시간 num으로바꿈
+                currentTime = currentTime*60+currentMinute;
+                endMovie = startMovie+$divMovieTime; // 1350
+
+                console.log(startMovie); //333
+                console.log(currentTime); //348
+                console.log(endMovie); // 335
                 
                 
 
-                if($divDay === targetDay && $divMonth === targetMonth && ($divTime<tragetTime<$divTime+$divMovieTime)) {
+                if(($divDay === targetDay) && ($divMonth === targetMonth) && (startMovie<currentTime && currentTime<endMovie)) {
                     const $td = document.createElement('td');
                     $td.textContent = 'live';
                     $td.style.color = 'red';
-                    // $td.style.border = "1px solid black";
-                    // $td.style.borderRadius = "5px";
                     $tr.appendChild($td);
+
                 }
             }
         }

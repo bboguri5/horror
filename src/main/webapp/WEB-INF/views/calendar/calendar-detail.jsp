@@ -10,6 +10,7 @@
         .content-container {
             width: 70%;
             margin: 100px auto 100px;
+            color: white;
         }
         .content-container .main-title {
             text-align: center;
