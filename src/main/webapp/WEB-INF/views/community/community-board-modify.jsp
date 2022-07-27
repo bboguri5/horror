@@ -9,9 +9,12 @@
     <%@ include file="../include/static-head.jsp" %>
 
     <style>
+
+        .wrap {
+            margin-top: 150px !important;
+        }
+
         .content-container {
-            width: 60%;
-            margin: 150px auto;
             position: relative;
         }
 
@@ -36,17 +39,30 @@
 
         .content-container .custom-btn-group {
             position: absolute;
-            bottom: -10%;
+            bottom: -15%;
             left: 50%;
             transform: translateX(-50%);
+        }
+
+         /* 카테고리 */
+         .category-box {
+            margin-top: 25px;
+        }
+
+        .form-label {
+            margin-right: 15px;
+        }
+
+        .form-check-input {
+            margin-right: 5px;
         }
     </style>
 </head>
 
 <body>
+    <%@ include file="../include/header.jsp" %>
 
     <div class="wrap">
-        <%@ include file="../include/header.jsp" %>
 
         <div class="content-container">
 
@@ -62,7 +78,7 @@
                         value="${board.writer}" maxlength="7">
                 </div>
                 <div class="mb-3">
-                    <label for="category-input" class="form-label">카테고리</label>
+                    <label for="category-input category-box" class="form-label">카테고리</label>
                     <c:forEach var="ctgr" items="${ctgrList}">
                         <lable for="category_${ctgr.code}">
                             <input type='radio' id="category_${ctgr.code}" class="form-check-input" name='category' value="${ctgr.code}" ${ctgr.code == board.category ? 'checked' : ''} >${ctgr.codeNm}
@@ -83,8 +99,8 @@
 
 
                 <div class="btn-group btn-group-lg custom-btn-group" role="group">
-                    <button id="mod-btn" type="submit" class="btn btn-warning">완료</button>
-                    <button id="to-list" type="button" class="btn btn-dark">목록</button>
+                    <button id="mod-btn" type="submit" class="btn btn-warning btn-lg m-2">완료</button>
+                    <button id="to-list" type="button" class="btn btn-dark btn-lg m-2">목록</button>
                 </div>
 
             </form>

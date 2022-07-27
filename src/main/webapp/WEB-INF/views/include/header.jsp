@@ -64,8 +64,7 @@
             }
 </style>
 <!-- header -->
-<header>
-    <input type="text" id="userID" value="fffff">
+
     <header>
         <div id="mySidenav" class="sidenav">
             <a href="/logout">logout</a>
@@ -78,9 +77,6 @@
         </div>
 
         <span class="menuOpen" style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776;</span>
-
-
-    </header>
 </header>
 
 <script>
