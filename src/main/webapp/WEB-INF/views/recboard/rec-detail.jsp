@@ -165,6 +165,9 @@
         </head>
 
         <body>
+               <!-- header -->
+    <%@ include file="../include/header.jsp" %>
+    <!-- /header -->
             <div class="left-img">
                 <img class="horror-img" src="https://t.pimg.jp/077/322/588/1/77322588.jpg" alt="공포이미지"
                     style="object-fit: cover;">

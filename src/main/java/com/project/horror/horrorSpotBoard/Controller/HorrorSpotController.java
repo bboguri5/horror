@@ -30,8 +30,8 @@ public class HorrorSpotController {
 
         log.info(" Controller spot : GET - ! ");
 
-        if(request.getSession(false)==null) // 아이디 없이 spot 주소를 찾아가면 접근 못하도록 차단
-            return "redirect:/login";
+//        if(request.getSession(false)==null) // 아이디 없이 spot 주소를 찾아가면 접근 못하도록 차단
+//            return "redirect:/login";
 
         //paging 처리하여 select
         Page page = new Page(search.getPageNum(), search.getAmount());

@@ -4,7 +4,7 @@ import lombok.*;
 
 import java.util.Date;
 
-@Setter @Getter @ToString @EqualsAndHashCode
+@Setter @Getter @ToString
 @NoArgsConstructor @AllArgsConstructor
 public class CommunityBoard {
 

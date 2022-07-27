@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 @Log4j2
 @Controller
@@ -31,6 +32,16 @@ public class FrontController {
         log.info(" Controller loginForm : Post - ! {}" ,flag);
         model.addAttribute(flag);
         return "login/login-form";
+    }
+
+    @GetMapping("/logout")
+    public String logout(HttpServletRequest request)
+    {
+        HttpSession session = request.getSession(false);
+        if (session != null) {
+            session.invalidate();
+        }
+        return "redirect:/login";
     }
 
     // 메인 화면

@@ -1,13 +1,12 @@
 package com.project.horror.community.repository;
 
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Param;
-
 import com.project.horror.common.paging.Page;
 import com.project.horror.community.domain.CommunityBoard;
 import com.project.horror.community.domain.CommunityCode;
 import com.project.horror.community.domain.CommunityReply;
 import com.project.horror.community.domain.CommunitySearch;
+import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
