@@ -56,15 +56,15 @@
                 <div class="firstBox">
                     <div class="month col-md-3 mb-3">
                         <label for="month-input" class="form-label">월</label>
-                        <input type="text" class="form-control" id="month-input" placeholder="월" name="month">
+                        <input type="text" class="form-control" id="month-input" placeholder="0월" name="month">
                     </div>
                     <div class="day col-md-3 mb-3">
                         <label for="day-input" class="form-label">일</label>
-                        <input type="text" class="form-control" id="day-input" placeholder="일" name="day">
+                        <input type="text" class="form-control" id="day-input" placeholder="0일" name="day">
                     </div>
                     <div class="time col-md-3 mb-3">
                         <label for="time-input" class="form-label">시간</label>
-                        <input type="text" class="form-control" id="time-input" placeholder="시간" name="time">
+                        <input type="text" class="form-control" id="time-input" placeholder="00:00" name="time">
                     </div>
                 </div>
                 
@@ -79,20 +79,20 @@
                     </div>
                     <div class="limit col-md-3 mb-3">
                         <label for="limit-input" class="form-label">나이제한</label>
-                        <input type="text" maxlength="2" class="form-control" id="limit-input" placeholder="나이제한" name="limit">
+                        <input type="text" maxlength="2" class="form-control" id="limit-input" placeholder="ex) 12/15/19/전" name="limit">
                     </div> 
                 </div>
 
                 <div class="thirdBox">
-                    <div class="title col-md-5 mb-3">
+                    <div class="title col-md-3 mb-3">
                         <label for="title-input" class="form-label">제목</label>
                         <input type="text" class="form-control" id="title-input" placeholder="제목" name="title">
                     </div>
-                    <div class="movieTime col-md-5 mb-3">
+                    <div class="movieTime col-md-3 mb-3">
                         <label for="movie-time-input" class="form-label">영상시간</label>
                         <input type="text" class="form-control" id="movie-time-input" placeholder="영화시간" name="movieTime">
                     </div>
-                    <div class="director col-md-5 mb-3">
+                    <div class="director col-md-3 mb-3">
                         <label for="director-input" class="form-label">감독명</label>
                         <input type="text" class="form-control" id="director-input" placeholder="감독명" name="director">
                     </div>
