@@ -3,6 +3,7 @@ package com.project.horror.calendar.domain;
 import lombok.*;
 
 import java.util.Date;
+import java.util.List;
 
 @Setter @Getter @ToString @EqualsAndHashCode
 @NoArgsConstructor @AllArgsConstructor
@@ -23,4 +24,6 @@ public class Calendar {
 
     private String director;
     private String content;
+
+    private List<String> fileNames; // 첨부파일들의 이름 목록 /여러개가올수있어서 list
 }

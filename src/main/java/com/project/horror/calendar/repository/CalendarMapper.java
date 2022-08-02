@@ -28,4 +28,9 @@ public interface CalendarMapper {
     // 전체 게시물수 조회
 //    int getTotalCount(Search search);
 
+    void addFile(String fileName);
+
+    // 게시물에 붙어있는 첨부파일경로명 전부 조회하기
+    List<String> findFileNames(Long bno);
+
 }

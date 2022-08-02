@@ -24,6 +24,18 @@ public class CalendarService {
 
     public boolean saveService(Calendar calendar) {
         log.info("save service start - {}", calendar);
+
+        // 게시물 내용 DB에 저장
+        boolean flag = repository.save(calendar);
+
+        List<String> fileNames = calendar.getFileNames();
+        if (fileNames != null && fileNames.size() > 0) {
+            for (String fileName : fileNames) { // 파일이 여러개이기떄문에 돌려야함
+                // 첨부파일 내용 DB에 저장
+                repository.addFile(fileName);
+            }
+        }
+
         return repository.save(calendar);
     }
 
@@ -90,6 +102,10 @@ public class CalendarService {
     public boolean modifyService(Calendar calendar) {
         log.info("modify service start - {}", calendar);
         return repository.modify(calendar);
+    }
+
+    public List<String> getFiles(Long bno) {
+        return repository.findFileNames(bno);
     }
 
 }

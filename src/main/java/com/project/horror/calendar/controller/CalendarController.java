@@ -5,12 +5,15 @@ import com.project.horror.calendar.service.CalendarService;
 import com.project.horror.common.search.Search;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 import java.util.Map;
 
 @Controller // Model에 뷰를 넘겨줌
@@ -98,6 +101,16 @@ public class CalendarController {
         log.info("controller request /board/modify POST! - {}", calendar);
         boolean flag = calendarService.modifyService(calendar);
         return flag ? "redirect:/horror/calendar_board/content/" + calendar.getCalendarNo() : "redirect:/";
+    }
+
+    @GetMapping("/file/{bno}")
+    @ResponseBody // 비동기니까
+    public ResponseEntity<List<String>> getFiles(@PathVariable Long bno) {
+
+        List<String> files = calendarService.getFiles(bno);
+        log.info("/board/file/{} GET! ASYNC - {}", bno, files);
+
+        return new ResponseEntity<>(files, HttpStatus.OK);
     }
 
 }

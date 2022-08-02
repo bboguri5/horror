@@ -50,4 +50,20 @@
         WHERE calendar_no = #{calendarNo}
     </update>
 
+    <!--  첨부파일 추가  / currval 은 nextval보다 1작음 / nextval호출하면 (currval,next)1씩증가 currval은 호출해도 1씩증가안함-->
+    <insert id="addFile">
+
+        INSERT INTO img_upload
+            (file_name, calendar_no)
+        VALUES
+            (#{fileName}, 4 || LPAD(seq_tbl_calendar.currval, 4, '0'))
+
+    </insert>
+
+    <select id="findFileNames" resultType="string">
+        SELECT file_name
+        FROM img_upload
+        WHERE calendar_no = #{calendarNo}
+    </select>
+
 </mapper>

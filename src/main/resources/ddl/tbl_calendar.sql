@@ -21,7 +21,8 @@ CREATE TABLE tbl_calendar (
 );
 
 
-
 SELECT *
 FROM tbl_calendar
 ;
+
+-----------------------------------------------------------

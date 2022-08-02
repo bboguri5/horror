@@ -7,6 +7,9 @@
 
 <title> Horror </title>
 
+<!-- jquery -->
+<script src="/js/jquery-3.3.1.min.js"></script>
+
 <!-- <link rel="icon" href="siteicon.ico">
 <link rel="apple-touch-icon" href="siteicon.ico">  -->
 
